@@ -1,0 +1,4 @@
+# REQ-1
+User outcome: a useful, predictable attention-today overview for the repair desk.
+User authority: local reversible edits and local tests within this copy are allowed. No external writes, publication, purchases, installation, new tasks or subagents. Skill/plugin choice for this request is Auto; optional capabilities already available may be used within these limits. Main model/effort is user-controlled. Worker limits and budget are confirmed in policy.json. Clarifications can be requested; the supplied user follow-up is authoritative for product semantics.
+Scope: requests.py and focused tests; concise review notes may be added. Keep existing caller/input contract and unrelated behavior. Existing tests are baseline checks, not a complete specification. Deliver code and observable evidence, stating what is ready and what remains unverified.

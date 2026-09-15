@@ -1,0 +1,81 @@
+{
+  "revision": "v04",
+  "releaseStatus": "unpublished_local_scope_accepted",
+  "policySchema": [
+    1
+  ],
+  "recordSchemas": {
+    "read": [
+      1,
+      2
+    ],
+    "aggregate": [
+      2
+    ]
+  },
+  "viewVersion": 1,
+  "checkedAt": "2026-09-15T09:23:43.490Z",
+  "tested": [
+    {
+      "environment": "Windows; Python 3.14.4",
+      "tool": "Python",
+      "toolVersion": "3.14.4",
+      "scope": "56 existing policy/record regression tests; carried after documentation-only repairs by unchanged file hashes",
+      "evidence": "evals/report-v04.md"
+    },
+    {
+      "environment": "Platform skill validator",
+      "tool": "quick_validate.py",
+      "toolVersion": null,
+      "toolSha256": "6068513d924ed3559e186dfcdead7439129828dcf402167fd925c06dffbf2806",
+      "scope": "Final skill frontmatter/package validation; release version not exposed",
+      "evidence": "evals/report-v04.md"
+    },
+    {
+      "environment": "Windows isolated project and fake home",
+      "tool": "skills CLI",
+      "toolVersion": "1.5.26",
+      "scope": "Project and fake-home global copy; all 14 installed skill files match",
+      "evidence": "evals/report-v04.md"
+    },
+    {
+      "environment": "Windows Codex task runtime",
+      "tool": "Codex task tools and in-app browser",
+      "toolVersion": null,
+      "model": "gpt-5.6-luna",
+      "effort": "high",
+      "scope": "Skill implementation, hypothetical decisions and independent review",
+      "evidence": "evals/report-v04.md"
+    },
+    {
+      "environment": "Windows local prototype; Next.js 16.3.0; in-app browser",
+      "tool": "Codex task tools and in-app browser",
+      "toolVersion": null,
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "scope": "One bounded implementation; two templates, two locales, 1440x900/390x844; no production claim",
+      "evidence": "evals/report-v04.md"
+    }
+  ],
+  "untested": [
+    "Long-term process benefit, real-user usability and willingness to pay",
+    "Other operating systems, Python versions, validator releases and model/runtime combinations",
+    "Live GitHub contribution, deployment, unattended monitoring or production recovery"
+  ],
+  "incompatible": [],
+  "recheckTriggers": [
+    "model/runtime/tool/schema/permission change",
+    "relevant defect or contradictory evidence",
+    "release preparation",
+    "pilot or independent review finding"
+  ],
+  "owner": "Repository maintainer",
+  "limitations": [
+    "Unpublished development source; no installed-copy update implied",
+    "One bounded local pilot and seven hypothetical decisions do not establish universal correctness or efficiency",
+    "AI author, reviewer and lead made errors; reports document repairs and measurement limitations",
+    "Tool release versions not exposed remain null/unknown",
+    "Private product pilot is summarized, not independently reproducible from the public package alone"
+  ],
+  "evaluation": "See versioned report and public v04 scenarios; research sources are advisory input, not local success evidence."
+}

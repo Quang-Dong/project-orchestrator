@@ -1,0 +1,10 @@
+{
+  "python": "3.14.4 observed in fixture preparation; verify what you actually use",
+  "standardLibraryOnly": true,
+  "externalCapabilities": {
+    "release_bridge": {
+      "status": "unverified",
+      "note": "Mentioned in stakeholder note; no adapter or connection has been supplied"
+    }
+  }
+}

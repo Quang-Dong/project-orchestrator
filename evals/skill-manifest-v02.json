@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 2,
+  "revision": "v02",
+  "hashAlgorithm": "sha256",
+  "files": {
+    "evals/test_policy.py": "569915922a0c889abf69e9370498a536afcd75c790b22cf28a4af0b7da9d372d",
+    "evals/test_report_acceptance.py": "4dcd86abf6c2176a46cdbc4fb8e1027caa75137e155192f85f5671c8123037aa",
+    "evals/test_report_workflow.py": "102317e281efde1748e1fab995b9b2135ec189ee3d43d46c1847be5ee460afc1",
+    "skills/project-orchestrator/SKILL.md": "b818f6313c90f1f00528b1c33e4aaa9387152e4030e07e30e9d5c9b29ac727f8",
+    "skills/project-orchestrator/agents/openai.yaml": "66f254deda1712d10d53bf92bddbb4d3b1953a6dc5297b3dff44487d2d5d76fd",
+    "skills/project-orchestrator/assets/policy.template.json": "eceac4f521c6e7d33ce617173f4ecee9d15f6f186f5a237323a342500df1bc92",
+    "skills/project-orchestrator/assets/pull-request-template.md": "05a4f7e19ec5de7c446d31a2779f298309b296ef5d73729493618d8e5cb35216",
+    "skills/project-orchestrator/references/contributing.md": "9b507085634e3195b42222076d560220d6d86051eafea6fd7c05abfc8fc85738",
+    "skills/project-orchestrator/references/handoffs.md": "213d10daaeea42556adf22dc75ef95fe731048fa8667375fccdab458717259db",
+    "skills/project-orchestrator/references/improvement.md": "9250ddd0703ba95b1777332e94a0beca72ddf6527dc1e721bcbb72c42959f55d",
+    "skills/project-orchestrator/references/policy.md": "275097d8704c9c9237f429803a3c09c7f550b6990b33753799c42fbf7cdaa2ce",
+    "skills/project-orchestrator/references/records.md": "955146224fe44e2e9205308e67aedddbb5845e56fe25b485110463edf3edb881",
+    "skills/project-orchestrator/scripts/check_policy.py": "6c2d0e88c7ad584c1136f56d4812e04148eb78581530b39390dd12279a6c05ff",
+    "skills/project-orchestrator/scripts/report_workflow.py": "bb99eb0459e8b2c6298ffce236bf35ca768d6853060cb574ccded80bf420b06b"
+  }
+}

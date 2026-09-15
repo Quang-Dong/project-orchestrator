@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Orchestrator"
+  short_description: "Lead product work to verified outcomes"
+  default_prompt: "Use $project-orchestrator to shape the user's outcome, coordinate only when useful, and verify acceptance within confirmed policy."
+policy:
+  allow_implicit_invocation: true

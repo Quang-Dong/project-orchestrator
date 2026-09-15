@@ -1,0 +1,8 @@
+{
+  "result": "passed",
+  "command": "python -m unittest discover -v",
+  "tests": 2,
+  "checkedSourceSha256": "d10c618f48bd1345c45e9a4ee01856825fd4bcc3b3171cb09b4dd153da0b618d",
+  "checkedAt": "2026-03-10T08:00:00Z",
+  "scope": "requests.py at the recorded source hash; not external integration"
+}

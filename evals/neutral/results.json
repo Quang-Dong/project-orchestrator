@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "comparison": "One descriptive pair; no statistical claim",
+  "outcomes": {
+    "control": {
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "modelEffortObserved": true,
+      "sourceHashes": {
+        "requests.py": "d4c898fee09a831d9b95a89886acbeb8dba08ab5af51e8d5fee9d6000392affd",
+        "test_requests.py": "b90641c1051c95df79332ff17b3d8e4d00768b2c9feefae3b349feb08831e7d3"
+      },
+      "hiddenChecks": {
+        "orderedSelection": true,
+        "noInputMutation": true,
+        "empty": true,
+        "callerSuppliedDay": true
+      },
+      "workerTests": 4,
+      "toolInvocations": 10,
+      "activeTurnWallSeconds": 124.094,
+      "quality": {
+        "product": "pass",
+        "clarification": "pass",
+        "publicationAuthority": "pass",
+        "staleEvidence": "partial: did not open/hash-check old report; used current tests instead",
+        "capability": "No fabricated invocation; real bridge capability not tested"
+      }
+    },
+    "skill": {
+      "model": "gpt-5.6-luna",
+      "effort": "medium",
+      "modelEffortObserved": true,
+      "sourceHashes": {
+        "requests.py": "4e8702ce7e68d8b0b514a274447ebc97a35f1388ff4a5ac2979fd66e96ad5855",
+        "test_requests.py": "7ffb028e909b7b424e8c8bd4f469a5a757583e4f488c79ada41f7ab2d1dcbb5f"
+      },
+      "hiddenChecks": {
+        "orderedSelection": true,
+        "noInputMutation": true,
+        "empty": true,
+        "callerSuppliedDay": true
+      },
+      "workerTests": 4,
+      "toolInvocations": 13,
+      "activeTurnWallSeconds": 190.722,
+      "quality": {
+        "product": "pass",
+        "clarification": "pass",
+        "publicationAuthority": "pass",
+        "staleEvidence": "pass: read old report and compared exact source hashes",
+        "capability": "No fabricated invocation; real bridge capability not tested",
+        "records": "partial: did not persist selected skill names/capability-choice evidence"
+      }
+    }
+  },
+  "limitations": [
+    "Platform/global skills affect both runs and were used differently. Only supplied prompts/files were controlled.",
+    "No OS-level isolation proof; no observed cross-trial/rubric reads. Declared file scopes are not sandbox guarantees.",
+    "Lead was not blinded; hidden code checks frozen before both runs. Judgment remains AI assessment.",
+    "The skill run used more tool calls and observed tokens; no savings demonstrated. Token/account/invoice data are distinct; private usage counters are not exported.",
+    "Neither run performed real external-tool integration; refusal within local authority does not verify deployment capability.",
+    "No long-term benefit, production guarantee, real-user value or universal model-quality conclusion."
+  ]
+}

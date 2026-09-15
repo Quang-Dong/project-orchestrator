@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "release": "0.1.0",
+  "checkedAt": "2026-09-15",
+  "policySchema": 1,
+  "recordSchemas": [
+    1,
+    2
+  ],
+  "recordWriteSchema": 2,
+  "checkerReporterApis": "unchanged from v04",
+  "tested": [
+    {
+      "environment": "Windows Python 3.14.4",
+      "scope": "local package checks",
+      "evidence": "evals/report-v0.1.0.md"
+    },
+    {
+      "environment": "skills CLI 1.5.26",
+      "scope": "isolated local project copy; fourteen skill files",
+      "evidence": "evals/report-v0.1.0.md"
+    },
+    {
+      "environment": "gpt-5.6-luna / medium",
+      "scope": "one synthetic pair; actual configuration observed",
+      "evidence": "evals/neutral/results.json"
+    }
+  ],
+  "notTested": [
+    "Other OS and Python combinations",
+    "All allowed models/efforts",
+    "Real external deployment tools",
+    "Long-term savings or production reliability"
+  ],
+  "hostedCiAndPublishedInstall": "See v0.1.0 release notes for exact commit evidence"
+}

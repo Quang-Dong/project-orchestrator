@@ -1,0 +1,53 @@
+{
+  "revision": "v03",
+  "releaseStatus": "unpublished",
+  "policySchema": [
+    1
+  ],
+  "recordSchemas": {
+    "read": [
+      1,
+      2
+    ],
+    "aggregate": [
+      2
+    ]
+  },
+  "viewVersion": 1,
+  "checkedAt": "2026-09-15T07:06:49.100Z",
+  "tested": [
+    {
+      "environment": "Python 3.14 on Windows",
+      "scope": "v2 regression and v03 query tests",
+      "evidence": "evals/report-v03.md"
+    },
+    {
+      "environment": "Codex desktop with observed gpt-5.6-luna / medium",
+      "scope": "Four sequential synthetic local evaluations (two per revision)",
+      "evidence": "evals/report-v03.md"
+    },
+    {
+      "environment": "skills CLI 1.5.26 with isolated fake user home on Windows",
+      "scope": "Local discovery and project/global copy installation",
+      "evidence": "evals/report-v03.md"
+    }
+  ],
+  "untested": [
+    "Other operating systems and Python versions",
+    "Live GitHub PR submission",
+    "Unattended monitoring",
+    "Other model/runtime combinations"
+  ],
+  "incompatible": [],
+  "recheckTriggers": [
+    "model/runtime/tool/schema/permission change",
+    "relevant defect or contradictory evidence",
+    "release preparation"
+  ],
+  "owner": "Repository maintainer",
+  "limitations": [
+    "No universal compatibility claim",
+    "No installed-copy update implied"
+  ],
+  "evaluation": "See versioned report; compatibility is scoped to observed checks."
+}

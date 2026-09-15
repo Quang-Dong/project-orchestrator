@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "projectId": "repair-desk-trial",
+  "mainSession": {
+    "modelEffortOwner": "user"
+  },
+  "delegation": {
+    "mechanism": "sessions",
+    "models": [
+      {
+        "id": "gpt-5.6-luna",
+        "effort": {
+          "mode": "all_supported"
+        }
+      },
+      {
+        "id": "gpt-5.3-codex-spark",
+        "effort": {
+          "mode": "all_supported"
+        }
+      }
+    ]
+  },
+  "budget": {
+    "mode": "no_self_imposed_cap",
+    "limits": []
+  },
+  "permissions": {
+    "smallDirectWork": true,
+    "externalActions": "separate_authorization"
+  },
+  "confirmation": {
+    "status": "confirmed",
+    "at": "2026-09-15T00:00:00Z",
+    "evidence": "task.md contains the supplied user authority for this bounded trial."
+  }
+}

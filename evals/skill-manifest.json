@@ -1,0 +1,30 @@
+[
+  {
+    "path": "skills/project-orchestrator/agents/openai.yaml",
+    "sha256": "66f254deda1712d10d53bf92bddbb4d3b1953a6dc5297b3dff44487d2d5d76fd"
+  },
+  {
+    "path": "skills/project-orchestrator/assets/policy.template.json",
+    "sha256": "eceac4f521c6e7d33ce617173f4ecee9d15f6f186f5a237323a342500df1bc92"
+  },
+  {
+    "path": "skills/project-orchestrator/references/handoffs.md",
+    "sha256": "f00588d38a8a70fbf1c55a6eec2eb12413d8281d1b39ead2b43f4c7d127604cb"
+  },
+  {
+    "path": "skills/project-orchestrator/references/improvement.md",
+    "sha256": "a01164d340e6e041a825713e64c37b653363141cf47dc9d91d71691116aa1ff7"
+  },
+  {
+    "path": "skills/project-orchestrator/references/policy.md",
+    "sha256": "8c38f7faa23cc459a0db3eb174548e87781a901d3e7f8646700e97c1692b1b6e"
+  },
+  {
+    "path": "skills/project-orchestrator/scripts/check_policy.py",
+    "sha256": "d18e4871a731166a9828fdc64bcc0c918f098561a891382e0224a86c31c55a02"
+  },
+  {
+    "path": "skills/project-orchestrator/SKILL.md",
+    "sha256": "18ab8fa64fc151098d1ff27af764f93d66aff7b2371b7056d3a7f7195397e772"
+  }
+]
