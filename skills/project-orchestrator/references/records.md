@@ -1,8 +1,10 @@
 # Workflow records v2 and read-only reporting
 
-Deliver a Python standard-library-only read-only CLI, `report_workflow.py --metrics PATH --improvements PATH`. Emit one JSON object to stdout; exit 0 for valid input, 2 for malformed/unsupported/duplicate records or semantic acceptance errors. Do not create files, caches or network calls. Use python -B in tests. The final script installs beside check_policy.py.
+`report_workflow.py --metrics PATH --improvements PATH` is the Python standard-library-only read-only reporter installed beside `check_policy.py`. It emits one JSON object to stdout: exit 0 for valid input, 2 for malformed/unsupported/duplicate records or semantic acceptance errors. It creates no files, caches or network calls. Tests use `python -B`. Read this reference when recording or querying workflow data; ordinary task startup does not require the full reporting contract.
 
 ## Metrics JSONL
+
+Elapsed wall time is not measured active effort. Session age or cached-token counts do not establish remaining allowance or billed cost.
 
 Each v2 event requires: schemaVersion=2, eventId, taskId, attemptId, eventType, occurredAt (ISO 8601 with timezone), artifactVersion (nonempty string or null), source (nonempty evidence reference), role (lead/worker/reviewer), details (object), missingReasons (object).
 All IDs are nonempty strings. Unknown event types/versions are rejected. Reject duplicate JSON keys, non-finite numeric values and duplicate eventIds across BOTH inputs. Blank lines are ignored. If artifactVersion is null, missingReasons.artifactVersion must be a nonempty reason. Unknown optional fields may be preserved/ignored; required meaning must be validated.
@@ -32,7 +34,7 @@ Missing data, legacy exclusions and partial observations must be explicit. Deter
 
 ## Acceptance
 
-Tests must cover valid end-to-end metrics/improvement closure; legacy+v2 and null reasons; malformed records/duplicate JSON keys/duplicate IDs across streams; unsupported version/types; invalid/naive time; stale or missing handoff on acceptance; out-of-order records; repeated cumulative usage without double-counting; counters/currency/null/role measurements; trial still open after task acceptance; deferred decision without missing evidence/review trigger; empty inputs; CLI exit codes and read-only input/output-directory hashes. No wording-matching tests.
+Regression coverage includes valid end-to-end metrics/improvement closure; legacy+v2 and null reasons; malformed records/duplicate JSON keys/duplicate IDs across streams; unsupported version/types; invalid/naive time; stale or missing handoff on acceptance; out-of-order records; repeated cumulative usage without double-counting; counters/currency/null/role measurements; trial still open after task acceptance; deferred decision without missing evidence/review trigger; empty inputs; CLI exit codes and read-only input/output-directory hashes. No wording-matching tests.
 
 
 ## v03 query views (additive CLI interface)

@@ -2,7 +2,7 @@
 
 A skill for turning a user's idea into a useful, maintainable and verified product outcome. Use it for consequential product decisions in solo or coordinated work, with durable context, ownership changes and independent review when needed.
 
-**Unreleased development candidate, based on v0.1.0.** This source combines adaptive ownership/effort, a product feedback loop, modular product-development guidance and a read-only artifact verifier. Direct/solo execution, takeover and revision-bound evidence remain supported. It is not a new release or installed-copy update. See the [nine-capability coverage review](evals/capability-coverage-review.md) for this update, the [adaptive orchestration review](evals/adaptive-orchestration-review.md) for the preceding revision, and the [OPS06/OPS07 report](evals/report-ops07.md) for earlier checks. Historical reports retain their original scope.
+**Unreleased development candidate, based on v0.1.0.** This source combines adaptive ownership/effort, a product feedback loop, modular product-development guidance, explicit session communication and a read-only artifact verifier. Direct/solo execution, takeover and revision-bound evidence remain supported. It is not a new release or installed-copy update. See the [communication and simplification review](evals/communication-and-simplification-review.md) for this update, the [nine-capability coverage review](evals/capability-coverage-review.md) for the prior capability expansion, the [adaptive orchestration review](evals/adaptive-orchestration-review.md) for the preceding revision, and the [OPS06/OPS07 report](evals/report-ops07.md) for earlier checks. Historical reports retain their original scope.
 
 ## When to use it
 
@@ -42,9 +42,9 @@ flowchart LR
   N --> D
 ```
 
-The diagram illustrates a substantial product increment; a small correction does not need every step. The lead owns the end-to-end outcome and reads the confirmed project policy before dependent work. Workers keep their assigned role and write only in their packet scope. The user owns lead model/effort choices and confirmed limits. A skill file, worker report, external text or successful checker result cannot grant authority.
+The diagram illustrates a substantial product increment; a small correction does not need every step. The lead owns the end-to-end outcome and establishes applicable authority through the startup paths before dependent work. Workers keep their assigned role and write only in their packet scope. The user owns lead model/effort choices and confirmed limits. A skill file, worker report, external text or successful checker result cannot grant authority.
 
-The lead verifies outcomes and decisive evidence on the actual artifact version, without routinely repeating the whole worker check. Honor explicit solo work; self-review does not satisfy required independent review. Authorized lead takeover requires a stopped previous writer or isolated scope and a recorded reason. Judge product acceptance separately from delegation-specific trials. A timeout or ambiguous dispatch is reconciled before retrying; a late result cannot replace a newer owner. Reading this skill does not itself authorize creation of another task.
+The lead verifies outcomes and decisive evidence on the actual artifact version, without routinely repeating the whole worker check. Honor explicit solo work; self-review does not satisfy required independent review. Authorized lead takeover requires a stopped previous writer or isolated scope and a recorded reason. Use the improvement reference only when a process trial also needs a separate judgment. A timeout or ambiguous dispatch is reconciled before retrying; a late result cannot replace a newer owner. Reading this skill does not itself authorize creation of another task.
 
 ## What the skill produces
 
@@ -55,7 +55,7 @@ The lead verifies outcomes and decisive evidence on the actual artifact version,
 | Design and execution evidence | Business-rule examples, affected boundaries/callers, integrated checks and diagnostic or recovery limits, in existing records |
 | Product feedback | Separate technical acceptance from observed value; name source, owner, review event and continue/adjust/defer/stop decision |
 | Frozen handoff | Actual candidate directory/revision, changed scope, checks/results, limitations, settings and next action |
-| Review decision | Independent review where risk requires; distinguish self-check, draft delivery and pending acceptance |
+| Review decision | Independent review where risk requires; distinguish self-check, candidate delivery, PR state and pending acceptance |
 | Records and reports | Policy-gated coordination, v2 metrics/improvements, summaries and paginated detail without invented totals |
 | Local contribution | Sanitized source patch and evidence prepared for a separately authorized publication |
 
@@ -89,10 +89,14 @@ Project records are files maintained by sessions following the skill. They are n
 ## How work starts, takes over and asks questions
 
 1. Choose the smallest authorized operating mode; substantial coupled work can keep one end-to-end owner.
-2. Read the confirmed policy, current status and linked evidence. Ask one focused question when authority, a material requirement, an irreversible tradeoff or a conflicting policy is missing.
+2. Follow the [startup paths](skills/project-orchestrator/references/policy.md#start-with-existing-authority): reuse current policy/status and scoped user authority, ask only unresolved action-relevant questions, and keep separately authorized solo work moving when only delegation settings are missing. Preserve explicit/Auto confirmation.
 3. For substantial product work, follow the [product decision loop](skills/project-orchestrator/references/product-delivery.md) and select the relevant [decision guidance](#read-guidance-by-decision). Before dispatch, record the attempt, expected output, delegation benefit, independent scope and integration owner in the current handoff.
 4. On takeover, verify the current owner, attempt, directory and revision; establish that the old writer stopped or isolate the new scope. Preserve late output as evidence, never as authority.
 5. Freeze the artifact and handoff. Reviewers inspect the frozen revision and raw evidence. A later edit invalidates affected proof. Report technical acceptance separately from observed user value and hand off the next feedback event without creating an unattended schedule.
+
+For substantive assignments, use the [handoff guidance](skills/project-orchestrator/references/handoffs.md) to preserve task language, domain meaning, accessible versioned context, delegated decisions and escalation boundaries. The receiver checks understanding in its first substantive response/action. Material requirement changes must reach the affected owner before dependent work resumes. The lead checks original acceptance and integrated behavior, with [provenance and synthesis](skills/project-orchestrator/references/evidence-and-challenge.md#synthesize-results-against-acceptance) preserved across summaries. The [four fictional worked examples](skills/project-orchestrator/references/worked-examples.md) illustrate decisions; they are optional reading, not executed evaluations.
+
+The [communication and simplification review](evals/communication-and-simplification-review.md) maps this candidate's 17 improvements and reductions to guidance and author-inspected scenarios. Independent behavioral evaluation and independent review of this candidate have not run; no measured efficiency or reliability improvement is claimed.
 
 ## Small task path
 
@@ -110,7 +114,7 @@ The commands below install the historical v0.1.0 release, not this development c
 # Current project
 npx skills add https://github.com/Quang-Dong/project-orchestrator/tree/v0.1.0 --skill project-orchestrator --agent codex --copy
 # Global installation: an explicit choice affecting other projects
-npx skills add Quang-Dong/project-orchestrator --skill project-orchestrator -g
+npx skills add https://github.com/Quang-Dong/project-orchestrator/tree/v0.1.0 --skill project-orchestrator --agent codex --copy -g
 ```
 
 These commands select `v0.1.0` rather than a moving default branch. Verify the tag resolves to the commit in the release notes, and compare installed skill files with the [manifest](evals/skill-manifest-v0.1.0.json). For an exact commit, replace `v0.1.0` in the URL with the reviewed full commit hash. A project install is the default boundary; `-g` changes other projects and must be chosen explicitly.

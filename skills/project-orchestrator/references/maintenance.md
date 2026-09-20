@@ -20,9 +20,7 @@ Policy v1 and records v2 remain current for this release. A future incompatible 
 
 ## Measure value and simplify
 
-Use [evidence and challenge](evidence-and-challenge.md) for proof boundaries and [improvement](improvement.md) for trial closure. Measure accepted outcome, authority violations, false completion, missed defects, takeover success, human intervention, elapsed time and usage across lead/worker/reviewer where available. Keep unknown effort, wait, cost and token attribution separate; do not infer active effort from wall time, convert allowance to a bill or hide a critical failure in an overall score.
-
-For a comparative performance claim, compare matched work on old/new guidance with unchanged acceptance, retaining failures and intervention. Other changes use the smallest adequate validation described in [improvement](improvement.md). Adopt only the demonstrated scope; small samples are descriptive. Removing a rule, reducing a packet or choosing no delegation may be the correct bounded improvement. Retain counterexamples and defer claims without a suitable baseline.
+At an authorized adoption boundary, use [evidence and challenge](evidence-and-challenge.md) for proof strength and [improvement](improvement.md) for evaluation, measurement and trial closure. Keep accounting semantics in [records](records.md#metrics-jsonl). Adopt only the demonstrated scope; descriptive cases do not establish comparative efficiency. Retain counterexamples and missing evidence when deciding to keep, shorten or retire guidance.
 
 ## Support and retirement
 

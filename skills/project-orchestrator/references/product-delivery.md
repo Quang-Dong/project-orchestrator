@@ -10,6 +10,8 @@ Separate the requested solution from the problem it is meant to solve. State who
 
 Identify the assumption most likely to change the solution or make it unnecessary. Ask about missing material authority, requirements or irreversible tradeoffs before implementation. Do not invent a persona, metric, customer need or production constraint. Interviews, observed usage and authorized experiments have their own populations and limits; simulated users, fixtures and role-play do not establish real demand.
 
+For a consequential product choice, distinguish value (will it solve a supported need?), usability (can the intended user complete and recover the journey?), technical feasibility (can the constraints be met?) and business/operational viability (can it be distributed, supported and maintained within actual commitments?). Examine only the risks that can change this increment; a small local fix does not need a business case or cloud operating model. Unknown support cost or organizational constraints stay unknown, with their acceptance impact and the owner of the missing decision. This selectively applies [SVPG's four-risk framework](https://www.svpg.com/four-big-risks/), not evidence of demand or a requirement to invent a business model.
+
 ## Choose the smallest useful step
 
 Choose the smallest step that delivers the intended value or resolves the most consequential uncertainty. A focused research result, prototype or no-code experiment can be a complete increment with an observable answer; it need not produce production code. State how that answer changes the next decision, and keep any external research/contact within existing authority.

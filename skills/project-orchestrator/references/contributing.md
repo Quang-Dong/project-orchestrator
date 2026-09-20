@@ -16,6 +16,6 @@ Make the actual diff, evidence and target repository reviewable. Existing explic
 
 ## Submit and finish
 
-When authorized, perform only the named Git/GitHub operations and verify their side effects. Prefer a draft PR when appropriate; do not auto-merge, release or update installed copies. Reconcile a timeout before retrying to avoid duplicate branches or PRs. Record the final URL/status in project evidence.
+When authorized, perform only the named Git/GitHub operations and verify their side effects. Choose Draft/non-draft according to the authorized publication request and preserve an existing PR's state unless asked to change it. Record pending review/acceptance explicitly regardless of that setting; do not auto-merge, release or update installed copies. Reconcile a timeout before retrying to avoid duplicate branches or PRs. Record the final URL/status in project evidence.
 
 If the user declines, retain local findings and do not repeat the same proposal without new evidence. No real PR is required to exercise this workflow: local fixtures can cover unknown upstream, refusal, absent credentials, private content and already-authorized scope.

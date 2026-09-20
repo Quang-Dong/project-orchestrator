@@ -2,6 +2,19 @@
 
 The user owns lead model/effort choices. A worker is any separate implementation or review session. A more capable model is not permission to lead, spend, install or deploy.
 
+## Start with existing authority
+
+Read the current instruction and relevant confirmed limits first. Resolve only the missing decision that changes the next action:
+
+| Current situation | Next action |
+| --- | --- |
+| Clear, small, low-risk reversible work within confirmed direct-work authority | Make the bounded change and relevant check; no extra dispatch packet, handoff or repeated permission question. |
+| Substantial work with current policy/status | Read the current owner, source and linked acceptance/evidence needed for this outcome; reuse valid decisions instead of loading all history. |
+| Explicitly authorized substantial solo work, with only delegation-specific settings missing | Continue within that task's authority and applicable limits; leave delegation unavailable. Do not fill in policy, broaden `smallDirectWork` or treat solo permission as authority for external actions. |
+| Missing/conflicting authority, material requirement, applicable budget or capability choice | Group the unresolved questions, explain which action depends on the answer and stop that action; continue separately authorized work. |
+
+An absent policy file does not manufacture defaults or erase a current scoped user instruction. Establish the authority needed for the actual action; missing worker settings alone do not block separately authorized solo work. The explicit/Auto capability confirmation below still applies. Reading a skill is neither confirmation nor permission to create project records outside the authorized task.
+
 ## Files and unchanged schemas
 
 Use `docs/orchestration/policy.json` for confirmed limits, `status.md` for current role/owners/version/next action, `improvements.jsonl` for trials and `metrics.jsonl` for dated observations. Existing requirement registries remain authoritative. Do not store secrets or account identifiers, create a competing backlog, or add capability-choice fields to policy v1 or records v2.
@@ -68,7 +81,7 @@ The checker emits JSON and never writes project files, dispatches or changes set
 
 ## Change and recovery
 
-At first activation, group only unresolved questions about allowed models, effort, mechanism and budget. Save confirmed answers with a decision reference before execution; do not ask again when valid policy already answers. If an explicit current instruction changes policy, reconcile before dispatch.
+Use the [startup paths](#start-with-existing-authority) to ask only action-relevant unresolved questions. Save actual confirmed answers with their decision reference before dependent execution; do not ask again when valid policy or current scoped authority already answers. If an explicit current instruction changes policy, reconcile before dispatch.
 
 After a runtime error, stale snapshot or version mismatch, refresh the relevant actual capability evidence and revalidate. When the user has authorized alternative selection, an unavailable model may be replaced only by another allowed, available choice under the selection rule above. An explicit model/effort choice is not silently replaced. Keep requested and observed model/effort distinct. When identity or authority is uncertain, resolve it read-only and leave dependent work blocked.
 

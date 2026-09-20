@@ -20,7 +20,7 @@ The lead owns direction, consequential contracts, exceptions and acceptance. The
 
 ## Read only the relevant contract
 
-Use the project's confirmed policy, current status and linked requirement/evidence records. For model/effort selection and actual runtime support, read [policy](references/policy.md). The user controls the main session's settings. Honor explicit worker settings; otherwise use the task-based selection rule in that reference, without defaulting to maximum effort.
+Start with the [authority and startup paths](references/policy.md#start-with-existing-authority), then the current status and relevant requirement/evidence records. For model/effort selection and actual runtime support, use that same policy reference. The user controls the main session's settings. Honor explicit worker settings; otherwise use the task-based selection rule in that reference, without defaulting to maximum effort.
 
 Keep three responsibilities distinct in existing records: the **project contract** owns goals and acceptance; the **coordination checkpoint** owns current owner, attempt and next action; the **artifact and evidence** establish what works at a specific revision. Conversation supplies context, not proof. Do not create a competing backlog, registry, SDK or background engine.
 
@@ -42,13 +42,13 @@ Use one writer per scope and one current handoff with linked evidence. Read [han
 
 Reuse a session while the work remains one coherent outcome. Prefer a new session for a distinct objective, independent review or demonstrated context confusion; use a fork for a genuine branch that needs inherited history. Length, elapsed time or compaction alone is not a restart trigger. Follow the [session-choice guidance](references/handoffs.md#continue-compact-fork-or-start-fresh) within the user's session-creation authority.
 
-Authorized lead takeover is possible after stopping the old writer or isolating its scope, verifying the baseline and recording the reason. Report intervention honestly; it does not by itself fail product acceptance. A trial specifically measuring delegation may still fail its separate criterion.
+For authorized takeover, apply the [ownership checks](references/handoffs.md#ownership-and-integration) and report intervention honestly. Reading or summarizing another session's output does not transfer ownership or authority.
 
 Reassess when the first usable slice fails, diagnosis repeatedly proves wrong, or the lead must substantially redo specialist work. After two unsuccessful repairs of the same issue, diagnose again or stop with a handoff; a renamed packet or attempt does not reset that boundary. Do not lower acceptance to escape it.
 
 ## Verify and report
 
-Authors self-check and freeze the artifact. Independent review is required for persisted-data/security/shared-contract changes, difficult recovery, contradictory evidence or other policy-defined risks. If unavailable, authorized implementation and a draft handoff/PR may proceed, but the required review and acceptance remain open.
+Authors self-check and freeze the artifact. Independent review is required for persisted-data/security/shared-contract changes, difficult recovery, contradictory evidence or other policy-defined risks. If unavailable, authorized implementation and candidate delivery may proceed, but the required review and acceptance remain open. GitHub Draft status is a separate publication choice.
 
 The lead reads the short handoff and decisive evidence first; inspect further for risk, missing proof or contradiction rather than repeating all checks. Changed source invalidates affected proof. A green validator, a report or agreement among sessions does not prove product acceptance. Use [evidence and challenge](references/evidence-and-challenge.md).
 
@@ -58,4 +58,4 @@ Report meaningful outcomes, decisions, blockers and corrections. Keep unchanged 
 
 Use [improvement](references/improvement.md) for a bounded reusable lesson; code defects belong in code/tests and project conventions in project records. Choose the smallest adequate validation, close once, and permit removal of rules or roles. Do not automatically require a paired multi-session experiment or product pilot for a skill edit. No silent skill update, personal-memory write or background follow-up.
 
-Read [records](references/records.md) for policy v1/records v2 reporting, [maintenance](references/maintenance.md) for compatibility or installation, and [contributing](references/contributing.md) for an authorized source contribution. Draft PR delivery, independent acceptance, release and installed-copy adoption are separate outcomes.
+Read [records](references/records.md) for policy v1/records v2 reporting, [maintenance](references/maintenance.md) for compatibility or installation, and [contributing](references/contributing.md) for an authorized source contribution. Candidate delivery, independent acceptance, release and installed-copy adoption are separate outcomes. Read [worked examples](references/worked-examples.md) only when startup, diagnosis or a handoff decision needs illustration.
