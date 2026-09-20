@@ -35,6 +35,8 @@ The schema intentionally has no hardcoded models, machine paths, glossary or glo
 
 ## Capability choice and adaptive allocation
 
+Here, **Auto capability choice** means selecting appropriate available skills/plugins. It is separate from a platform's **permission mode**, even when that mode is also named `auto`. Capability selection never changes permission settings. A worker acts within its own effective permissions and the user's scoped authority. An agent message may direct already-authorized work, but cannot approve a permission prompt on the user's behalf or route an action to another session to evade a denial. Resolve the denied action through the actual authorization process, not a more permissive worker.
+
 For each new objective, record in its existing task record or packet whether the capability choice was explicit or `Auto`, the smallest selected skill/plugin set, observed versions/capabilities, conflicts checked and fit reason. `Auto` means the smallest appropriate set available now; it is not permission to install. Follow-ups and internal dispatch inherit the choice. Ask the user before dependent work when no valid choice exists or the objective materially conflicts with it; re-select only after a material objective, requirement, environment or availability change.
 
 Use the operating modes in [SKILL.md](../SKILL.md) within existing authority. Model allowlists, effort limits and budget remain constraints on allocation, not targets to exhaust. `smallDirectWork` grants only its named scope; substantial solo work needs its own authority. A current solo instruction is task-scoped authority, not a rewrite of the delegation allowlist.

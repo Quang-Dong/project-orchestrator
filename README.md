@@ -2,7 +2,7 @@
 
 A skill for turning a user's idea into a useful, maintainable and verified product outcome. Use it for consequential product decisions in solo or coordinated work, with durable context, ownership changes and independent review when needed.
 
-**Unreleased development candidate, based on v0.1.0.** This source combines adaptive ownership/effort, a product feedback loop, modular product-development guidance, explicit session communication and a read-only artifact verifier. Direct/solo execution, takeover and revision-bound evidence remain supported. It is not a new release or installed-copy update. See the [evaluation index](evals/README.md) for the current author review, prepared behavioral cases and revision-specific historical evidence.
+**Unreleased development candidate, based on v0.1.0.** This source combines adaptive ownership/effort, a product feedback loop, modular product-development guidance, explicit session communication and a read-only artifact verifier. Direct/solo execution, runtime-aware coordination, shared-resource ownership, recovery and revision-bound evidence remain supported. It is not a new release or installed-copy update. See the [evaluation index](evals/README.md) for the current author review, prepared behavioral cases and revision-specific historical evidence.
 
 ## When to use it
 
@@ -88,7 +88,7 @@ Project records are files maintained by sessions following the skill. They are n
 
 For substantive assignments, use the [handoff guidance](skills/project-orchestrator/references/handoffs.md) to preserve task language, domain meaning, accessible versioned context, delegated decisions and escalation boundaries. The receiver checks understanding in its first substantive response/action. Material requirement changes must reach the affected owner before dependent work resumes. The lead checks original acceptance and integrated behavior, with [provenance and synthesis](skills/project-orchestrator/references/evidence-and-challenge.md#synthesize-results-against-acceptance) preserved across summaries. The [four fictional worked examples](skills/project-orchestrator/references/worked-examples.md) illustrate decisions; they are optional reading, not executed evaluations.
 
-Use the [source distinctions](skills/project-orchestrator/references/evidence-and-challenge.md#distinguish-instructions-records-and-observed-behavior) when chat and project records disagree. A current authorized user decision need not wait for a file update to take effect; an agent claim of completion still needs artifact evidence. The evaluation index records the current inspection and the remaining unrun behavioral checks.
+Use the [source distinctions](skills/project-orchestrator/references/evidence-and-challenge.md#distinguish-instructions-records-and-observed-behavior) when chat and project records disagree. A current authorized user decision need not wait for a file update to take effect; an agent claim of completion still needs artifact evidence. For a new or changed coordination mechanism, use the [runtime guidance](skills/project-orchestrator/references/handoffs.md#match-the-observed-runtime) to check context, effective permissions, delivery controls and recovery. A worktree does not isolate every resource, and an idle turn does not establish acceptance. The evaluation index records the current inspection and the remaining unrun solo and coordination checks.
 
 ## Small task path
 

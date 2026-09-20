@@ -38,7 +38,7 @@ These references supply the minimum decision framework without another dependenc
 
 ## Own, hand off and recover
 
-Use one writer per scope and one current handoff with linked evidence. Read [handoffs](references/handoffs.md) for dispatch, timeout, takeover and integration. Record an attempt before dispatch; observe actual settings after execution starts. Reuse unchanged capability evidence; refresh it when relevant conditions change.
+Use one writer per scope and one current handoff with linked evidence. Read [handoffs](references/handoffs.md), including [observed runtime](references/handoffs.md#match-the-observed-runtime), for dispatch, timeout, takeover and integration. Record an attempt before dispatch; observe actual settings after execution starts. Reuse unchanged capability evidence; refresh it when relevant conditions change.
 
 Reuse a session while the work remains one coherent outcome. Prefer a new session for a distinct objective, independent review or demonstrated context confusion; use a fork for a genuine branch that needs inherited history. Length, elapsed time or compaction alone is not a restart trigger. Follow the [session-choice guidance](references/handoffs.md#continue-compact-fork-or-start-fresh) within the user's session-creation authority.
 

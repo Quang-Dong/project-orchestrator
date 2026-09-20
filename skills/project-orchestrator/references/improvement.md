@@ -22,6 +22,8 @@ Package validation, author decision inspection and independent task execution an
 
 For a future authorized evaluation, give the evaluator a realistic request, the candidate skill and the minimum raw artifacts in an isolated scope. Keep the expected decision/rubric with the assessor, not in the worker packet; omit the author's preferred diagnosis or verdict. Include cases where guidance is needed and counterexamples where direct work should remain small. Judge the resulting artifact and actual end state against unchanged acceptance; use the trace to diagnose omissions, unnecessary questions, context loss, authority errors and integration failures. Retain failures, intervention and unknown measurements.
 
+For coordination cases, preserve the actual message/lifecycle events and resulting files/resources. Score artifact correctness, authority, integration and lead intervention separately from observed usage/time; use traces to locate the cause. Delivery failure, continued subprocess activity or stale ownership needs a real reproducible setup. If existing controls cannot establish the prerequisite, record it as unavailable/not run rather than fabricating an event or treating a narrated scenario as execution. Preparing a case does not authorize sessions, failure injection or a schedule.
+
 An independent review of prose is not an execution test. A comparison claim additionally needs comparable inputs, environments and acceptance on the old/new guidance, with variation and limits disclosed. Do not infer efficiency or reliability from one successful case. Use [evidence](evidence-and-challenge.md#challenge-consequential-premises) for the strength of each claim.
 
 ## Measure useful progress

@@ -37,6 +37,19 @@ Select context by the receiving task: current outcome and acceptance, authority 
 
 Keep facts, assumptions, inferences and unknowns attached to their sources under [evidence rules](evidence-and-challenge.md#label-and-trace-claims). Preserve these distinctions through compaction and relays. Share only necessary authorized context; private data unrelated to the task does not belong in a packet. The current handoff is the continuity record, not a second backlog.
 
+## Match the observed runtime
+
+Before using a new coordination mechanism, or after a material environment change, identify only what the assignment needs: receiving context, actual checkout/revision, effective model/effort and permissions, and supported send, wait, stop and resume behavior. Record or link this observation in the current packet. Reuse unchanged evidence; a small direct task does not need a tool inventory. A capability described in vendor documentation is not proof it is exposed in this client, version or account. Do not automatically enable experimental features or silently substitute a delegation mechanism.
+
+| Mechanism | Context and control distinction |
+| --- | --- |
+| Delegated subagent | Inspect the actual spawn options. Codex settings can inherit or be overridden; a Claude non-fork subagent starts from its definition and supplied context. Neither the name nor a new agent ID proves a clean context or restricted tools. |
+| Conversation fork | Codex thread forks and Claude conversation forks carry earlier history. Confirm the copied scope and current files separately; inherited author reasoning is not a clean independent review context. |
+| Teammate | Claude agent teams have their own coordination mechanism and context rules. Do not assume a teammate inherited the lead's conversation or survived a lead resume. Team availability and experimental limits must be checked. |
+| Independent session | Treat identity, source access and permissions separately. Claude cross-session messages carry text, not the sender's files/history. Use whatever supported session controls the actual client exposes; a similarly named tool elsewhere is not a compatibility guarantee. |
+
+These examples draw on [Codex subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents), [Codex thread/turn controls](https://learn.chatgpt.com/docs/app-server#lifecycle-overview), [Claude subagents](https://code.claude.com/docs/en/sub-agents), [Claude teams](https://code.claude.com/docs/en/agent-teams) and [Claude messaging](https://code.claude.com/docs/en/cross-session-messaging). They are portability guidance, not instructions to call an unavailable API. Keep requested and effective settings distinct under [policy](policy.md#capability-choice-and-adaptive-allocation); a material mismatch blocks dependent work until resolved within authority.
+
 ## Dispatch
 
 Before dispatch, record the attempt, owner, authorized directory/write scope, versioned input, outcome/acceptance and required settings. Complete the existing packet with the product outcome and requirement source, expected artifact/evidence, reason delegation helps, independent scope/exclusions and integration owner. Distinguish decisions already settled from choices delegated to the worker; name the conflict, contract change or missing evidence that requires escalation. Reference existing fields rather than creating another form. Validate capability and policy using [policy](policy.md); record actual settings only after observing execution.
@@ -64,13 +77,21 @@ Make message intent explicit in ordinary prose: assignment, question, finding, c
 
 When the user changes a requirement, apply the [instruction and record distinctions](evidence-and-challenge.md#distinguish-instructions-records-and-observed-behavior), update the affected requirement record, identify affected owners/callers and send the delta with its source, superseded decision and acceptance impact. Invalidate affected proof under [evidence rules](evidence-and-challenge.md#label-and-trace-claims). For a material change, establish that the affected owner received and understood it before dependent actions resume; a sent message alone is insufficient. If receipt is uncertain, keep affected integration/acceptance pending and use supported stop/contact controls where needed. Stopping is not proven until observed; use the ownership checks before another writer takes over.
 
+Distinguish transport success, observed receipt/understanding, execution and acceptance. A delivered message may wait behind an active tool; a held or refused message has not supplied the change to its recipient. For an uncertain send, reconcile recipient/attempt and actual delivery state before a bounded retry; do not create a duplicate worker or repeat messages indefinitely. Unresolved delivery keeps dependent work pending. Use the material-change receipt rule above without adding acknowledgments to every small exchange.
+
+An idle notification or completed turn reports runtime activity, not task acceptance. Inspect the returned result and outstanding work. A stop request or cancellation label does not prove that subprocesses stopped; apply [ownership checks](#ownership-and-integration) before a conflicting writer resumes.
+
 Return results with the artifact/revision, criterion-level evidence, unresolved questions and next owner/action. Report a finding as soon as it changes scope, authority or correctness; routine unchanged progress does not require another message or handoff copy.
 
 ## Ownership and integration
 
 Prefer one end-to-end owner for coupled work. Assign a separate integrator only when distinct results actually need integration; name the baseline, write scope and affected-caller checks. One person/session can implement and integrate its own slice without an extra role.
 
-Before takeover, verify the current source and that the old writer stopped, or isolate scopes so writes cannot collide. Record the new owner and reason before editing. Late output may inform review but cannot overwrite the current owner's work.
+Check the resources the actual commands can affect, not only file paths: shared Git refs, test databases, server ports, output directories and background processes. Name an owner or isolate/serialize conflicting use in the existing handoff when needed. Do not require this inventory for a direct edit with no shared-resource interaction. A worktree is a separate checkout, not a security sandbox or an independent database/service environment; repository metadata can still be shared.
+
+When creating or selecting a worktree, compare its actual revision and uncommitted state with the intended baseline before writes. Do not assume the platform starts at the parent's HEAD or carries local changes and ignored configuration. Provide only necessary authorized setup; avoid copying unrelated private configuration. [Codex worktrees](https://learn.chatgpt.com/docs/environments/git-worktrees) and [Claude worktrees](https://code.claude.com/docs/en/worktrees) document different defaults and sharing behavior; verify the relevant path in the current runtime.
+
+Before takeover, verify the current source and that the old writer and relevant processes stopped, or isolate affected resources so writes cannot collide. A stopped model turn alone is insufficient. Record the new owner and reason before editing. Match late output to its original identity, attempt and revision; it may inform review but cannot overwrite the current owner's work. Integrate only still-applicable changes after checking the current baseline.
 
 A lead may take over within granted authority, including explicit solo work. Record who changed what and why; do not describe main reimplementation as worker delivery. If a process trial exists, use [improvement](improvement.md#measure-useful-progress) for its separate criteria.
 
@@ -109,6 +130,8 @@ The language convention is a portability choice, not an English-versus-native pe
 
 ## Resume and communicate
 
-A replacement reads the current handoff and necessary contracts/evidence, verifies owner/source and resumes the named next action. It need not reconstruct the whole chat.
+A replacement reads the current handoff and necessary contracts/evidence, verifies owner/source and resumes the named next action. It need not reconstruct the whole chat or load complete logs; retrieve decisive artifacts as needed.
 
-Use supported event waits. Send only a meaningful outcome, changed risk, decision, blocker or correction, plus minimum platform-required updates. A stopped task needs a truthful handoff, not a promise of unattended continuation.
+After resume or an environment move, verify the consequential state that may have changed: working directory/revision, uncommitted work, needed tools/configuration, effective settings and relevant processes. Restored conversation is not restored execution. For example, [Claude session restoration](https://code.claude.com/docs/en/sessions#what-a-resumed-session-restores) does not restore every launch option or finish an interrupted tool. Reconcile whether a side effect already happened before replaying it. Recover within existing authority; unavailable explicit settings or unsafe uncertainty keep dependent work blocked, without restarting unrelated decisions.
+
+Use supported event waits or completion notifications instead of repeated status queries. Receiving a message may start a turn and consume resources, so avoid ping-pong updates without a new outcome, decision or actionable gap. Send only a meaningful outcome, changed risk, decision, blocker or correction, plus minimum platform-required updates. A stopped task needs a truthful handoff, not a promise of unattended continuation.
