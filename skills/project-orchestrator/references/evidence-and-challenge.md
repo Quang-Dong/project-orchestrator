@@ -17,6 +17,25 @@ Treat a session's chat as context, not as a source of truth. The project contrac
 
 When a source, test, acceptance configuration or dependency changes, invalidate proof tied to the old revision and rerun affected checks. Missing, stale or contradictory evidence keeps the criterion `unknown`, `blocked` or `pending`; it never becomes a pass because a related check is green. Under deadline pressure retain the failing result, state the evidence boundary and use bounded recovery or pending acceptance. Do not delete a check, invent a result, buy/reset capacity or turn a local fixture into production evidence.
 
+## Choose evidence by risk
+
+Apply when defining or judging acceptance. Start with the consequential business rules, affected boundaries, failure consequences and existing quality conditions. Select applicable criteria and the smallest evidence capable of testing them; this is not a mandatory matrix for every edit.
+
+| Quality concern when affected | Suitable evidence and its limits |
+| --- | --- |
+| Correctness and business rules | Concrete positive/negative examples with unit checks; exercise integration when the rule crosses layers. |
+| Data integrity and compatibility | Contract/integration checks of invariants, partial failure and affected old/new callers; migration/restore evidence where needed. |
+| Security and privacy | Trust-boundary, permission and data-handling inspection plus relevant denied/misuse-path checks; retain required independent review. |
+| Usability and accessibility | The running user journey, error recovery, preserved input, keyboard/focus and target-device checks; automated checks cover only their detectable subset. |
+| Performance and resource use | A representative workload with a stated environment, baseline and measurement; a fast unit test is not a load or production result. |
+| Reliability and recovery | Relevant interruption/failure injection or recovery rehearsal at a safe scope, with restored invariants checked; code rollback alone does not prove data recovery. |
+
+In the existing acceptance record, link each applicable condition to its check/result, source revision, scope and remaining gap. Choose unit, integration, contract, browser, load or recovery evidence because it can resolve that condition, not because every task must run every type. Reuse still-valid proof under the freshness rules above.
+
+When a quality baseline, target or means of verification is missing, state what is unknown, who can resolve it and whether it blocks acceptance. Do not invent numerical targets or silently omit an agreed criterion. If an agreed qualitative condition is appropriate, record the observation needed to judge it. A failed or unverified mandatory condition remains open.
+
+Keep build/package validity, local behavior, integrated behavior, production observation and user value as distinct claims. Report only the layer actually checked. Use [product delivery](product-delivery.md#observe-value-and-decide-next) for user-value acceptance and [product operations](product-operations.md) for authorized release checks.
+
 ## Communicate truthfully
 
 Selective communication should cover a decision, material blocker/risk/scope change, meaningful outcome or correction, while unchanged optional narration stays quiet. A higher-priority platform-required update is an explicit exception: send the smallest truthful update required by the platform, without turning it into a promise of unattended monitoring. If a check, tool or action cannot be completed, state the inability, its impact, the recovery or correction attempted, and the next owner/action; distinguish `not run`, `failed`, `blocked`, `unverified` and `verified`. Never hide a failure, claim work that did not run, or change a test to make the status green. Reconcile test totals with failed and skipped counts before summarizing them; a skipped case is not a pass.

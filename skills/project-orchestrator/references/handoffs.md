@@ -60,7 +60,7 @@ Lead reads the handoff first, then decisive checks. Expand inspection for risk, 
 
 Worker and reviewer exchange one consolidated finding list and close ordinary repairs in scope. When tools or authority prevent direct exchange, lead relays a short packet. After two failed repairs of the same issue, reassess cause, scope or verification before another implementation attempt, or stop. Changing attempt IDs does not reset the count. Continue only under an evidenced revised approach and existing authority; otherwise escalate the unresolved decision.
 
-A missed first usable slice, repeated disproven diagnosis or substantial lead rework is an earlier reassessment trigger. Do not wait for a broad matrix to reveal that the basic caller fails.
+A missed first usable slice, repeated disproven diagnosis or substantial lead rework is an earlier reassessment trigger. Use the [diagnosis path](implementation-and-diagnosis.md#diagnose-before-repairing) to distinguish causes and carry the resulting evidence, rejected hypotheses and next check into the current handoff. Do not wait for a broad matrix to reveal that the basic caller fails.
 
 ## Continue, compact, fork or start fresh
 

@@ -1,6 +1,6 @@
 # Compatibility, maintenance and verified value
 
-Read this reference when preparing a release, changing model/runtime/tool/schema/authority, responding to a relevant failure or considering retirement. Do not load it for every small task.
+This reference owns the skill lifecycle: its release, compatibility, distribution, installation and retirement. Read it when those boundaries change or a relevant skill failure occurs, not for every small task. For the product being developed, use [product operations](product-operations.md).
 
 ## Ownership and freshness
 

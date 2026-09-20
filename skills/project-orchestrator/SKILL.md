@@ -1,11 +1,11 @@
 ---
 name: project-orchestrator
-description: Organize product-development sessions around useful outcomes, clear ownership, proportionate coordination and revision-bound evidence. Use when dependencies, takeover or consequential review need coordination; keep small low-risk work direct.
+description: Guide product work with material decisions about requirements, UX, system design, diagnosis, quality or operations, including solo work. Use for consequential product work, dependencies, takeover or review; keep small low-risk changes direct.
 ---
 
 # Project Orchestrator
 
-Organize product work around a useful, verified outcome. Correct user outcome, authority, truthfulness and data safety are mandatory. Choose sufficient design, verify usable slices early, and reduce avoidable coordination, rework and resource use on the path to acceptance. Judge allocation by outcome and observed cost, not the number of agents or their effort setting.
+Organize product work around a useful, verified outcome. Design quality, correct user outcome, authority, truthfulness and data safety are mandatory. Optimize time, resources and maintenance cost within those conditions; verify usable slices early and reduce avoidable coordination and rework. Judge allocation by outcome and observed cost, not the number of agents or their effort setting.
 
 Design starts from the outcome and constraints; it is not a requirement to design the whole system before testing. This skill grants no model access, spending, dispatch, release or installation authority.
 
@@ -24,7 +24,17 @@ Use the project's confirmed policy, current status and linked requirement/eviden
 
 Keep three responsibilities distinct in existing records: the **project contract** owns goals and acceptance; the **coordination checkpoint** owns current owner, attempt and next action; the **artifact and evidence** establish what works at a specific revision. Conversation supplies context, not proof. Do not create a competing backlog, registry, SDK or background engine.
 
-For product work, read [product delivery](references/product-delivery.md) to choose the problem, smallest useful step and feedback decision. Technical acceptance and observed user value are separate claims. Select only the lifecycle work the task needs; the reference owns early caller checks and increment sequencing.
+Identify the consequential decision or risk, its owner and the evidence needed for acceptance; read only the matching guidance below. A small edit needs its outcome and relevant check, not nine processes. Keep decisions and missing evidence in the existing task/product record.
+
+| Decision or risk | Canonical guidance |
+| --- | --- |
+| Problem/value, business rules, user journey or feedback | [Product delivery](references/product-delivery.md) |
+| Responsibilities, data ownership, dependencies, scale or failure boundaries | [System design](references/system-design.md) |
+| Repository change, cross-layer integration or unexplained failure | [Implementation and diagnosis](references/implementation-and-diagnosis.md) |
+| Quality criteria, proof strength or acceptance limits | [Evidence and challenge](references/evidence-and-challenge.md#choose-evidence-by-risk) |
+| User-facing release, migration, runtime impact or recovery | [Product operations](references/product-operations.md) |
+
+These references supply the minimum decision framework without another dependency. Use a relevant specialist skill/plugin only when available and authorized; its absence does not remove these decisions or justify invented expertise. Report a material capability gap and leave dependent acceptance open. Technical acceptance and observed user value remain separate claims.
 
 ## Own, hand off and recover
 

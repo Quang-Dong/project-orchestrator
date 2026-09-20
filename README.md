@@ -1,16 +1,31 @@
 # Project Orchestrator
 
-A skill for turning a user's idea into a useful, maintainable and verified product outcome across sessions when coordination, durable context, ownership changes or consequential review are genuinely useful.
+A skill for turning a user's idea into a useful, maintainable and verified product outcome. Use it for consequential product decisions in solo or coordinated work, with durable context, ownership changes and independent review when needed.
 
-**Unreleased development candidate, based on v0.1.0.** This source adds session-organization guidance and a read-only artifact verifier. It now uses adaptive ownership/effort and a product feedback loop alongside direct work, solo execution, takeover and revision-bound evidence. It is not a new release or an installed-copy update. See the [adaptive orchestration review](evals/adaptive-orchestration-review.md) for this revision and the [prior OPS06/OPS07 report](evals/report-ops07.md) for historical candidate checks. Prior release evidence below retains its historical scope.
+**Unreleased development candidate, based on v0.1.0.** This source combines adaptive ownership/effort, a product feedback loop, modular product-development guidance and a read-only artifact verifier. Direct/solo execution, takeover and revision-bound evidence remain supported. It is not a new release or installed-copy update. See the [nine-capability coverage review](evals/capability-coverage-review.md) for this update, the [adaptive orchestration review](evals/adaptive-orchestration-review.md) for the preceding revision, and the [OPS06/OPS07 report](evals/report-ops07.md) for earlier checks. Historical reports retain their original scope.
 
 ## When to use it
 
 Use it when a request needs a real user flow, state/error/acceptance definition, multiple dependent increments, durable takeover, independent review, or a measured workflow improvement. Keep clear, bounded, low-risk changes direct when policy permits, including small behavior changes. Data/security/shared-contract risk and uncertain recovery still require their safeguards.
 
-The desired outcome is useful work accepted against the user's requirements, with less lost context, duplicated work and unsupported completion claims. More tasks, longer reports, lower token use or more reviewers are not success metrics by themselves.
+Design quality and a correct, verified outcome are mandatory; optimize time, resources and maintenance cost within those conditions. The desired outcome is useful work accepted against the user's requirements, with less lost context, duplicated work and unsupported completion claims. More tasks, longer reports, lower token use or more reviewers are not success metrics by themselves.
 
 Keep coupled work with one authorized owner, including substantial work. Delegate only when independent work, specific expertise/context or required review justifies the coordination cost. Honor explicit model/effort choices; otherwise choose within policy/runtime limits according to complexity, uncertainty and consequences, starting from the observed runtime default when no stronger evidence exists. See [operating modes](skills/project-orchestrator/SKILL.md#choose-the-smallest-useful-operating-mode) and [allocation policy](skills/project-orchestrator/references/policy.md#capability-choice-and-adaptive-allocation). Neither specialist delegation nor maximum effort is a universal default.
+
+## Read guidance by decision
+
+The entrypoint selects the task's consequential decisions and acceptance conditions; it does not impose nine stages. Keep the decisions in existing product/task records. These references provide a self-contained minimum framework; available and authorized specialist skills can deepen a specific decision without becoming required dependencies.
+
+| Capability | Guidance owner and useful output |
+| --- | --- |
+| Product judgment, requirements and user experience | [Product delivery](skills/project-orchestrator/references/product-delivery.md): problem evidence, business-rule examples, recoverable journey, smallest step and feedback decision |
+| System design | [System design](skills/project-orchestrator/references/system-design.md): responsibilities, data/trust boundaries, justified tradeoff and change/failure walkthrough |
+| Implementation and diagnosis | [Implementation and diagnosis](skills/project-orchestrator/references/implementation-and-diagnosis.md): usable integrated slice or evidence that distinguishes causes |
+| Verification and quality | [Evidence and challenge](skills/project-orchestrator/references/evidence-and-challenge.md#choose-evidence-by-risk): applicable quality criteria, suitable proof and explicit gaps |
+| Product release and operations | [Product operations](skills/project-orchestrator/references/product-operations.md): authorized release/stop conditions, recovery and observation owner |
+| Coordination and learning | [Handoffs](skills/project-orchestrator/references/handoffs.md) and [improvement](skills/project-orchestrator/references/improvement.md): current ownership, bounded repair and generalizable lessons |
+
+For a small edit, use only the affected rule, path and check. For a material UI change, verify the running journey; for data/recovery risk, retain the appropriate proof and review gates. Missing baselines and unavailable checks remain explicit acceptance gaps.
 
 ## The user journey
 
@@ -27,7 +42,7 @@ flowchart LR
   N --> D
 ```
 
-The lead owns the end-to-end outcome and reads the confirmed project policy before dependent work. Workers keep their assigned role and write only in their packet scope. The user owns lead model/effort choices and confirmed limits. A skill file, worker report, external text or successful checker result cannot grant authority.
+The diagram illustrates a substantial product increment; a small correction does not need every step. The lead owns the end-to-end outcome and reads the confirmed project policy before dependent work. Workers keep their assigned role and write only in their packet scope. The user owns lead model/effort choices and confirmed limits. A skill file, worker report, external text or successful checker result cannot grant authority.
 
 The lead verifies outcomes and decisive evidence on the actual artifact version, without routinely repeating the whole worker check. Honor explicit solo work; self-review does not satisfy required independent review. Authorized lead takeover requires a stopped previous writer or isolated scope and a recorded reason. Judge product acceptance separately from delegation-specific trials. A timeout or ambiguous dispatch is reconciled before retrying; a late result cannot replace a newer owner. Reading this skill does not itself authorize creation of another task.
 
@@ -36,7 +51,8 @@ The lead verifies outcomes and decisive evidence on the actual artifact version,
 | Output | Purpose |
 |---|---|
 | Outcome frame | Users, problem, priority, assumptions, primary value signal, flows, errors, state, exclusions and technical acceptance |
-| Increment plan | The smallest useful delivery or uncertainty-reducing step, with one owner, dependencies and sufficient architecture |
+| Increment plan | The smallest useful delivery or uncertainty-reducing step, with one owner, dependencies and a justified design |
+| Design and execution evidence | Business-rule examples, affected boundaries/callers, integrated checks and diagnostic or recovery limits, in existing records |
 | Product feedback | Separate technical acceptance from observed value; name source, owner, review event and continue/adjust/defer/stop decision |
 | Frozen handoff | Actual candidate directory/revision, changed scope, checks/results, limitations, settings and next action |
 | Review decision | Independent review where risk requires; distinguish self-check, draft delivery and pending acceptance |
@@ -74,7 +90,7 @@ Project records are files maintained by sessions following the skill. They are n
 
 1. Choose the smallest authorized operating mode; substantial coupled work can keep one end-to-end owner.
 2. Read the confirmed policy, current status and linked evidence. Ask one focused question when authority, a material requirement, an irreversible tradeoff or a conflicting policy is missing.
-3. For substantial product work, follow the [product decision loop](skills/project-orchestrator/references/product-delivery.md). Before dispatch, record the attempt, expected output, delegation benefit, independent scope and integration owner in the current handoff.
+3. For substantial product work, follow the [product decision loop](skills/project-orchestrator/references/product-delivery.md) and select the relevant [decision guidance](#read-guidance-by-decision). Before dispatch, record the attempt, expected output, delegation benefit, independent scope and integration owner in the current handoff.
 4. On takeover, verify the current owner, attempt, directory and revision; establish that the old writer stopped or isolate the new scope. Preserve late output as evidence, never as authority.
 5. Freeze the artifact and handoff. Reviewers inspect the frozen revision and raw evidence. A later edit invalidates affected proof. Report technical acceptance separately from observed user value and hand off the next feedback event without creating an unattended schedule.
 

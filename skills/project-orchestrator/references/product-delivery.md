@@ -2,11 +2,11 @@
 
 Use this reference when a request changes a user-facing flow, product behavior, data/state, acceptance, or an operational outcome. A small defect may need a short outcome statement and one relevant check. For substantial product work, use the decision loop below in the existing requirement/task record, referencing what is already known. If no registry exists, create one minimal authoritative outcome/spec record in the project's normal documentation location with an owner and acceptance; do not create a second backlog or mandatory form.
 
-Apply the outcome constraints and operating modes in [SKILL.md](../SKILL.md). This reference owns product decisions, early caller checks and increment sequencing; [handoffs](handoffs.md) owns coordination mechanics.
+Apply the outcome constraints and operating modes in [SKILL.md](../SKILL.md). This reference owns product judgment, requirements, user experience, increment priority and feedback decisions. Start with the current request, observed need, existing behavior/contracts and known constraints. Record only decisions that change the slice or its acceptance; [handoffs](handoffs.md) owns coordination mechanics.
 
 ## Choose the problem
 
-State who acts, who benefits, the observed problem or opportunity, and the evidence with its date and limits. Explain why this problem merits the next increment relative to current work: expected user value, urgency, uncertainty, dependencies and cost of delay where known. A short qualitative reason is sufficient; do not invent scores to rank uncertain work.
+Separate the requested solution from the problem it is meant to solve. State who acts, who benefits, the observed problem or opportunity, and the evidence with its date and limits. A requested feature is evidence of a request, not proof of demand or the best solution. Explain why this problem merits the next increment relative to current work: expected user value, urgency, uncertainty, dependencies and cost of delay where known. A short qualitative reason is sufficient; do not invent scores to rank uncertain work.
 
 Identify the assumption most likely to change the solution or make it unnecessary. Ask about missing material authority, requirements or irreversible tradeoffs before implementation. Do not invent a persona, metric, customer need or production constraint. Interviews, observed usage and authorized experiments have their own populations and limits; simulated users, fixtures and role-play do not establish real demand.
 
@@ -14,14 +14,26 @@ Identify the assumption most likely to change the solution or make it unnecessar
 
 Choose the smallest step that delivers the intended value or resolves the most consequential uncertainty. A focused research result, prototype or no-code experiment can be a complete increment with an observable answer; it need not produce production code. State how that answer changes the next decision, and keep any external research/contact within existing authority.
 
-For a software increment, specify observable behavior:
+## Resolve requirements and business rules
 
-1. Primary flow and important alternate/error flows.
-2. Data, state transitions, invariants and ownership of each state.
-3. Exclusions, non-goals and deferred behavior.
-4. Acceptance checks against the real artifact or a clearly labelled local fixture.
+Apply when a slice changes behavior, permissions, state or data. Read the existing product contract and actual caller behavior before resolving:
 
-Acceptance covers relevant negative paths such as refusal, missing data or stale state. A passing mock, prototype or unit test proves only its layer, not integration, deployment or user value.
+- Who can act, on which resource, with what preconditions and permissions?
+- What is the main flow, and which alternate, refusal or failure paths matter?
+- What state changes, who owns it, and which data rules must hold before and after the action?
+- Which exceptions, exclusions and deferred behavior constrain this slice?
+
+Attach a concrete acceptance example to each consequential rule: starting state and actor, action, expected result and what must remain unchanged. For example, an unauthorized edit must leave stored data unchanged. Use fictional fixtures and label assumptions; examples clarify the contract rather than silently add requirements.
+
+When two requirements conflict or a missing decision changes permissions, irreversible behavior or acceptance, identify the conflict and stop its dependent edits until resolved. Keep independent authorized work moving. Do not infer a new permission from a UI control, or broaden a small correction into a new business flow.
+
+## Check the user journey
+
+Apply to a new or changed interaction, using the affected actor, target device and entry state from the product contract. Trace entry point -> action -> feedback -> resulting state -> next action. Check whether the user can understand progress, finish the task and recover from a consequential failure.
+
+Select relevant empty, loading, denied and error states; preserve entered work where required and make retry, cancel or recovery consequences clear. Include keyboard navigation, focus placement and layout on the target devices when affected. A working happy path alone does not establish a usable journey. A wording-only edit does not require redesigning unrelated screens.
+
+For UI changes, inspect the running interface through the affected journey and material failure/recovery state. Link the observed result and remaining gaps to the acceptance examples, following [evidence selection](evidence-and-challenge.md#choose-evidence-by-risk). A screenshot or component test alone cannot establish interaction, focus or input preservation. If the runtime is unavailable, retain the unverified UI criteria rather than calling the journey accepted.
 
 ## Define success before expanding
 
@@ -29,19 +41,11 @@ For substantial product work, identify one primary signal of user value, the tec
 
 Keep these decisions in the product contract. The coordination checkpoint owns the current owner, attempt, source revision, write scope and recovery; the artifact/proof owns actual behavior and caller checks. Use the existing boundaries, not another schema or registry. Chat history supplies context, not acceptance evidence.
 
-## Choose sufficient architecture
-
-Prefer the smallest design that satisfies the current flow and preserves a clear boundary for likely change. Name a material alternative only when it changes risk, cost, quality, reversibility or ownership. For a risky design assumption, identify an observable check. A measured experiment may express it as:
-
-`If [bounded change], then [quality or cost signal] will change by [measurable direction/threshold] for [scope], while [quality to preserve] does not regress.`
-
-Do not add a framework, service, schema, queue, persistence layer or coordination role without a demonstrated need in the specified flow. Keep product rules in their owner; use replaceable adapters for storage or external systems when that is the existing boundary.
-
 ## Sequence complete increments
 
-Give each increment one authorized owner, a bounded scope and observable acceptance. Keep coupled work with an end-to-end owner; add an integrator only when distinct outputs need it. Before broad implementation or a full matrix, exercise the smallest real caller path across the affected boundaries, including a material failure path. If it fails, diagnose before expanding.
+Give each increment one authorized owner, a bounded scope and observable acceptance. Prefer finishing or unblocking current increments before starting more dependent work. When existing work is blocked, an authorized independent increment can proceed if its owner, priority and integration path are clear. Use [handoffs](handoffs.md) for assignment, disjoint writes and takeover.
 
-Prefer finishing or unblocking current increments before starting more dependent work. When existing work is blocked, an authorized independent increment can proceed if its owner, priority and integration path are clear. Parallelize only independent work with disjoint writes. Use [handoffs](handoffs.md) for ownership and takeover; individual passes do not prove the combined result.
+For material design decisions, use [system design](system-design.md); for an implementation slice and its early real-caller check, use [implementation and diagnosis](implementation-and-diagnosis.md#implement-a-complete-slice). Individual layer passes do not prove the combined result.
 
 ## Observe value and decide next
 
@@ -53,4 +57,4 @@ Use the observed signal and preserved quality to decide: continue when evidence 
 
 ## Release and lifecycle, only when applicable
 
-For a change that can reach users or affect operations, identify the authorized release gate, rollback/recovery action, monitoring signal, support owner and retirement or migration obligation. If none applies, say so. Release, production mutation, external communication, spending and installation updates require their own authority; a product design or worker handoff cannot grant it.
+For a change that can reach users or affect operations, use [product operations](product-operations.md) for release, observation and recovery decisions. Its technical/operational checks do not replace the user-value feedback loop above. Skill distribution and installation have their own [maintenance](maintenance.md) boundary.

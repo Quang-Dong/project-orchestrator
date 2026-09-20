@@ -4,9 +4,9 @@ Use `observe -> diagnose alternatives -> smallest change -> verify -> keep/revis
 
 ## Locate the problem
 
-Separate product requirements, implementation, tooling, verification and coordination causes. A failed product test does not by itself establish a skill defect. A passing package test does not prove useful orchestration.
+Start from the [diagnostic evidence](implementation-and-diagnosis.md#diagnose-before-repairing) or observed outcome and distinguish product/requirement, implementation, tooling, verification and coordination causes. Keep an unresolved cause labelled as a hypothesis. A failed product test does not by itself establish a skill defect. A passing package test does not prove useful orchestration.
 
-Place code defects in code/tests, project conventions in project guidance, and general coordination lessons in this skill. A user correction can supply a requirement; do not treat one local example as universal evidence or write personal memory without explicit permission.
+Place code defects in code/tests, project conventions in project guidance, and generalizable decision or coordination lessons in this skill. Before adding a rule, state when it applies, the recurring cause it addresses and a counterexample where it should not trigger. A user correction can supply a requirement; do not treat one local example as universal evidence or write personal memory without explicit permission.
 
 ## Choose the smallest adequate check
 
@@ -20,7 +20,7 @@ For a real process trial, use existing v2 records to name one intervention, owne
 
 Check the accepted outcome, design tradeoffs, defects, rework, takeover, main intervention, elapsed time and usage where observed. Distinguish technical acceptance, observed user value, process adherence and trial criteria. Use the [product feedback loop](product-delivery.md#observe-value-and-decide-next) for user-value evidence; do not duplicate it in a workflow experiment. Explicit main takeover may rescue a product while failing a delegation-specific criterion.
 
-A missed first usable slice, repeated wrong diagnosis or large lead reimplementation warrants immediate reassessment. Two failed repairs of the same issue require a new evidenced diagnosis/approach or a stopped handoff, not renamed attempts or more effort by default.
+Apply the [canonical reassessment and repair limits](handoffs.md#review-and-repair). Use the diagnosed cause to continue, revise or stop the approach; do not add a role, process or effort increase merely because one attempt failed.
 
 Inspect whether communication changed a decision or supplied missing proof. Reduce duplicate reporting and evidence reads when they add no confidence. Cache is a subset of input and reasoning of output; never add them twice or convert token counters to weekly allowance or bills. Missing data stays unknown.
 
