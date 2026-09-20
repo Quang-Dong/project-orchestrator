@@ -32,15 +32,8 @@ def unique_strings(values):
             and all(text(v) for v in values) and len(values) == len(set(values)))
 
 
-def validate_policy(policy):
-    obj(policy, ["schemaVersion", "projectId", "mainSession", "delegation",
-                 "budget", "permissions", "confirmation"], "policy")
-    require(type(policy["schemaVersion"]) is int and policy["schemaVersion"] == 1,
-            "unsupported schemaVersion")
-    require(text(policy["projectId"]), "projectId is required")
-    main = obj(policy["mainSession"], ["modelEffortOwner"], "mainSession")
-    require(main["modelEffortOwner"] == "user", "lead model/effort must remain user-owned")
-    delegation = obj(policy["delegation"], ["mechanism", "models"], "delegation")
+def validate_delegation(delegation):
+    obj(delegation, ["mechanism", "models"], "delegation")
     require(delegation["mechanism"] in ("sessions", "subagents"),
             "confirm a coordination mechanism")
     require(isinstance(delegation["models"], list) and delegation["models"],
@@ -58,7 +51,10 @@ def validate_policy(policy):
             obj(effort, ["mode", "values"], "allowlist effort")
             require(effort["mode"] == "allowlist" and unique_strings(effort["values"]),
                     "confirm a nonempty effort allowlist or all_supported")
-    budget = obj(policy["budget"], ["mode", "limits"], "budget")
+
+
+def validate_budget(budget):
+    obj(budget, ["mode", "limits"], "budget")
     require(budget["mode"] in ("no_self_imposed_cap", "capped"),
             "budget stance is unconfirmed")
     require(isinstance(budget["limits"], list), "budget limits must be a list")
@@ -85,11 +81,19 @@ def validate_policy(policy):
             key = (limit["metric"], unit, limit["scope"])
             require(key not in seen_limits, "duplicate budget limit")
             seen_limits.add(key)
-    permissions = obj(policy["permissions"], ["smallDirectWork", "externalActions"],
-                      "permissions")
-    require(type(permissions["smallDirectWork"]) is bool, "smallDirectWork must be boolean")
-    require(permissions["externalActions"] == "separate_authorization",
-            "external actions require separate authorization")
+
+
+def validate_policy(policy):
+    require(isinstance(policy, dict), "policy must be an object")
+    require(type(policy.get("schemaVersion")) is int and policy["schemaVersion"] == 2,
+            "unsupported policy schemaVersion; expected 2; no automatic migration")
+    obj(policy, ["schemaVersion", "projectId", "delegation", "budget", "confirmation"], "policy")
+    require(text(policy["projectId"]), "projectId is required")
+    if policy["delegation"] is not None:
+        validate_delegation(policy["delegation"])
+        require(policy["budget"] is not None, "delegation requires a confirmed budget stance")
+    if policy["budget"] is not None:
+        validate_budget(policy["budget"])
     confirmation = obj(policy["confirmation"], ["status", "at", "evidence"], "confirmation")
     require(confirmation["status"] == "confirmed" and text(confirmation["at"])
             and text(confirmation["evidence"]), "user confirmation is required")
@@ -122,6 +126,8 @@ def evaluate(policy, model=None, effort=None, runtime=None, project_id=None):
         validate_policy(policy)
     except (Invalid, TypeError, ValueError, OverflowError) as exc:
         return 2, {"status": "needs_input", "reason": str(exc)}
+    if project_id is not None and policy["projectId"] != project_id:
+        return 3, {"status": "rejected", "reason": "Policy belongs to a different project."}
     if model is None and effort is None and runtime is None:
         return 0, {"status": "policy_valid",
                    "reason": "Configuration only; no dispatch capability checked."}
@@ -129,8 +135,8 @@ def evaluate(policy, model=None, effort=None, runtime=None, project_id=None):
         return 2, {"status": "needs_input", "reason": "Dispatch needs model, effort and runtime."}
     if not text(project_id):
         return 2, {"status": "needs_input", "reason": "Selection needs an expected project ID."}
-    if policy["projectId"] != project_id:
-        return 3, {"status": "rejected", "reason": "Policy belongs to a different project."}
+    if policy["delegation"] is None:
+        return 3, {"status": "rejected", "reason": "No delegation selection is configured."}
     permitted = next((m for m in policy["delegation"]["models"] if m["id"] == model), None)
     if permitted is None:
         return 3, {"status": "rejected", "reason": "Worker model is outside policy."}
@@ -159,51 +165,59 @@ def load_json(path, raw=None):
                 raise Invalid("duplicate JSON key: " + key)
             result[key] = value
         return result
+    def reject_constant(value):
+        raise Invalid("non-finite JSON number: " + value)
     return json.loads((raw if raw is not None else Path(path).read_bytes()).decode("utf-8-sig"),
-                      object_pairs_hook=unique_object)
+                      object_pairs_hook=unique_object, parse_constant=reject_constant)
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+class JsonArgumentParser(argparse.ArgumentParser):
+    def error(self, message):
+        raise Invalid(message)
+
+
+def emit(code, result, policy=None, policy_bytes=None, runtime_bytes=None):
+    result["schemaVersion"] = 2
+    result["projectId"] = policy.get("projectId") if isinstance(policy, dict) else None
+    result["inputHashes"] = {
+        "policy": hashlib.sha256(policy_bytes).hexdigest() if policy_bytes is not None else None,
+        "runtime": hashlib.sha256(runtime_bytes).hexdigest() if runtime_bytes is not None else None,
+    }
+    result["notVerified"] = ["approval_authenticity", "runtime_freshness",
+                             "remaining_budget", "task_creation_authority"]
+    budget = policy.get("budget") if isinstance(policy, dict) else None
+    result["budgetCheckRequired"] = budget.get("mode") == "capped" if isinstance(budget, dict) else None
+    print(json.dumps(result, ensure_ascii=False))
+    return code
+
+
+def main(argv=None):
+    parser = JsonArgumentParser(description=__doc__)
     parser.add_argument("--policy", required=True)
     parser.add_argument("--model")
     parser.add_argument("--effort")
     parser.add_argument("--runtime")
     parser.add_argument("--project-id")
-    args = parser.parse_args()
+    policy = policy_bytes = runtime_bytes = None
     try:
+        args = parser.parse_args(argv)
         policy_bytes = Path(args.policy).read_bytes()
         policy = load_json(args.policy, policy_bytes)
     except (OSError, UnicodeError, ValueError) as exc:
-        print(json.dumps({"status": "needs_input", "reason": str(exc)}))
-        return 2
+        return emit(2, {"status": "needs_input", "reason": str(exc)}, policy, policy_bytes)
+    selection = (args.model, args.effort, args.runtime)
+    if any(value is not None for value in selection) and not all(value is not None for value in selection):
+        return emit(2, {"status": "needs_input", "reason": "Supply model, effort and runtime together."},
+                    policy, policy_bytes)
     runtime = None
-    runtime_bytes = None
     if args.runtime:
         try:
             runtime_bytes = Path(args.runtime).read_bytes()
             runtime = load_json(args.runtime, runtime_bytes)
         except (OSError, UnicodeError, ValueError) as exc:
-            print(json.dumps({"status": "unavailable", "reason": str(exc)}))
-            return 4
-    if any(v is not None for v in (args.model, args.effort, args.runtime)) and not all(
-            v is not None for v in (args.model, args.effort, args.runtime)):
-        print(json.dumps({"status": "needs_input",
-                          "reason": "Supply model, effort and runtime together."}))
-        return 2
+            return emit(4, {"status": "unavailable", "reason": str(exc)}, policy, policy_bytes, runtime_bytes)
     code, result = evaluate(policy, args.model, args.effort, runtime, args.project_id)
-    result["schemaVersion"] = 2
-    result["projectId"] = policy.get("projectId") if isinstance(policy, dict) else None
-    result["inputHashes"] = {
-        "policy": hashlib.sha256(policy_bytes).hexdigest(),
-        "runtime": hashlib.sha256(runtime_bytes).hexdigest() if args.runtime else None,
-    }
-    result["notVerified"] = ["approval_authenticity", "runtime_freshness",
-                             "remaining_budget", "task_creation_authority"]
-    if isinstance(policy, dict) and isinstance(policy.get("budget"), dict):
-        result["budgetCheckRequired"] = policy["budget"].get("mode") == "capped"
-    print(json.dumps(result, ensure_ascii=False))
-    return code
+    return emit(code, result, policy, policy_bytes, runtime_bytes)
 
 
 if __name__ == "__main__":

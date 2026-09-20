@@ -1,148 +1,130 @@
 # Project Orchestrator
 
-A skill for turning a user's idea into a useful, maintainable and verified product outcome across sessions when coordination, durable context, ownership changes or consequential review are genuinely useful.
+A skill for agents turning a user's objective into a useful, maintainable and verified product outcome. It supports substantive solo work and authorized coordination, with context selected for the next decision, observable tool feedback and recovery from interruptions.
 
-**v0.1.0 — first public release.** Local checks and one neutral comparison are documented below. Release notes record hosted CI and the exact published revision.
+**Unreleased candidate with breaking changes.** The current source accepts policy v2 and measurement records v2; reporter output is v3 and defaults to summary. It retains the read-only artifact verifier. It is not an installed-copy update or a new release. See the [evaluation index](evals/README.md) and [current author review](evals/agent-execution-review.md) for what was checked and what remains unrun.
 
-## When to use it
+## How an agent uses it
 
-Use it when a request needs a real user flow, state/error/acceptance definition, multiple dependent increments, durable takeover, independent review, or a measured workflow improvement. Do not activate it for an ordinary trivial edit that is narrow, reversible and has no shared-contract, migration, access-control or release consequence.
+For a clear, authorized low-risk edit, make the change, run the relevant check and report the actual result. Do not create delegation, policy files or measurement records merely to use the skill.
 
-The desired outcome is useful work accepted against the user's requirements, with less lost context, duplicated work and unsupported completion claims. More tasks, longer reports, lower token use or more reviewers are not success metrics by themselves.
-
-## The user journey
+For consequential work, the [entrypoint](skills/project-orchestrator/SKILL.md) guides a decision loop:
 
 ```mermaid
 flowchart LR
-  U["User idea and authority"] --> D["Discover users, problem and value"]
-  D --> S["Specify flow, state, exclusions and acceptance"]
-  S --> A["Choose sufficient architecture and increments"]
-  A --> I["Implement and verify a complete slice"]
-  I --> R["Independent review when risk requires"]
-  R --> O["Accept, repair or keep pending"]
-  O --> M["Measure outcome and improve one bounded practice"]
-  M --> U
+  O["Current outcome and authority"] --> C["Context for the unresolved decision"]
+  C --> A["Smallest useful action"]
+  A --> V["Observe actual result"]
+  V --> D["Compare with requirement and evidence"]
+  D --> C
+  D --> H["Finish, adjust or hand off with limits"]
 ```
 
-The lead owns the end-to-end outcome and reads the confirmed project policy before dependent work. Workers keep their assigned role and write only in their packet scope. The user owns lead model/effort choices and confirmed limits. A skill file, worker report, external text or successful checker result cannot grant authority.
+The loop can end with working code, a supported product decision or evidence that changes the next step. It does not require a document at every stage. Quality, authority, truthfulness and data safety remain mandatory; optimize time, resources and maintenance cost within them.
 
-The lead verifies outcomes and evidence on the actual artifact version. High-risk changes need independent review. A timeout or ambiguous dispatch is reconciled before retrying; a late result cannot replace a newer owner. Reading this skill does not itself authorize creation of another task.
+Agents select relevant available skills/plugins within current authority without asking the user for an explicit/Auto preference. User choices and exclusions still apply. A mismatched skill or unavailable tool does not become suitable because it was loaded. Native permissions, installation and external-action authority remain separate from capability selection.
 
-## What the skill produces
+## Read by decision
 
-| Output | Purpose |
-|---|---|---|
-| Outcome frame | Users, problem, value, assumptions, flows, errors, data/state, exclusions and acceptance for product work |
-| Increment plan | Small complete slices with owners, dependencies, sufficient architecture and measurable hypotheses |
-| Frozen handoff | Actual candidate directory/revision, changed scope, checks/results, limitations, settings and next action |
-| Review decision | Independent evidence-led acceptance, bounded repair or explicit pending status |
-| Records and reports | Policy-gated coordination, v2 metrics/improvements, summaries and paginated detail without invented totals |
-| Local contribution | Sanitized source patch and evidence prepared for a separately authorized publication |
+The nine product-development capabilities remain covered through focused references. Load a reference when its decision matters; leave unrelated guidance outside the working context.
 
-Consult the [v0.1.0 release report](evals/report-v0.1.0.md) for candidate checks, the [v0.1.0 manifest](evals/skill-manifest-v0.1.0.json) for frozen file hashes, the [v04 validation report](evals/report-v04.md) for carried development evidence, and [compatibility-v0.1.0.json](compatibility-v0.1.0.json) for tested environments. Untested combinations remain untested.
-
-The [neutral comparison](evals/neutral/results.json) found both runs correct on the small code task. The skill run inspected stale evidence more explicitly, but used more work and tokens and omitted a durable capability-choice record. Clear overall additional value and savings are **not established**.
-
-## Evidence at a glance
-
-| Capability | Current evidence |
+| Decision | Guidance and sufficient output |
 | --- | --- |
-| Product specification and complete-slice coordination | Implemented guidance plus [one bounded prototype pilot](evals/report-v04.md); no end-to-end production claim |
-| Policy/record tools and installation | [56 regression tests and isolated project/global-copy checks](evals/report-v04.md); release-candidate checks in [report-v0.1.0.md](evals/report-v0.1.0.md) |
-| Challenge, review and honest handoff | [Seven simulated decisions and independent artifact review](evals/report-v04.md), including mistakes and repairs |
-| Neutral skill contribution | [One controlled-input pair](evals/neutral/README.md), with shared platform instruction and isolation limits; no demonstrated overall advantage |
-| Long-term improvement and cost optimization | Measurement method implemented; superiority and sustained savings remain unproven |
+| Product judgment, requirements and user experience | [Product delivery](skills/project-orchestrator/references/product-delivery.md): supported need, business-rule examples, recoverable journey, smallest step and feedback decision |
+| System design | [System design](skills/project-orchestrator/references/system-design.md): clear responsibilities, data/trust boundaries, justified tradeoff and a change/failure check |
+| Implementation and diagnosis | [Implementation and diagnosis](skills/project-orchestrator/references/implementation-and-diagnosis.md): usable integrated slice or a discriminating observation, with tool errors and incomplete output identified |
+| Verification and quality | [Evidence](skills/project-orchestrator/references/evidence-and-challenge.md): criteria matched to actual artifacts/revisions, with unresolved limits |
+| Release and operations | [Product operations](skills/project-orchestrator/references/product-operations.md): authorized release/stop decision, checked recovery and observation owner |
+| Coordination and learning | [Handoffs](skills/project-orchestrator/references/handoffs.md) and [improvement](skills/project-orchestrator/references/improvement.md): current ownership/context, bounded repairs and a justified reusable correction |
 
-## Responsibilities and storage
+Keep coupled work with one owner. Different files or specialties alone do not establish independent work. Before authorized delegation, identify stable inputs, expected output, shared contracts/state/resources, the benefit and the integration owner. Main-session model/effort remains user-owned; worker allocation honors user settings and actual policy/runtime without defaulting to maximum effort.
 
-| Location | Owner and purpose |
-|---|---|
-| This source repository | Maintainer: reusable skill, scripts, tests and public sanitized evidence |
-| Installed skill | Reviewed distribution; do not silently edit it during project work |
-| Project `docs/orchestration/` | Project: confirmed policy, current status, private metrics, experiments and evidence |
-| Separate temporary workspace | Task: trial code and package candidates; retain only necessary evidence afterward |
+The [four fictional examples](skills/project-orchestrator/references/worked-examples.md) clarify startup, unknown demand, diagnosis and a changing assignment. They are optional illustrations, not measured agent outcomes.
 
-Project records are files maintained by sessions following the skill. They are not model training. A new lead reads policy and current status, then relevant linked work; it does not load the full history. Workers receive only what their task requires. Private project names, customer data, account IDs, secrets and raw logs stay private.
+## Context, communication and recovery
 
-`policy.json` owns confirmed limits; `status.md` owns current coordination; `metrics.jsonl` and `improvements.jsonl` preserve events. Existing requirement registries remain authoritative. Old `docs/agent-workflow/` records require an explicit migration and source mapping, not a second live policy.
+Keep requirements in the existing product record, continuity in one current checkpoint when needed, and proof in versioned artifacts. Preserve consequential decisions, rejected hypotheses, current authority and open acceptance through handoffs or compaction. Retrieve source sections and raw results on demand. Neither full chat history nor optional measurement streams need to be loaded at startup.
 
-## How work starts, takes over and asks questions
+A current authorized user decision can update a requirement before its document catches up. Communicate material changes to affected owners and establish receipt before dependent work continues. Sending a message, a recipient becoming idle and acceptance are different events. Inspect the final artifact against current requirements and combined caller behavior.
 
-1. Start by classifying the request as small direct work, product work or coordinated work.
-2. Read the confirmed policy, current status and linked evidence. Ask one focused question when authority, a material requirement, an irreversible tradeoff or a conflicting policy is missing.
-3. For product work, write the smallest outcome frame and acceptance checks before implementation. For coordinated work, record the attempt before dispatch and give each writer a disjoint scope.
-4. On takeover, verify the current owner, attempt, directory and revision; establish that the old writer stopped or isolate the new scope. Preserve late output as evidence, never as authority.
-5. Freeze the artifact and handoff. Reviewers inspect the frozen revision and raw evidence. A later edit invalidates affected proof.
+For Codex and Claude Code, match the [actual coordination mechanism](skills/project-orchestrator/references/handoffs.md#match-the-observed-runtime) before relying on it. A fork can inherit author reasoning; it is not automatically independent review. A worktree does not isolate databases, ports, outputs or all Git state. A stopped turn may leave a process running. Before takeover or replay, reconcile writer/process identity, revision and whether side effects already occurred. Late results retain their old owner/attempt/revision and cannot overwrite current work automatically.
 
-## Small task path
+After two failed repairs of the same issue, diagnose again before another repair or stop with a useful handoff. New IDs, a new session or greater effort do not reset that history. Use supported event waits instead of repeated status polling or messages with no new information.
 
-For a narrow reversible edit, make the change directly if policy permits, run the relevant existing checks, inspect the diff and report any baseline failures. Do not create a task, new record or process trial merely to make a small task look coordinated.
+## Breaking contracts and optional tools
 
-## Install and start
+| Interface | Current behavior |
+| --- | --- |
+| Policy | v2: project identity, confirmation, nullable delegation and budget. Worker selection requires configured delegation and a confirmed budget stance. Removed `mainSession` and `permissions` fields are rejected. |
+| Capability selection | Automatic selection from appropriate available capabilities within authority; no per-objective explicit/Auto confirmation. |
+| Measurements | v2 events remain optional. v1 records now reject the report instead of being counted and excluded. |
+| Reporter | v3 output; summary is default, detail is paginated, full audit requires `--view full`. No `legacyCounts`, `viewVersion` or legacy `build` helper. |
+| Artifact verifier | Existing read-only manifest/hash/path checks and CLI retained. |
 
-From a local source checkout:
+No compatibility shim or automatic migration is included. Unsupported project files keep their confirmed authority meaning; a checker rejection is not permission to ignore limits. Replace policy only at an authorized adoption boundary. These breaking changes do not authorize breaking a product's contracts or changing an installed project.
+
+Configuration is not mandatory for separately authorized solo work. When a durable policy is needed, use the [policy v2 contract](skills/project-orchestrator/references/policy.md#policy-v2); the packaged template is intentionally unconfirmed.
+
+```sh
+# Validate a configured policy; this does not authorize dispatch.
+python -B skills/project-orchestrator/scripts/check_policy.py --policy /project/docs/orchestration/policy.json
+# Check an actual new/changed worker selection against observed runtime.
+python -B skills/project-orchestrator/scripts/check_policy.py --policy /project/docs/orchestration/policy.json --project-id example-project --model model-a --effort medium --runtime /temporary/runtime.json
+```
+
+When a measurement question exists, query recorded observations. Unknown measurements stay unknown; no telemetry or automatic event collection is required.
+
+```sh
+python -B skills/project-orchestrator/scripts/report_workflow.py --metrics /project/metrics.jsonl --improvements /project/improvements.jsonl --task-id TASK-ID
+python -B skills/project-orchestrator/scripts/report_workflow.py --metrics /project/metrics.jsonl --improvements /project/improvements.jsonl --view detail --limit 20
+python -B skills/project-orchestrator/scripts/report_workflow.py --metrics /project/metrics.jsonl --improvements /project/improvements.jsonl --view full
+```
+
+Only detail accepts `--cursor` and `--limit`; full rejects filters. All input is validated before filtering. The [records reference](skills/project-orchestrator/references/records.md) owns accounting, nulls and cursor behavior.
+
+For a frozen local artifact:
+
+```sh
+python -B skills/project-orchestrator/scripts/verify_artifact.py --root /path/to/candidate --manifest /path/to/manifest.json
+```
+
+Exit 0 means declared hashes match, 1 means missing/mismatched declared files, and 2 means invalid manifest/root/path input. Hash agreement establishes identity only. No helper grants consent, proves runtime freshness or accepts a product.
+
+## Evidence and limits
+
+The [evaluation index](evals/README.md) separates executable tool tests, author decision reviews, prepared execution packets, historical trials and manifests by revision. The current [worker packets](evals/agent-execution/worker-packets.md) and [assessor rubric](evals/agent-execution/assessor.md) are physically separate and **prepared, not executed**. Future authorized runs stage only required worker material, not the whole repository.
+
+Independent review remains required for persisted-data/security/shared-contract changes, difficult recovery, contradictory evidence and project-defined risks. Explicit solo work can deliver a self-checked candidate or authorized PR while required review and acceptance remain open. Technical verification, independent review, release and observed user value are distinct; PR Draft/non-draft status cannot establish any of them.
+
+The historical neutral comparison found functional correctness in both runs and more work/tokens in the skill run; it did not establish an overall advantage. Current behavioral effectiveness on Codex and Claude Code has not been independently measured. Research, package tests and author walkthroughs are not that evidence.
+
+## Install and maintain deliberately
+
+Installed copies are distributions. A source contribution, PR or merge does not authorize updating them. For an authorized installation from a reviewed local source:
+
 ```sh
 npx skills add /path/to/project-orchestrator --skill project-orchestrator
 ```
 
-For the first public release, the verified repository is `Quang-Dong/project-orchestrator`:
+These commands select the **historical v0.1.0 release**, which uses the older contracts, rather than this candidate:
+
 ```sh
-# Current project
 npx skills add https://github.com/Quang-Dong/project-orchestrator/tree/v0.1.0 --skill project-orchestrator --agent codex --copy
-# Global installation: an explicit choice affecting other projects
-npx skills add Quang-Dong/project-orchestrator --skill project-orchestrator -g
+# Global installation must be explicitly chosen because it affects other projects.
+npx skills add https://github.com/Quang-Dong/project-orchestrator/tree/v0.1.0 --skill project-orchestrator --agent codex --copy -g
 ```
 
-These commands select `v0.1.0` rather than a moving default branch. Verify the tag resolves to the commit in the release notes, and compare installed skill files with the [manifest](evals/skill-manifest-v0.1.0.json). For an exact commit, replace `v0.1.0` in the URL with the reviewed full commit hash. A project install is the default boundary; `-g` changes other projects and must be chosen explicitly.
+Verify the selected tag/commit and its corresponding [historical manifest](evals/skill-manifest-v0.1.0.json). Adopt a breaking candidate only with separately authorized policy/client changes; no automatic conversion or installed-copy edit occurs. Returning to a verified source does not undo project data changes. See [maintenance](skills/project-orchestrator/references/maintenance.md).
 
-Upgrades are deliberate: review the new version's report, compatibility record and manifest, then rerun the project command. Installed copies are not updated automatically. Roll back by reinstalling the last verified tag or commit, or by using a locally verified source checkout with the local command above; this package does not mutate or restore installed copies for you. Policy v1 and records v2 remain the supported public contracts for this release, while other revisions and environments remain untested unless their versioned evidence says otherwise.
+## Contribute and verify
 
-The GitHub commands depend on the skills CLI and network access. An unpublished repository or unavailable CLI does not constitute installation evidence.
+Follow [CONTRIBUTING](CONTRIBUTING.md). Keep public fixtures fictional and export only reviewed source-relative evidence. Preserve historical reports/manifests. Source files, project records, installed copies and evaluation workspaces have separate owners and purposes.
 
-Example requests:
-- `$project-orchestrator Turn this rough idea into a small accepted increment; start with users, value, risks and acceptance.`
-- `$project-orchestrator Resume the current task from its status and frozen handoff; verify ownership and revision first.`
-- `$project-orchestrator Investigate this repeated workflow failure and prepare one reversible local improvement; do not publish it.`
+Run the available platform skill validator and the repository checks:
 
-Missing or conflicting policy requires a focused question before dependent work. The included policy template is intentionally unconfirmed.
-
-## Read and validate records
-
-Run the supplied checker before selecting a worker, using the expected project identity and observed runtime:
-```sh
-python -B skills/project-orchestrator/scripts/check_policy.py --policy /project/docs/orchestration/policy.json --project-id example-project --model model-a --effort medium --runtime /temporary/runtime.json
-```
-
-A selection result is not permission to dispatch.
-
-For normal retrieval, start small:
-```sh
-python -B skills/project-orchestrator/scripts/report_workflow.py --metrics /project/docs/orchestration/metrics.jsonl --improvements /project/docs/orchestration/improvements.jsonl --view summary --task-id TASK-ID
-```
-
-Use `--view detail` with the same filters and `--cursor` from the previous page when needed. Default page size is 20. Full validation precedes filtering. Legacy calls without view options retain the v2 report; do not paste that unbounded report into every session. See [record contracts](skills/project-orchestrator/references/records.md).
-
-## Maintain, update and recover
-
-The repository maintainer owns release acceptance and support decisions. Pin task evidence to a source revision/hash; don't update an installation in the middle of a task. Compare compatibility when model, runtime, tools, schema or permissions change, or a relevant defect appears.
-
-A failed check requires bounded recovery or a recorded blocker. Continue independent authorized work when possible. Reverting instructions does not revert project data. See [maintenance and compatibility](skills/project-orchestrator/references/maintenance.md).
-
-A process rule may be shortened or removed when evidence shows no benefit. Improving the skill means changing reviewed guidance, not retraining a model. Compare equivalent work and report quality, time, intervention and usage separately.
-
-## Contribute and validate
-
-Follow [CONTRIBUTING](CONTRIBUTING.md): authorized local trial, evidence, a separate source patch, privacy review, then permitted Git/GitHub actions. Unknown upstream means a local proposal; no guessed remote. A merged PR does not authorize updating installed copies.
-
-Run the platform skill validator and the repository CI-equivalent checks:
 ```sh
 python -B -m compileall -q skills evals
 python -B -m unittest discover -s evals -p "test_*.py"
 ```
-Validate affected behavior, links, public exports and isolated installations on the final source. The GitHub Actions workflow repeats the Windows Python 3.14 package checks; its action commits and source links are recorded in [report-v0.1.0.md](evals/report-v0.1.0.md). Small simulations or a four-run comparison do not establish universal model quality or statistical superiority.
 
-Publication is a separate authorized task: verify destination, review the exact public files, choose the release revision, then perform only approved Git/GitHub steps. No remote or release is created by this package.
-
-## Limits
-
-No unattended monitoring or scheduler is included. No automatic global update, purchasing, allowance reset, deployment or publication occurs. Instructions do not replace tool permissions or a sandbox. Agent and reviewer mistakes remain possible. Private project data stays local; no telemetry is required. Missing measurements stay unknown. Long-term value and commercial benefit require observed user outcomes.
+CI runs the Python 3.14 package checks, including policy v2, reporter v3 and artifact-verifier tests. Also verify JSON, relative links/anchors, whitespace and public-content scope on the final source. No dependency, orchestration engine, scheduler, automatic permission change, global update or product telemetry is included.

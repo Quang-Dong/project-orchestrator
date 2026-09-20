@@ -1,21 +1,8 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "projectId": "example-project",
-  "mainSession": {
-    "modelEffortOwner": "user"
-  },
-  "delegation": {
-    "mechanism": null,
-    "models": []
-  },
-  "budget": {
-    "mode": "unconfirmed",
-    "limits": []
-  },
-  "permissions": {
-    "smallDirectWork": false,
-    "externalActions": "separate_authorization"
-  },
+  "delegation": null,
+  "budget": null,
   "confirmation": {
     "status": "unconfirmed",
     "at": null,

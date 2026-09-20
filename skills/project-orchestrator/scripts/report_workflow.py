@@ -66,8 +66,6 @@ def parse_json_line(line):
 
 def validate_metric(record):
     require_object(record, "record")
-    if record.get("schemaVersion") == 1 and type(record.get("schemaVersion")) is int:
-        return "legacy"
     if type(record.get("schemaVersion")) is not int or record["schemaVersion"] != 2:
         raise RecordError("unsupported schemaVersion")
     missing = METRIC_FIELDS - record.keys()
@@ -129,8 +127,6 @@ def validate_metric(record):
 
 def validate_improvement(record):
     require_object(record, "record")
-    if record.get("schemaVersion") == 1 and type(record.get("schemaVersion")) is int:
-        return "legacy"
     if type(record.get("schemaVersion")) is not int or record["schemaVersion"] != 2:
         raise RecordError("unsupported schemaVersion")
     missing = IMPROVEMENT_FIELDS - record.keys()
@@ -164,27 +160,25 @@ def validate_improvement(record):
 
 
 def read_records(text, validator, input_name, event_ids):
-    records, legacy_count, errors = [], 0, []
+    records, errors = [], []
     lines = text.splitlines() if isinstance(text, str) else text
     for line_number, line in enumerate(lines, 1):
         if not line.strip():
             continue
         try:
             record = parse_json_line(line)
-            if validator(record) == "legacy":
-                legacy_count += 1
-                continue
+            validator(record)
             if record["eventId"] in event_ids:
                 raise RecordError("duplicate eventId across inputs")
             event_ids.add(record["eventId"])
             records.append(dict(record, _time=parse_time(record["occurredAt"])))
         except (RecordError, json.JSONDecodeError, TypeError, ValueError) as exc:
             errors.append({"input": input_name, "line": line_number, "reason": str(exc)})
-    return records, legacy_count, errors
+    return records, errors
 
 
 def new_report():
-    return {"schemaVersion": 2, "valid": True, "errors": [], "limitations": [], "legacyCounts": {"metrics": 0, "improvements": 0}, "attempts": [], "effortByRole": {}, "usageSnapshots": [], "experiments": [], "overdueExperimentIds": []}
+    return {"schemaVersion": 3, "view": "full", "valid": True, "errors": [], "limitations": [], "attempts": [], "effortByRole": {}, "usageSnapshots": [], "experiments": [], "overdueExperimentIds": []}
 
 
 def group_metrics(records, report):
@@ -292,14 +286,11 @@ def build_report(metrics_text, improvements_text, input_hashes=None):
         digests["improvements"].update(improvements_text.encode("utf-8"))
     report = new_report()
     event_ids = set()
-    metrics, legacy_metrics, metric_errors = read_records(metrics_text, validate_metric, "metrics", event_ids)
-    improvements, legacy_improvements, improvement_errors = read_records(improvements_text, validate_improvement, "improvements", event_ids)
+    metrics, metric_errors = read_records(metrics_text, validate_metric, "metrics", event_ids)
+    improvements, improvement_errors = read_records(improvements_text, validate_improvement, "improvements", event_ids)
     if input_hashes is not None:
         input_hashes.update({name: digest.hexdigest() for name, digest in digests.items()})
-    report["legacyCounts"] = {"metrics": legacy_metrics, "improvements": legacy_improvements}
     report["errors"] = metric_errors + improvement_errors
-    if legacy_metrics or legacy_improvements:
-        report["limitations"].append("legacy_records_not_aggregated")
     if report["errors"]:
         report["valid"] = False
         return report
@@ -325,18 +316,15 @@ def report_metrics(path):
     return build_report(Path(path), "")
 
 
-def build(metrics_path, improvements_path):
-    """Compatibility helper accepting paths without writing either input."""
-    return build_report(Path(metrics_path), Path(improvements_path))
-
-
 def select_view(report, hashes, view, task_id=None, experiment_id=None, limit=20, cursor=None):
     """Views validate the complete report first; cursors bind to input bytes and query."""
     if not report["valid"]:
         return report
+    if view not in ("summary", "detail"):
+        raise RecordError("expected summary or detail view")
     if not 1 <= limit <= 200:
         raise RecordError("limit must be between 1 and 200")
-    if view == "summary" and cursor:
+    if view == "summary" and cursor is not None:
         raise RecordError("cursor is only valid for detail")
     attempts = [r for r in report["attempts"] if task_id is None or r["taskId"] == task_id]
     usage = [r for r in report["usageSnapshots"] if task_id is None or r["taskId"] == task_id]
@@ -347,8 +335,8 @@ def select_view(report, hashes, view, task_id=None, experiment_id=None, limit=20
     if experiment_id is not None:
         attempts, usage = [], []
     result = {
-        "schemaVersion": 2, "viewVersion": 1, "view": view, "valid": True,
-        "errors": [], "inputHashes": hashes, "legacyCounts": report["legacyCounts"],
+        "schemaVersion": 3, "view": view, "valid": True,
+        "errors": [], "inputHashes": hashes,
         "filters": {"taskId": task_id, "experimentId": experiment_id},
         "counts": {"attempts": len(attempts), "experiments": len(experiments), "usageSnapshots": len(usage)},
         "limitations": report["limitations"][:20],
@@ -368,10 +356,10 @@ def select_view(report, hashes, view, task_id=None, experiment_id=None, limit=20
     items = ([{"kind": "attempt", "data": r} for r in attempts]
              + [{"kind": "experiment", "data": r} for r in experiments]
              + [{"kind": "usage", "data": r} for r in usage])
-    query = {"hashes": hashes, "taskId": task_id, "experimentId": experiment_id, "limit": limit, "view": view}
+    query = {"schemaVersion": 3, "hashes": hashes, "taskId": task_id, "experimentId": experiment_id, "limit": limit, "view": view}
     query_hash = hashlib.sha256(json.dumps(query, sort_keys=True).encode()).hexdigest()
     offset = 0
-    if cursor:
+    if cursor is not None:
         try:
             payload = json.loads(base64.b64decode(cursor.encode("ascii"), altchars=b"-_", validate=True))
             if not isinstance(payload, dict) or payload.get("query") != query_hash:
@@ -390,27 +378,40 @@ def select_view(report, hashes, view, task_id=None, experiment_id=None, limit=20
     return result
 
 
+class JsonArgumentParser(argparse.ArgumentParser):
+    def error(self, message):
+        raise RecordError(message)
+
+
 def main(argv=None):
-    parser = argparse.ArgumentParser()
+    parser = JsonArgumentParser(description=__doc__)
     parser.add_argument("--metrics", required=True)
     parser.add_argument("--improvements", required=True)
-    parser.add_argument("--view", choices=("summary", "detail"))
+    parser.add_argument("--view", choices=("summary", "detail", "full"), default="summary")
     parser.add_argument("--task-id")
     parser.add_argument("--experiment-id")
-    parser.add_argument("--limit", type=int, default=20)
+    parser.add_argument("--limit", type=int)
     parser.add_argument("--cursor")
-    args = parser.parse_args(argv)
+    view = None
     try:
-        if args.view is None and (args.task_id or args.experiment_id or args.cursor or args.limit != 20):
-            raise RecordError("query options require --view")
+        args = parser.parse_args(argv)
+        view = args.view
+        if args.view != "detail" and (args.cursor is not None or args.limit is not None):
+            raise RecordError("--cursor and --limit require --view detail")
+        if args.view == "full" and (args.task_id is not None or args.experiment_id is not None):
+            raise RecordError("full audit does not accept filters; use summary or detail")
         hashes = {}
         report = build_report(Path(args.metrics), Path(args.improvements), hashes)
-        if args.view:
-            report = select_view(report, hashes, args.view, args.task_id, args.experiment_id, args.limit, args.cursor)
+        report["inputHashes"] = hashes
+        if args.view != "full":
+            report = select_view(report, hashes, args.view, args.task_id, args.experiment_id,
+                                 args.limit if args.limit is not None else 20, args.cursor)
     except (OSError, UnicodeError, RecordError) as exc:
         report = new_report()
         report["valid"] = False
         report["errors"] = [{"input": "query", "reason": str(exc)}]
+    if not report["valid"]:
+        report["view"] = view
     print(json.dumps(report, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
     return 0 if report["valid"] else 2
 

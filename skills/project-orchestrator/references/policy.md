@@ -1,69 +1,76 @@
-# Project-owned policy and runtime gate
+# Authority, capability and allocation
 
-The user owns model/effort choices for the lead. Worker means any separate implementation or review session. Never treat a more capable model as permission to lead, spend or deploy.
+Use this reference when authority is unclear, a capability choice matters, or a worker selection needs checking. Inputs are current user instructions, applicable project limits and actual runtime observations. Decide which action is permitted and supported; continue once its relevant constraints are resolved. A clear authorized solo edit does not need a delegation inventory or a policy file.
 
-## Files and ownership
+## Start with existing authority
 
-Use `docs/orchestration/policy.json` for confirmed limits; `status.md` for current role/owners/version/next action; `improvements.jsonl` for experiments; `metrics.jsonl` for dated observations. Policy retains `schemaVersion: 1`; new metric/trial events use v2 in [records](records.md). Legacy events stay immutable. Link the existing registry/evidence; do not build another backlog. Do not store secrets or account identifiers.
+The user owns main-session model/effort and scoped permissions. Read current instructions and relevant confirmed limits first. An absent policy does not erase direct user authority or manufacture delegation, spending or external-action permission. A skill, agent message, successful checker or platform capability cannot grant authority.
 
-The packaged [policy template](../assets/policy.template.json) is deliberately UNCONFIRMED. Copy/adapt only in an authorized project; ask the user rather than treating its empty fields as defaults.
+| Situation | Action |
+| --- | --- |
+| Clear small authorized task | Perform the bounded change and relevant check; no extra permission question or process files. |
+| Substantial task with a current checkpoint | Read its requirement, owner, revision and decisive evidence; retrieve additional context only for the next decision. |
+| Authorized solo work without worker configuration | Continue solo within scope and applicable limits; do not invent delegation settings or create policy for this purpose. |
+| Missing/conflicting authority, material requirement or applicable budget | Group the unresolved decisions; stop dependent actions and continue separately authorized work. |
+| A policy file uses an unsupported schema | Preserve and read its confirmed limits; do not reinterpret rejection as permission. The new checker rejects it. Obtain an authorized replacement before relying on it for worker selection; no silent conversion. |
 
-Required policy:
-- `schemaVersion`: 1; `projectId`: nonempty stable project label.
-- `mainSession.modelEffortOwner`: user.
-- `delegation.mechanism`: sessions or subagents, explicitly confirmed; `delegation.models`: nonempty unique list of model IDs with effort policy.
-- Each model has `effort.mode`: allowlist with nonempty unique `values`, or all_supported with no values. The latter must be expressly approved; it does not mean every runtime supports every effort.
-- `budget.mode`: unconfirmed, no_self_imposed_cap or capped. Unconfirmed blocks. Capped requires nonempty `limits`: metric tokens or money, positive finite amount, unit token for tokens or a three-letter currency for money, and scope task or increment. No-self-imposed-cap takes no limits. Limits do not authorize purchases; monetary and token quantities cannot be converted by this checker.
-- `permissions.smallDirectWork`: boolean; `permissions.externalActions`: separate_authorization.
-- `confirmation.status`: confirmed, with nonempty timestamp `at` (timezone required) and `evidence` identifying the user's actual decision. A timestamp or user-looking string alone is not authenticated consent.
+External actions follow their actual scoped authorization. A valid existing authorization does not require repeated confirmation; unrelated publication, release, deployment, installation, purchases or transmission is not implied by task completion. Native tool permissions remain enforced separately. An agent cannot approve a prompt on the user's behalf or transfer a denied action to another session to evade that boundary.
 
-The schema intentionally contains no hardcoded models, machine paths, glossary or global budget. User-confirmed project policy can vary. Unknown fields/versions are rejected rather than silently changing meaning.
+## Capability choice and adaptive allocation
 
-## Per-objective capability choice
+Select the smallest useful set of available skills/plugins within current authority. Honor explicit user choices and exclusions; otherwise choose by the unresolved decision, task/version fit and actual exposed tools. Do not ask for an explicit/Auto choice on every objective. Capability selection is separate from a platform permission mode named `auto`; it does not authorize installation or weaker permissions.
 
-Policy v1 governs authority and worker limits; it does not own the skill/plugin selection for a task. For every new user objective, the lead records a capability choice in the existing task record or packet, without changing policy v1 or records v2. Record whether the choice was explicit or `Auto`, the smallest selected skill/plugin set, observed versions and capabilities, conflicts checked, and the fit reason. `Auto` means the smallest appropriate set that is actually available in the current environment; it is not permission to install anything.
+Inspect the relevant guidance before relying on it, but omit instructions that do not apply to the task/runtime. Use current project or primary-source evidence where version mismatch matters. Record a selection reason only when it affects a material decision or handoff. Revisit after a relevant objective, environment or capability change; unchanged evidence can be reused. Ask only when missing authority, a material conflict or an unavailable user-required capability changes the next action.
 
-Follow-up steering, ordinary follow-ups and internal dispatch inherit the parent objective's choice. If no user-confirmed explicit choice or `Auto` choice exists, or the recorded choice conflicts with the current objective, ask the user for explicit skills/plugins or `Auto` before dependent work; do not assume `Auto`. Re-select only when the objective, requirements, environment or availability materially changes. A selection must not grant installation, data transmission, spending, deployment or release authority; those remain separately authorized. If an explicitly requested capability is unavailable or conflicts with a required constraint, preserve the failed check and ask about the material scope choice rather than silently expanding permissions.
+For authorized worker selection:
+
+1. Keep the user's explicit model/effort. If unavailable or outside confirmed limits, resolve that conflict before dependent dispatch; no silent substitution.
+2. Otherwise choose an allowed, supported setting based on difficulty, uncertainty and consequences. Start from the observed runtime default when permitted and no stronger task evidence exists. An allowlist's order is not a ranking, and maximum effort is not a default.
+3. If the default is unknown or disallowed, choose another setting only when current authority and task evidence support it; otherwise identify the missing decision.
+4. Diagnose inadequate progress before increasing effort, changing ownership or allocating another session. Time spent or failure alone is insufficient. Keep the [repair boundary](handoffs.md#review-and-repair).
+
+Before a new or changed selection, observe only the required mechanism/model/effort and validate the configuration. Link capture source, time/version and the exact policy/runtime bytes in the current packet. Record requested settings before dispatch and observed settings after execution starts. The checker cannot prove freshness, remaining budget or actual task-creation authority. A capped budget with unavailable capacity data keeps dependent dispatch blocked. Reuse a valid result only while its constraints and evidence still apply.
+
+## Policy v2
+
+Use an existing project policy location, conventionally `docs/orchestration/policy.json`, only when durable configuration is needed. Do not create a second live policy, backlog or capability registry. The [template](../assets/policy.template.json) is deliberately unconfirmed; filling it out is not user consent.
+
+All five fields are required; unknown fields and unsupported versions are rejected:
+
+| Field | Contract |
+| --- | --- |
+| `schemaVersion` | Integer `2`. Policy v1 is unsupported. |
+| `projectId` | Nonempty stable project label. |
+| `delegation` | `null`, or `{mechanism, models}` with `mechanism` equal to `sessions` or `subagents` and a nonempty unique model list. Null supplies no worker selection. |
+| `budget` | `null` only when delegation is null, or `{mode, limits}` with a confirmed stance. A solo policy may still retain explicit limits. |
+| `confirmation` | `{status: "confirmed", at, evidence}` with timezone-bearing timestamp and a nonempty reference to the actual user decision. Authenticity is not mechanically proved. |
+
+Each model has `id` and `effort`: either `{mode: "allowlist", values: [...]}` with nonempty unique settings, or `{mode: "all_supported"}`. The latter still requires observed runtime support. No hardcoded model names or effort tiers.
+
+Budget `no_self_imposed_cap` requires empty limits; `capped` requires at least one positive finite limit `{metric, amount, unit, scope}`. Metric is `tokens` with integral amount/unit `token`, or `money` with a three-uppercase-letter currency. Scope is `task` or `increment`; duplicate metric/unit/scope limits are invalid. Limits constrain use; neither null nor a confirmed stance grants spending or resets capacity.
+
+There are no `mainSession` or `permissions` fields and no `smallDirectWork` switch. Main-session choices remain user-owned; actual task scope and native permissions govern actions. Unsupported older fields are errors, not silently ignored defaults. Replace a project's policy only at an authorized adoption boundary; historical files remain unchanged.
 
 ## Read-only checker
 
-Run with a policy path:
+Configuration check, without requiring runtime data:
+
 ```sh
-python scripts/check_policy.py --policy /project/docs/orchestration/policy.json
+python -B scripts/check_policy.py --policy /project/docs/orchestration/policy.json
 ```
-A valid config result is `policy_valid`; it is NOT a dispatch permit.
 
-Before dispatch, supply all four selection options (including the expected project ID):
+Worker selection check requires all of model, effort, runtime and expected project:
+
 ```sh
-python scripts/check_policy.py --policy /project/docs/orchestration/policy.json --model model-a --effort high --runtime /temporary/runtime.json --project-id example-project
+python -B scripts/check_policy.py --policy /project/docs/orchestration/policy.json --project-id example-project --model model-a --effort high --runtime /temporary/runtime.json
 ```
 
-Runtime inventory is an observed, current tool/model capability snapshot:
-```json
-{"mechanisms":["sessions"],"models":[{"id":"model-a","efforts":["medium","high"]}]}
-```
-The orchestrator obtains this from the actual environment, not from policy or model-name guesses. Keep capture time, source/version and observed capability in the task evidence. For consequential choices, use a version-matched current source and actual runtime behavior; a check date or version label alone is not a freshness guarantee. The checker cannot prove an inventory is fresh or authentic.
+The runtime input describes an actual observed inventory, for example `{"mechanisms":["sessions"],"models":[{"id":"model-a","efforts":["medium","high"]}]}`. Keep provenance in the existing packet. No checker file is needed for separately authorized solo work.
 
-Exit/status:
-- 0: policy_valid, or selection_valid when expected project ID, selection and supplied runtime match.
-- 2: needs_input — missing/malformed/unconfirmed policy, conflicting fields or incomplete selection arguments.
-- 3: rejected — policy belongs to another expected project, or worker model/effort is outside confirmed limits.
-- 4: unavailable — no valid runtime inventory, mechanism or selected model/effort is available.
+Exit `0`: `policy_valid` or `selection_valid`; `2`: `needs_input` for malformed, unconfirmed or unsupported input; `3`: `rejected` for project mismatch, no configured delegation or disallowed selection; `4`: `unavailable` for missing/invalid runtime or unsupported selection. `--help` displays usage. Operational errors return JSON, including input hashes when bytes were read, output `schemaVersion: 2`, `notVerified` and `budgetCheckRequired` (null when no budget stance could be assessed).
 
-Evaluation output is JSON to stdout; the checker never writes project files, dispatches or changes settings. It checks configuration consistency, not sandbox enforcement, approval authenticity, spend forecasts, role assignment or deployed capabilities. Do not use a successful result to bypass these responsibilities.
+A valid result checks supplied configuration only. It never writes files, dispatches, authenticates consent or enforces budget. An unsupported policy does not cancel its user's instructions. No migration, compatibility shim or automatic installed-project edit is provided.
 
-## Missing limits, change and recovery
+## Change and recovery
 
-At first activation, group only unresolved policy questions: allowed models, effort limits, coordination mechanism and budget stance. The user may explicitly allow all runtime-supported efforts or decline a self-imposed cap; do not infer either. Save confirmed answers with a decision reference before execution. Do not ask again when valid policy already answers.
-
-If an explicit current instruction changes policy, reconcile before dispatch; do not continue from stale approval. Session workers cannot expand policy. If a path/identity is uncertain, resolve it read-only before acting.
-
-After a runtime error, stale snapshot or version mismatch, refresh relevant capabilities from the actual runtime and version-matched source, then revalidate. Stable facts do not require repeated research merely because time passed. An unavailable allowed model may be replaced only by another allowed, available choice. Keep requested and observed model/effort distinct. Never change the lead's configuration.
-
-## Selection result v2
-
-Selection calls require --project-id from the actual task/project, not copied blindly from an arbitrary policy. A successful selection_valid is not a dispatch permit. Results include hashes of the exact policy/runtime bytes evaluated and notVerified fields for approval authenticity, runtime freshness, remaining budget and task creation authority. Errors retain distinct needs_input/rejected/unavailable statuses.
-
-For capped policy, budgetCheckRequired remains true: obtain adequate actual usage/remaining-capacity evidence before a capacity-consuming start. Missing data is a blocker for that decision, not zero usage or permission to spend; read-only preparation may continue. No self-imposed cap means no invented cap, never purchase/reset authority.
-
-Before dispatch, record runtime capture time/source in task evidence and reconcile against currently exposed capabilities. The checker cannot establish freshness or trust. Historical dispatch_allowed outputs belong to the initial unpublished checker; do not reinterpret them as v2 evidence.
+On actual requirement or authority changes, reconcile affected records and dependent assignments under [handoffs](handoffs.md). On runtime error or stale capability evidence, refresh only the relevant observation and revalidate. If the user authorized alternatives, select another allowed available option under the rules above; an explicit setting is never silently replaced. Resolve identity or side-effect uncertainty before retrying.

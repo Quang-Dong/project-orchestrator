@@ -39,11 +39,45 @@ class ViewsTests(unittest.TestCase):
              "--improvements",str(self.improvements),*args],capture_output=True,text=True)
         return run.returncode,json.loads(run.stdout)
 
-    def test_legacy_shape_unchanged(self):
-        code,out=self.run_cli()
-        self.assertEqual(code,0)
-        self.assertNotIn("view",out)
-        self.assertEqual(out,reporter.build_report(self.metrics,self.improvements))
+    def test_summary_is_default_and_versioned(self):
+        code, out = self.run_cli()
+        self.assertEqual(code, 0)
+        self.assertEqual(out["schemaVersion"], 3)
+        self.assertEqual(out["view"], "summary")
+        self.assertEqual(out["counts"]["attempts"], 25)
+        self.assertNotIn("attempts", out)
+        self.assertNotIn("legacyCounts", out)
+
+    def test_full_requires_explicit_view(self):
+        code, out = self.run_cli("--view", "full")
+        self.assertEqual(code, 0)
+        self.assertEqual(out["view"], "full")
+        self.assertEqual(out["schemaVersion"], 3)
+        self.assertEqual(len(out["attempts"]), 25)
+        self.assertIn("inputHashes", out)
+        self.assertNotIn("legacyCounts", out)
+
+    def test_full_rejects_query_options_and_summary_rejects_pagination(self):
+        for args in [("--view", "full", "--task-id", "task-0000"),
+                     ("--view", "full", "--cursor", "anything"),
+                     ("--view", "full", "--limit", "20"),
+                     ("--view", "summary", "--limit", "20"),
+                     ("--cursor", "anything")]:
+            with self.subTest(args=args):
+                code, out = self.run_cli(*args)
+                self.assertEqual(code, 2)
+                self.assertFalse(out["valid"])
+                self.assertEqual(out["attempts"], [])
+
+    def test_old_records_block_all_views_even_outside_filter(self):
+        self.write([*rows(), {"schemaVersion": 1, "eventId": "old"}])
+        for args in [(), ("--view", "detail", "--task-id", "task-0000"), ("--view", "full")]:
+            code, out = self.run_cli(*args)
+            self.assertEqual(code, 2)
+            self.assertFalse(out["valid"])
+            self.assertEqual(out["attempts"], [])
+            self.assertEqual(out["errors"][0]["line"], 26)
+            self.assertNotIn("legacyCounts", out)
 
     def test_default_page_and_continuation_no_duplicates(self):
         code,a=self.run_cli("--view","detail")
@@ -77,6 +111,20 @@ class ViewsTests(unittest.TestCase):
             code,out=self.run_cli("--view","detail",*args)
             self.assertEqual(code,2);self.assertFalse(out["valid"])
 
+    def test_empty_cursor_does_not_silently_restart(self):
+        code, out = self.run_cli("--view", "detail", "--cursor", "")
+        self.assertEqual(code, 2)
+        self.assertFalse(out["valid"])
+        self.assertEqual(out["attempts"], [])
+
+    def test_cli_argument_errors_are_versioned_json(self):
+        for args in [("--view", "unknown"), ("--view", "detail", "--limit", "wrong")]:
+            code, out = self.run_cli(*args)
+            self.assertEqual(code, 2)
+            self.assertFalse(out["valid"])
+            self.assertEqual(out["schemaVersion"], 3)
+            self.assertEqual(out["attempts"], [])
+
     def test_bad_record_outside_filter_blocks(self):
         data=rows();data[-1]["role"]="invalid";self.write(data)
         code,out=self.run_cli("--view","summary","--task-id","task-0000")
@@ -101,7 +149,7 @@ class ViewsTests(unittest.TestCase):
 
     def test_views_do_not_write(self):
         before={p.name:p.read_bytes() for p in self.root.iterdir()}
-        self.run_cli("--view","detail");self.run_cli("--view","summary")
+        self.run_cli("--view","detail");self.run_cli();self.run_cli("--view","full")
         self.assertEqual(before,{p.name:p.read_bytes() for p in self.root.iterdir()})
 
     def test_missing_file_is_json_failure(self):
@@ -109,9 +157,10 @@ class ViewsTests(unittest.TestCase):
         code,out=self.run_cli("--view","summary")
         self.assertEqual(code,2);self.assertFalse(out["valid"])
 
-    def test_explicit_view_required(self):
+    def test_filter_uses_default_summary(self):
         code,out=self.run_cli("--task-id","task-0000")
-        self.assertEqual(code,2);self.assertFalse(out["valid"])
+        self.assertEqual(code,0);self.assertEqual(out["view"],"summary")
+        self.assertEqual(out["counts"]["attempts"],1)
 
 if __name__=="__main__": unittest.main()
 

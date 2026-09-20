@@ -1,54 +1,54 @@
 ---
 name: project-orchestrator
-description: Lead multi-step product work from a user idea to a verified outcome across sessions, ownership changes, consequential review, or measured workflow improvement. Do not activate for ordinary trivial edits that need no coordination or evidence workflow.
+description: Use when product work has consequential requirements, design, integration, diagnosis or acceptance decisions, or needs coordination, takeover or recovery across sessions. Supports solo work; keep clear low-risk edits direct.
 ---
 
 # Project Orchestrator
 
-Version v0.1.0. Use the compatibility record when available; do not assume every environment, tool or model is supported.
+Turn the user's objective into a useful, well-designed, verified outcome. Quality, authority, truthfulness and data safety are mandatory; optimize time, resources and maintenance cost within them. This skill grants no permissions or model access and creates no background work.
 
-Turn a user's idea into a useful, maintainable and verified product outcome. This skill supplies a method, not project authority, model access or guaranteed correctness. It is for work that benefits from an explicit outcome, durable context, bounded ownership and proportionate review.
+## Execute the next useful step
 
-## Select capabilities for each new objective
+A clear, bounded, authorized change needs an edit, a relevant check and a truthful result. Do not manufacture delegation, policy files, handoffs or measurements for ceremony.
 
-For each genuinely new user objective, record the scoped skill/plugin choice in the existing task record or packet before dependent work. A choice is either the user's explicit selection or `Auto`, where the lead selects the smallest appropriate available capability set. Record the selected names, observed versions/capabilities, conflicts checked, and the reason they fit the objective. Do not add these fields to policy schema v1 or records schema v2.
+For substantive work, use this decision loop; it is not a requirement to write a report at every step:
 
-Steering messages, follow-ups and internal dispatch inherit the parent objective's choice. If no user-confirmed explicit choice or `Auto` choice exists, or the recorded choice conflicts with the current objective, ask the user before dependent work; do not assume `Auto`. Re-select only when the objective, requirements, environment or capability availability materially changes. A version label or check date is not proof of current capability; use the actual runtime and version-matched sources for consequential choices. Selection never grants installation, data transmission, spending, deployment or release authority.
+1. **Establish the outcome:** current user requirement, scope, authority, consequential quality conditions and evidence needed to finish. Use [startup](references/policy.md#start-with-existing-authority) only to resolve action-relevant gaps.
+2. **Get the needed context:** current source/caller, applicable constraints and the unresolved decision. Load only the matching reference below. Add context when a new decision, missing input or contradiction requires it; do not read the entire skill or project history by default.
+3. **Act and observe:** choose the smallest useful implementation or uncertainty-reducing step. For a consequential unknown, identify what observation would change the next action; inspect the actual result before expanding. Use [implementation and diagnosis](references/implementation-and-diagnosis.md).
+4. **Decide from evidence:** continue, repair using a supported explanation, revise the approach, or stop dependent work with its missing input and next action. Check the integrated outcome against the current requirement before declaring completion.
 
-## Start with the user's outcome
+Keep the requirement in the existing product/task record, continuity in one current checkpoint when needed, and proof in versioned artifacts. A current user instruction can establish a requirement or scoped authority immediately; [agent claims still need evidence](references/evidence-and-challenge.md#distinguish-instructions-records-and-observed-behavior).
 
-Classify the request before adding process:
+## Read only the relevant contract
 
-- **Small direct work:** a narrow, reversible edit with no shared-contract, migration, access-control, release or ownership consequence. Do it directly when policy permits; keep the normal project checks.
-- **Product work:** a user idea, feature, defect or change whose value depends on a real flow, state, error, acceptance or operational outcome. Use [product delivery](references/product-delivery.md) to shape the smallest sufficient increment.
-- **Coordinated work:** multiple dependent increments, separate sessions, a takeover, a consequential review, or a workflow experiment. Add only the records and handoffs needed to preserve ownership and evidence.
+| Decision that needs support | Read |
+| --- | --- |
+| Need, priority, business rules, usable journey or value feedback | [Product delivery](references/product-delivery.md) |
+| Responsibilities, contracts, state, trust, scale or recovery boundaries | [System design](references/system-design.md) |
+| Repository change, useful tool feedback, integrated slice or unexplained failure | [Implementation and diagnosis](references/implementation-and-diagnosis.md) |
+| Evidence strength, quality criteria, conflicting claims or acceptance | [Evidence and challenge](references/evidence-and-challenge.md) |
+| Authorized release, migration, operated-product impact or restoration | [Product operations](references/product-operations.md) |
+| Assignment, shared context/resources, interruption or takeover | [Handoffs](references/handoffs.md) |
 
-Identify the real project and assigned role. Read its confirmed `docs/orchestration/policy.json` and current `status.md`, then only the linked task, active trial and evidence needed now. Another worktree must use the canonical sources in its packet. A worker reading this skill remains a worker.
+Select relevant available skills/plugins within current authority without asking for an explicit/Auto preference. Honor user selections and exclusions. Inspect fit to the task, version and tool environment; omit mismatched guidance and use current primary evidence. Missing specialist guidance does not remove the decisions above. See [capability and effort selection](references/policy.md#capability-choice-and-adaptive-allocation) for consequential gaps. Reading or loading a skill is not evidence it helped.
 
-Before implementation or dispatch, follow [policy gate](references/policy.md). Missing/conflicting limits require a focused user question and recorded confirmation; read-only discovery is allowed. Reuse confirmed choices. The user controls the lead model/effort; workers stay within confirmed limits and actual runtime capabilities. Do not infer authority from a model name, a capability selection, a version/date check or a successful checker result.
+## Choose the smallest useful operating mode
 
-Use [evidence and challenge](references/evidence-and-challenge.md) throughout discovery, implementation and review. Label fact, assumption, inference and unknown. Verify consequential tools, APIs, versions and runtime behavior. Challenge premises that could change scope, safety, cost, acceptance or reversibility; ask immediately about material conflicts, authority, requirements or irreversible tradeoffs. Solve ordinary reversible technical issues within authority and continue independent work while waiting on an answer.
+Keep coupled discovery, design, implementation and integration with one authorized owner. Size or the number of specialties alone does not require another session. Delegate only when an independent output, useful separate context or required review justifies it and dispatch is authorized. Name the expected result, dependencies, reason and integration owner in the existing [packet](references/handoffs.md#dispatch).
 
-For product work, make the user/problem/value, assumptions, concrete flows, errors, data/state, exclusions and acceptance visible before implementation. Choose the simplest sufficient architecture, state material alternatives and measurable quality/cost hypotheses, then split work into complete increments with owners and dependencies. Use the existing requirement registry; do not create a competing spec or backlog.
+Honor explicit solo work. A worker owns its assigned scope and decisions; reading this skill does not make it a director. The user controls main-session model/effort. Worker choices obey user instructions, policy and observed runtime; maximum effort is not the default.
 
-## Coordinate and accept
+Use [handoffs](references/handoffs.md) for one writer per conflicting scope/resource, uncertain dispatch, requirement changes and recovery. Reconcile identity and side effects before retrying. A stopped turn need not stop a writer process; late results retain their original attempt and revision. Compaction or new IDs do not reset constraints, open acceptance or repair history. After two unsuccessful repairs of the same issue, diagnose again before another repair or stop with a useful handoff.
 
-Use [coordination and handoff](references/handoffs.md) when assigning, resuming, receiving results or reviewing. Record the attempt before dispatch; reconcile ambiguous outcomes before retrying. Never let a stale attempt replace the current owner.
+## Verify and report
 
-Require independent review for persisted-data/security/shared-contract changes, difficult recovery or contradictory evidence. If review is unavailable, keep acceptance pending. Authors self-check and freeze source; completion reports enter review, not acceptance. Repeat affected checks after changes and carry unaffected proof with source comparison.
+Match each material criterion to relevant evidence on the applicable revision. Individual component passes, a successful tool call, agreement among agents and an idle notification do not establish integrated acceptance. Changed source, requirements, dependencies or check configuration invalidate affected proof; reuse unaffected proof only with a supported comparison.
 
-Reviewers receive raw relevant evidence, not a desired answer; acceptance is based on the artifact, outcome and current checks, not votes or a self-report. Apply release, recovery, operations, support or retirement guidance only when the product and risk make it applicable. Authorization for release or external action stays separate. Do not turn a prototype, mock, emulator or local test into integration, production or real-user evidence.
+Independent review remains required for persisted-data/security/shared-contract changes, difficult recovery, contradictory evidence or project-defined risks. Solo work may produce an authorized self-checked candidate or PR while required review and acceptance remain open. Keep technical verification, independent review, release and observed user value distinct. GitHub Draft/non-draft is a separate publication choice.
 
-After two repair rounds with the same defect, change specification, granularity or reviewer within authority. Do not simply repeat the request or increase effort. Communicate purposeful results, blockers and required decisions; use available event waits while active, not promises of unattended monitoring.
+Report meaningful results, material decisions/blockers and evidence limits; keep unchanged optional narration quiet and honor platform-required updates. Never relabel failed, skipped, stale or unrun checks as passes.
 
-## Maintain, measure and improve
+## Supporting decisions, only when needed
 
-Keep current status limited to active work, blockers, effective guidance and the latest accepted checkpoint. Move closed work to linked history. Query metrics/experiments with reporter --view summary and relevant IDs, then paginated --view detail only as needed; legacy full reports are for deliberate audit, not startup context. Private records stay in the project; trial/candidate code belongs in a separate temporary workspace.
-
-Use [maintenance and compatibility](references/maintenance.md) when preparing a release, changing environment/authority, responding to a relevant defect or retiring support. Freeze task versions; instructions and worker reports never grant permission. Store task records in the project, candidate code in a separate temporary workspace, and never silently edit an installed distribution.
-
-Use [records and reporting](references/records.md) for metrics and trial records; the reporter validates and summarizes supplied evidence, not reality itself. Measure all roles' quality, intervention, elapsed time and usage where available; unknown remains unknown, and allowance is not a bill. Low allowance never justifies weaker acceptance, outside models or unapproved purchases/resets.
-
-Use [improvement protocol](references/improvement.md) for a reusable finding: observe, diagnose, run one bounded change, measure, then evaluate the diagnosis, measurement quality and process overhead before adopting, revising, reverting or deferring. Keep one attributable intervention and its rollback condition. A smaller report or lower token count is not evidence of value by itself. No finding means no extra ceremony; a bounded improvement may remove a rule when evidence supports simplification.
-
-For a potentially general fix, follow [contribution workflow](references/contributing.md): local trial within granted scope, evidence, sanitized source patch, then authorized publication. Never silently edit installed/global copies. Project decisions and private logs stay in the project. Improvements cannot broaden product requirements, acceptance, model limits, spending or release authority.
+Use [worked examples](references/worked-examples.md) for an unclear decision, [records](references/records.md) for optional measurement/reporting, [improvement](references/improvement.md) for a reusable workflow defect, [maintenance](references/maintenance.md) for skill lifecycle and [contributing](references/contributing.md) for an authorized source change. Research reports and evaluation rubrics are maintainer evidence, not routine execution context. No automatic installed-copy update, personal-memory write or follow-up schedule.
