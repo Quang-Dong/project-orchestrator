@@ -1,8 +1,8 @@
 # Product delivery from idea to outcome
 
-Use this reference when a request changes a user-facing flow, product behavior, data/state, acceptance, or an operational outcome. A small defect may need a short outcome statement and one relevant check. For substantial product work, use the decision loop below in the existing requirement/task record, referencing what is already known. If no registry exists, create one minimal authoritative outcome/spec record in the project's normal documentation location with an owner and acceptance; do not create a second backlog or mandatory form.
+Use when a request changes product behavior, business rules, a user journey or the evidence of value. Inputs are the current user request, observed need, affected flow and constraints. Decide the smallest useful delivery or uncertainty-reducing step, with acceptance and a feedback source; this is enough to proceed. A small defect needs its outcome and relevant check, not every section below.
 
-Apply the outcome constraints and operating modes in [SKILL.md](../SKILL.md). This reference owns product judgment, requirements, user experience, increment priority and feedback decisions. Start with the current request, observed need, existing behavior/contracts and known constraints. Record only decisions that change the slice or its acceptance; [handoffs](handoffs.md) owns coordination mechanics.
+Keep consequential decisions in the existing product/task record. If none exists and continuity requires it, use one minimal record in the project's normal location; do not create a competing backlog or mandatory form. [Handoffs](handoffs.md) owns coordination; [evidence](evidence-and-challenge.md) owns proof strength. Product knowledge guides the result without requiring an agent to imitate organizational roles.
 
 ## Choose the problem
 

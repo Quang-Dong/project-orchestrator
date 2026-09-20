@@ -2,7 +2,15 @@
 
 ## When to apply and what to read
 
-Use the implementation path for a code/configuration change and the diagnosis path for an unexplained failure or repeated failed repair. Start with the agreed behavior and examples, current source revision, relevant repository instructions, actual callers, existing checks and any observed failure evidence. For a small known fix, keep this to the relevant inspection, change and check; do not create a new plan or log format.
+Use the implementation path for a code/configuration change and the diagnosis path for an unexplained failure or repeated failed repair. Start with the agreed behavior and examples, current source revision, relevant repository instructions, actual callers, existing checks and any observed failure evidence. Decide the next implementation or discriminating check and the observation that would support continuing. Enough evidence means the affected outcome is verified or the remaining uncertainty has an explicit next action. For a small known fix, use the relevant inspection, change and check; do not create a new plan or log format.
+
+## Choose an action with useful feedback
+
+For a consequential unknown, identify the smallest observation that could distinguish the plausible explanations or change the next decision. Select the existing tool that can produce it; inspect the relevant interface/help and installed version if inputs or behavior are unclear. A successful call proves neither useful coverage nor a successful product action.
+
+Use scoped searches, filters, ranges or pagination when available. Retrieve enough surrounding context to interpret a match and preserve identifiers needed for the next action. If output is cut off, follow its continuation or narrow the query; do not treat unseen results as absent. Classify an empty complete result, tool error, unavailable environment and ambiguous side effect separately. Use a safe corrected query for invalid arguments, or reconcile side effects through [recovery](handoffs.md#resume-and-communicate) before retrying a mutation.
+
+Read the actual observation, compare it with the expected discriminator, then implement, inspect further, revise the hypothesis or stop dependent work. Prefer existing deterministic checks for mechanically decidable behavior. Missing test access, misleading tool feedback or an unavailable dependency is an environment gap to diagnose, not a reason to repeat prompts or claim success. Add a new tool or dependency only under actual task scope when a concrete recurring need warrants it.
 
 ## Implement a complete slice
 

@@ -1,10 +1,10 @@
 # Bounded improvement
 
-Use `observe -> diagnose alternatives -> smallest change -> verify -> keep/revise/revert/defer`. Apply the outcome constraints in [SKILL.md](../SKILL.md); more roles, documents or lower token counts are not success by themselves.
+Use for a concrete reusable workflow defect or a requested skill improvement. Inputs are the failed decision/action, actual outcome and relevant context/tool observations. Locate the cause, choose the smallest intervention and decide keep/revise/revert/defer from suitable evidence. Stop after the scoped correction and truthful limits; an ordinary product bug does not require a skill trial.
 
 ## Locate the problem
 
-Start from the [diagnostic evidence](implementation-and-diagnosis.md#diagnose-before-repairing) or observed outcome and distinguish product/requirement, implementation, tooling, verification and coordination causes. Keep an unresolved cause labelled as a hypothesis. A failed product test does not by itself establish a skill defect. A passing package test does not prove useful orchestration.
+Start from the [diagnostic evidence](implementation-and-diagnosis.md#diagnose-before-repairing) or observed outcome and distinguish product/requirement, context selection or loss, implementation, tooling, verification and coordination causes. Check whether guidance was selected, applicable, accessible and actually used before blaming its wording. Do not infer use or benefit from a skill-load message. Keep an unresolved cause labelled as a hypothesis. A failed product test does not by itself establish a skill defect. A passing package test does not prove useful orchestration.
 
 Place code defects in code/tests, project conventions in project guidance, and generalizable decision or coordination lessons in this skill. Before adding a rule, state when it applies, the recurring cause it addresses and a counterexample where it should not trigger. A user correction can supply a requirement; do not treat one local example as universal evidence or write personal memory without explicit permission.
 
@@ -20,7 +20,7 @@ For a real process trial, use existing v2 records to name one intervention, owne
 
 Package validation, author decision inspection and independent task execution answer different questions. Keep their results separate. If independent execution is outside current authority, record it as not run; prepare useful scenarios without launching sessions, a product pilot or a follow-up schedule.
 
-For a future authorized evaluation, give the evaluator a realistic request, the candidate skill and the minimum raw artifacts in an isolated scope. Keep the expected decision/rubric with the assessor, not in the worker packet; omit the author's preferred diagnosis or verdict. Include cases where guidance is needed and counterexamples where direct work should remain small. Judge the resulting artifact and actual end state against unchanged acceptance; use the trace to diagnose omissions, unnecessary questions, context loss, authority errors and integration failures. Retain failures, intervention and unknown measurements.
+For a future authorized evaluation, give the evaluator a realistic request, the candidate skill and the minimum raw artifacts in an isolated scope. Keep execution packets and assessor rubrics in separate files/directories, and stage only the required packet/artifacts for the worker. Inspect actual source exposure before claiming isolation; the source repository may contain both. Keep the expected decision/rubric with the assessor, not in the worker packet; omit the author's preferred diagnosis or verdict. Include cases where guidance is needed and counterexamples where direct work should remain small. Judge the resulting artifact and actual end state against unchanged acceptance; use the trace to diagnose omissions, unnecessary questions, context loss, authority errors and integration failures. Retain failures, intervention and unknown measurements. Record actual model/effort, client/version, exposed capabilities and candidate revision; keep Codex and Claude Code results separate. Neither vendor guidance nor one client's result certifies the other.
 
 For coordination cases, preserve the actual message/lifecycle events and resulting files/resources. Score artifact correctness, authority, integration and lead intervention separately from observed usage/time; use traces to locate the cause. Delivery failure, continued subprocess activity or stale ownership needs a real reproducible setup. If existing controls cannot establish the prerequisite, record it as unavailable/not run rather than fabricating an event or treating a narrated scenario as execution. Preparing a case does not authorize sessions, failure injection or a schedule.
 
@@ -39,5 +39,7 @@ Inspect whether communication changed a decision or supplied missing proof. Remo
 At the existing task closure, briefly assess diagnosis, adequacy of measurement and whether process work was proportionate. Do not open a separate review of that assessment.
 
 For recorded trials, close with adopted, revised, reverted or deferred as defined in [records](records.md). Adoption must state its demonstrated scope. A deferred result names missing evidence and a future event, not a background schedule. A stopped or accepted task must not leave its trial silently active.
+
+Revisit guidance after relevant model/runtime/tool changes or observed failures. Keep task-specific context in the task; do not rewrite the global skill for every assignment. No fixed token threshold, reset schedule, universal prompt language or agent quota is implied.
 
 Removing a step, role or rule is a valid outcome. Preserve the prior guidance and reason for the change. Improvement does not authorize weaker acceptance, new permissions, changed model limits, publication or installed-copy updates.

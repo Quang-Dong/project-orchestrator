@@ -108,16 +108,16 @@ class MetricReportTests(unittest.TestCase):
         self.assertFalse(report["valid"])
         self.assertTrue(any("matching handoff" in e["reason"] for e in report["errors"]))
 
-    def test_legacy_records_are_counted_not_aggregated_and_empty_is_valid(self):
-        legacy = {"schemaVersion": 1, "eventId": "old", "taskId": "old"}
-        report = report_workflow.report_metrics_text(lines(legacy))
-        self.assertTrue(report["valid"], report)
-        self.assertEqual(report["legacyCounts"]["metrics"], 1)
+    def test_old_records_are_rejected_and_empty_is_valid(self):
+        old = {"schemaVersion": 1, "eventId": "old", "taskId": "old"}
+        report = report_workflow.report_metrics_text(lines(old))
+        self.assertFalse(report["valid"])
         self.assertEqual(report["attempts"], [])
-        self.assertIn("legacy_records_not_aggregated", report["limitations"])
+        self.assertNotIn("legacyCounts", report)
         empty = report_workflow.report_metrics_text("\n \n")
         self.assertTrue(empty["valid"])
         self.assertEqual(empty["attempts"], [])
+
 
 
 if __name__ == "__main__":
@@ -144,7 +144,7 @@ class FinalContractTests(unittest.TestCase):
             self.improvement("closed", "deferred", event_id="i2", occurred_at="2026-09-15T10:00:03+07:00", missing=["baseline unavailable"], next_review="after baseline")])
         with tempfile.TemporaryDirectory() as d:
             mp=Path(d)/"m";ip=Path(d)/"i";mp.write_text(metrics);ip.write_text(improvements)
-            r=report_workflow.build(mp,ip)
+            r=report_workflow.build_report(mp,ip)
         self.assertTrue(r["valid"], r);self.assertEqual(r["experiments"][-1]["decision"], "deferred")
 
     def test_cross_stream_duplicate_id_and_bad_deferred(self):
@@ -152,14 +152,14 @@ class FinalContractTests(unittest.TestCase):
         bad=self.improvement("closed", "deferred", event_id="same", missing=[], next_review=None)
         with tempfile.TemporaryDirectory() as d:
             mp=Path(d)/"m";ip=Path(d)/"i";mp.write_text(event_line);ip.write_text(json.dumps(bad))
-            r=report_workflow.build(mp,ip)
+            r=report_workflow.build_report(mp,ip)
         self.assertFalse(r["valid"]);self.assertGreaterEqual(len(r["errors"]), 1)
 
     def test_trial_after_acceptance_is_explicitly_overdue(self):
         metrics=lines(event("task_started","m1","2026-09-15T10:00:00+07:00"),event("handoff","m2","2026-09-15T10:00:01+07:00"),event("accepted","m3","2026-09-15T10:00:02+07:00"))
         with tempfile.TemporaryDirectory() as d:
             mp=Path(d)/"m";ip=Path(d)/"i";mp.write_text(metrics);ip.write_text(json.dumps(self.improvement("trial")))
-            r=report_workflow.build(mp,ip)
+            r=report_workflow.build_report(mp,ip)
         self.assertTrue(r["valid"]);self.assertEqual(r["overdueExperimentIds"],["exp-1"])
 
     def test_cli_exit_and_read_only_hashes(self):

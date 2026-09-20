@@ -33,7 +33,7 @@ class ReporterAcceptance(unittest.TestCase):
             m.write_text("".join(json.dumps(x)+"\n" for x in metrics),encoding="utf8")
             i.write_text("".join(json.dumps(x)+"\n" for x in (improvements or [])),encoding="utf8")
             before={p.name:p.read_bytes() for p in d.iterdir()}
-            result=subprocess.run([sys.executable,"-B",str(SCRIPT),"--metrics",str(m),"--improvements",str(i)],
+            result=subprocess.run([sys.executable,"-B",str(SCRIPT),"--metrics",str(m),"--improvements",str(i),"--view","full"],
                                   text=True,capture_output=True)
             self.assertEqual({p.name:p.read_bytes() for p in d.iterdir()},before)
             return result.returncode,json.loads(result.stdout)
@@ -54,11 +54,16 @@ class ReporterAcceptance(unittest.TestCase):
         code,out=self.run_report(base(),[trial("start")])
         self.assertEqual(code,2); self.assertFalse(out["valid"])
 
-    def test_legacy_is_not_new_measurement(self):
-        code,out=self.run_report([{"schemaVersion":1,"taskId":"legacy"},*base()])
-        self.assertEqual(code,0)
-        self.assertEqual(out["legacyCounts"]["metrics"],1)
-        self.assertEqual(len(out["attempts"]),1)
+    def test_old_records_reject_both_streams_without_partial_results(self):
+        old = {"schemaVersion": 1, "taskId": "legacy"}
+        for metrics, improvements in [([old, *base()], []), (base(), [old])]:
+            code, out = self.run_report(metrics, improvements)
+            self.assertEqual(code, 2)
+            self.assertFalse(out["valid"])
+            self.assertEqual(out["attempts"], [])
+            self.assertEqual(out["experiments"], [])
+            self.assertEqual(out["schemaVersion"], 3)
+            self.assertNotIn("legacyCounts", out)
 
     def test_missing_trial_closure_is_visible(self):
         code,out=self.run_report(base(),[trial()])

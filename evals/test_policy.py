@@ -15,13 +15,11 @@ SPEC.loader.exec_module(checker)
 
 
 def policy():
-    return {"schemaVersion": 1, "projectId": "example-project",
-            "mainSession": {"modelEffortOwner": "user"},
+    return {"schemaVersion": 2, "projectId": "example-project",
             "delegation": {"mechanism": "sessions", "models": [
                 {"id": "model-a", "effort": {"mode": "allowlist", "values": ["medium", "high"]}},
                 {"id": "model-b", "effort": {"mode": "all_supported"}}]},
             "budget": {"mode": "no_self_imposed_cap", "limits": []},
-            "permissions": {"smallDirectWork": True, "externalActions": "separate_authorization"},
             "confirmation": {"status": "confirmed", "at": "2026-01-01T00:00:00Z",
                              "evidence": "Fictional user-approved evaluation policy"}}
 
@@ -57,13 +55,52 @@ class PolicyTests(unittest.TestCase):
             candidate[field] = value
             self.assertEqual(checker.evaluate(candidate)[0], 2)
 
-    def test_lead_and_external_authority_cannot_expand(self):
+    def test_removed_permission_fields_are_rejected(self):
+        for field, value in [("mainSession", {"modelEffortOwner": "orchestrator"}),
+                             ("permissions", {"smallDirectWork": True})]:
+            candidate = policy()
+            candidate[field] = value
+            self.assertEqual(checker.evaluate(candidate)[0], 2)
+
+    def test_solo_config_needs_no_delegation_or_budget(self):
         candidate = policy()
-        candidate["mainSession"]["modelEffortOwner"] = "orchestrator"
-        self.assertEqual(checker.evaluate(candidate)[0], 2)
+        candidate.update(delegation=None, budget=None)
+        self.assertEqual(checker.evaluate(candidate)[1]["status"], "policy_valid")
+        self.assertEqual(checker.evaluate(candidate, "model-a", "high", RUNTIME,
+                                          project_id="example-project")[0], 3)
+
+    def test_solo_keeps_explicit_budget_limits(self):
         candidate = policy()
-        candidate["permissions"]["externalActions"] = "automatic"
+        candidate["delegation"] = None
+        candidate["budget"] = {"mode": "capped", "limits": [
+            {"metric": "tokens", "amount": 20, "unit": "token", "scope": "task"}]}
+        self.assertEqual(checker.evaluate(candidate)[0], 0)
+        candidate["budget"]["limits"][0]["amount"] = -1
         self.assertEqual(checker.evaluate(candidate)[0], 2)
+
+    def test_delegation_requires_budget_and_confirmation(self):
+        candidate = policy()
+        candidate["budget"] = None
+        self.assertEqual(checker.evaluate(candidate)[0], 2)
+        candidate.update(delegation=None, confirmation={"status": "unconfirmed", "at": None, "evidence": None})
+        self.assertEqual(checker.evaluate(candidate)[0], 2)
+
+    def test_old_policy_version_is_rejected(self):
+        candidate = policy()
+        candidate["schemaVersion"] = 1
+        self.assertEqual(checker.evaluate(candidate)[0], 2)
+
+    def test_config_project_mismatch_is_rejected(self):
+        self.assertEqual(checker.evaluate(policy(), project_id="other")[0], 3)
+
+    def test_cli_errors_keep_evidence_limits_and_json(self):
+        for args in [("--policy", "missing-policy.json"), ("--unknown", "option")]:
+            run = subprocess.run([sys.executable, "-B", str(SCRIPT), *args], capture_output=True, text=True)
+            self.assertEqual(run.returncode, 2)
+            output = json.loads(run.stdout)
+            self.assertEqual(output["schemaVersion"], 2)
+            self.assertIn("approval_authenticity", output["notVerified"])
+            self.assertEqual(output["status"], "needs_input")
 
     def test_reject_model_and_effort(self):
         self.assertEqual(checker.evaluate(policy(), "other", "high", RUNTIME, project_id="example-project")[0], 3)

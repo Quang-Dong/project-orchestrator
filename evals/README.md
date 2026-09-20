@@ -4,10 +4,10 @@ Start here to identify what was checked and which source it applies to. This dir
 
 ## Current candidate and open questions
 
-- [Runtime coordination review](runtime-coordination-review.md): current author inspection and package verification, based on PR head `1b4b42ff6b52e533ec3dace030e56d3f9ed9509e`. The reviewed candidate is the commit containing this update; final pushed SHA and hosted CI are recorded on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
-- [Six prepared coordination packets](coordination-readiness.md): real-event prerequisites, fixed interventions and separate worker/assessor material. **Not executed.** Unavailable runtime variants remain not run.
-- [Five prepared behavioral packets](behavioral-readiness.md): concrete inputs, worker prompts, fixed follow-ups and assessor criteria. **Not executed.** Do not give the whole document or its rubric to a worker.
-- Independent behavioral evaluation, independent review of this candidate and measurement of unnecessary gate overhead remain **not run**. No demonstrated efficiency, reliability, token saving or user-value improvement is claimed.
+- [Agent-execution review](agent-execution-review.md): current author inspection and tool verification, based on `318f5a6fbbc6fd23f1f1e26cfb70f2ef570477cb`; final commit/CI are bound on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
+- [Execution packets](agent-execution/worker-packets.md) and separate [assessor setup/rubric](agent-execution/assessor.md): five solo and six coordination cases for the new capability default and contracts. **Prepared, not executed.** Stage only needed execution material; neither the full repository nor assessor files belong in worker context.
+- [Earlier behavioral packets](behavioral-readiness.md) and [earlier coordination packets](coordination-readiness.md) remain unchanged historical preparation for their recorded revisions, not current-contract inputs.
+- Independent behavioral evaluation and independent review remain **not run**. No demonstrated efficiency, reliability, token saving or user-value improvement is claimed. Tool tests and self-review do not establish agent behavior.
 
 ## Executable package tests
 
@@ -20,8 +20,8 @@ python -B -m compileall -q skills evals
 
 | Tests | What they establish |
 | --- | --- |
-| [Policy](test_policy.py) | Checker input/selection contracts and read-only behavior; not consent or live capability. |
-| [Reporter](test_report_workflow.py), [acceptance](test_report_acceptance.py), [query views](test_report_views.py) | Record validation, aggregation, revision-aware report acceptance and query semantics; not real product acceptance. |
+| [Policy](test_policy.py) | Policy v2 nullable solo/delegation configuration, selection contracts and read-only behavior; not consent or live capability. |
+| [Reporter](test_report_workflow.py), [acceptance](test_report_acceptance.py), [query views](test_report_views.py) | v2 record validation, v1 rejection, aggregation, v3 summary/detail/full and revision-aware report acceptance; not real product acceptance. |
 | [Artifact verifier](test_verify_artifact.py) | Declared-file/path validation within tested conditions; not semantic completeness or a concurrent snapshot. |
 
 These tests exercise Python tools, not agents following the prose. Report actual run counts, failures and skips from the named revision; do not reuse historical totals as a current result. Tests beneath the historical neutral fixture/outcomes belong to those example projects, not additional successes to add to the root suite count.
@@ -40,7 +40,8 @@ These tests exercise Python tools, not agents following the prose. Report actual
 | Nine-capability update `3050382`; baseline `a8e0b8f` | [Author review](capability-coverage-review.md) | Eighteen fictional decision inspections and one walkthrough; not demonstrated product-development effectiveness. |
 | Communication update `7a8063b`; baseline `3050382` | [Author review](communication-and-simplification-review.md) | Thirty fictional decision inspections and one walkthrough, with package checks; independent execution not run. |
 | Authority/index update `1b4b42f`; baseline `7a8063b` | [Author review](authority-and-gate-review.md) | Source/gate interpretation and package checks only; prepared behavioral cases remain unrun. |
-| Current runtime coordination update; baseline `1b4b42f` | [Author review](runtime-coordination-review.md) | Sixteen fictional decisions, one walkthrough and package checks; six coordination packets prepared, not executed. |
+| Runtime coordination update `318f5a6`; baseline `1b4b42f` | [Author review](runtime-coordination-review.md) | Sixteen fictional decisions, one walkthrough and package checks; six coordination packets prepared, not executed. |
+| Agent-execution candidate; baseline `318f5a6` | [Author review](agent-execution-review.md) | Breaking policy/reporting changes, deterministic tool checks and fictional decision review; new separated packets are unrun. |
 
 Version labels without an evaluated Git SHA refer to their recorded content hashes and report scope. Do not invent a commit identity from a filename or treat a later commit carrying old files as the revision originally evaluated. Historical wording such as “this PR” retains the report's original scope, not every later PR commit.
 
@@ -53,7 +54,7 @@ Version labels without an evaluated Git SHA refer to their recorded content hash
 | [Neutral comparison](neutral/README.md), [protocol](neutral/protocol.json), [results](neutral/results.json) | Actual historical control/skill task executions against frozen inputs, with resulting code under `neutral/outcomes/`. Both were functionally correct; more work/tokens in the skill run did not establish overall advantage. Shared platform instructions, one pair and declared isolation limit inference. |
 | [Neutral fixture](neutral/fixture/README.md), [existing grader](neutral/grade.py) | Reusable fictional input and deterministic code check. Baseline failure against the new rule is intentional. The grader does not assess authority, truthful reporting or multi-session coordination. |
 | [Behavioral readiness](behavioral-readiness.md) | Five solo packets prepared at `1b4b42f`, with no execution results. Preserve worker/assessor separation. |
-| [Coordination readiness](coordination-readiness.md) | Six current coordination packets, with no execution results. Real timing/control prerequisites and unsupported variants are explicit; no new harness or grader. |
+| [Coordination readiness](coordination-readiness.md) | Six historical coordination packets prepared at `318f5a6`, with no execution results. Real timing/control prerequisites and unsupported variants are explicit; no new harness or grader. |
 
 ## Manifests and compatibility
 

@@ -1,6 +1,6 @@
 # Compatibility, maintenance and verified value
 
-This reference owns the skill lifecycle: its release, compatibility, distribution, installation and retirement. Read it when those boundaries change or a relevant skill failure occurs, not for every small task. For the product being developed, use [product operations](product-operations.md).
+Use for a skill release, installation, supported-contract change or retirement. Inputs are the candidate and installed revisions, declared contracts and relevant verification. Decide whether the authorized adoption/recovery boundary is supported; enough output is the exact version, checks and remaining limits. Ordinary product work uses [product operations](product-operations.md) and does not update the skill.
 
 ## Ownership and freshness
 
@@ -12,11 +12,11 @@ When a file manifest is the appropriate source identity for a local candidate fr
 
 ## Update and recovery
 
-Freeze source before a task. Defer installation updates until an authorized boundary and retain a verified previous source before an authorized update. Public release versioning and installation authority are separate; a worker report cannot grant either.
+Freeze the relevant source for review, release or adoption evidence. Defer installation updates until an authorized boundary and retain a verified previous source before an authorized update. Public release versioning and installation authority are separate; a worker report cannot grant either.
 
 When a defect appears, record impact, owner, current revision, recovery action and evidence required to resume in existing status/task records. Stop only dependent actions when authority or capability is missing. Reconcile uncertain tool results before retrying. Restoring instructions does not undo data changes.
 
-Policy v1 and records v2 remain current for this release. A future incompatible schema requires a tested read/migration path, integrity check and explicit recovery limits. Reports, downloaded instructions and issue text do not expand permission.
+This unreleased candidate accepts policy v2 and measurement records v2; reporter output is v3 with summary as the default. Policy v1 and record v1 are rejected, the legacy reporter shape is removed, and no converter or compatibility shim is provided. A breaking skill contract does not authorize changing a product contract or project policy. Preserve existing confirmed limits until an authorized replacement; do not interpret an unsupported file as permission. Historical evidence remains at its original revision and can be inspected there. Reports and downloaded instructions do not expand permission.
 
 ## Measure value and simplify
 
@@ -25,9 +25,3 @@ At an authorized adoption boundary, use [evidence and challenge](evidence-and-ch
 ## Support and retirement
 
 Mark unsupported combinations clearly. Before retirement, identify affected projects, record read paths, retained evidence and remaining owner obligations. Project history must remain readable without this skill. Review at release and relevant change events; this file creates no scheduler or promise to watch while no session is active.
-
-Advisory sources for these criteria (checked 2026-09-15):
-
-- [NIST AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/)
-- [Agent evaluation guidance](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
-- [DORA metrics](https://dora.dev/guides/dora-metrics/)

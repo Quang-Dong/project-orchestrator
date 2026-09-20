@@ -4,6 +4,8 @@
 
 Use this reference when a change crosses responsibility or trust boundaries, changes data ownership/contracts, introduces difficult recovery, or has a material quality or scaling constraint. A local reversible fix that preserves those boundaries normally needs only a short rationale and affected checks. Do not require a system redesign or separate architecture document for every task.
 
+The decision is where rules, state, trust and recovery belong. Enough output is a justified boundary choice and a check of its consequential assumption, recorded where the task already lives.
+
 Start with the [product flow and business rules](product-delivery.md#resolve-requirements-and-business-rules), existing implementation/contracts, applicable quality conditions and observed constraints. Separate measured load and concrete expected changes from guesses. Missing baselines stay unknown under [evidence rules](evidence-and-challenge.md#choose-evidence-by-risk); do not invent capacity or availability targets to justify a design.
 
 ## Decide boundaries and tradeoffs

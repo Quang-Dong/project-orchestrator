@@ -1,6 +1,6 @@
 # Evidence, research and challenge
 
-This reference owns what counts as proof for discovery, implementation, review and workflow improvement. Keep raw relevant evidence available to an independent reviewer; never edit evidence or acceptance criteria to fit the desired answer.
+Use when selecting proof or judging a result, contradiction or acceptance claim. Inputs are current requirements, the artifact/revision, environment and actual check results. Decide what is established and what remains open; continue when the next action has adequate evidence, or report its precise gap. A low-risk edit needs only its relevant check. Keep raw evidence available for required review; never alter criteria to fit the artifact.
 
 ## Label and trace claims
 
@@ -32,7 +32,7 @@ For a conflict, identify whether it is an explicit requirement change, a stale r
 
 ## Synthesize results against acceptance
 
-The lead compares returned artifacts with the original requirement and all material changes, not only the worker's local checklist. Identify the affected caller and integrated flow; map each consequential criterion to evidence at the applicable revision and name omissions. Inspect decisive proof first, expanding for risk or contradiction rather than routinely rerunning every check.
+The lead compares returned artifacts with the original requirement and all material changes, not only the worker's local checklist. Check both omissions and unexpected scope: a worker can satisfy its packet while missing a caller or adding unrequested behavior. Identify the affected caller and integrated flow; map each consequential criterion to evidence at the applicable revision and name omissions. Inspect decisive proof first, expanding for risk or contradiction rather than routinely rerunning every check.
 
 When results conflict, compare source, environment, scope and assumptions, then choose the smallest check that can distinguish the explanations. Preserve unresolved contradiction as an open criterion; agreement or a majority of sessions does not settle it. A worker's completed assignment can leave integration, independent review, production observation or user-value acceptance open. Do not silently narrow the original acceptance to match the delivered artifact.
 
@@ -73,10 +73,4 @@ Apply the existing independent-review triggers in [SKILL.md](../SKILL.md#verify-
 
 Where independent review is required, it receives the frozen artifact, raw relevant evidence, acceptance criteria and known limitations, not a leading conclusion. Explicit solo work can produce a self-checked candidate or authorized PR, but it cannot satisfy an independent-review gate. Report package validity, review status, product acceptance and installed-copy adoption separately. GitHub Draft/non-draft is publication metadata; neither setting proves review or acceptance, and a pending gate does not authorize changing that setting. Review outcome, process adherence and remaining unknowns separately; a composite score must not hide a critical failure. A reviewer model is evidence about a judgment, not ground truth; inspect the artifact and calibrate consequential judgments when human input is available.
 
-Use deterministic checks for deterministic behavior and model or human judgment only for dimensions they can validly assess. Check both over-triggering and under-triggering paths. One passing trial is descriptive evidence, not reliability, superiority or production proof; repeated trials, real-user feedback and monitoring are separate evidence classes.
-
-The following advisory engineering sources informed this guidance; they are not evidence that this skill or a project succeeds:
-
-- Anthropic, “Effective harnesses for long-running agents,” published 2025-11-26, reviewed 2026-09-15: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
-- Anthropic, “How we built our multi-agent research system,” published 2025-06-13, reviewed 2026-09-15: https://www.anthropic.com/engineering/multi-agent-research-system
-- Anthropic, “Demystifying evals for AI agents,” published 2026-01-09, reviewed 2026-09-15: https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
+Use deterministic checks for deterministic behavior and model or human judgment only for dimensions they can validly assess. A tool's exit code must be interpreted with its result and coverage: truncated output, skipped paths, an unrelated green suite or an inaccessible artifact cannot fill a missing criterion. A generated explanation or self-score is not a substitute for the artifact; a separate reviewer may share the author's mistaken premise. Check both over-triggering and under-triggering paths. One passing trial is descriptive evidence, not reliability, superiority or production proof; repeated trials, real-user feedback and monitoring are separate evidence classes.

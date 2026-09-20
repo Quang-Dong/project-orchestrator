@@ -2,7 +2,7 @@
 
 ## When to apply and what to read
 
-Use this reference when an authorized change can reach users, alter persisted data, or affect an operated product. Start with the affected flow, release environment and authority, acceptance evidence, compatibility obligations and known operational constraints. Keep the result in the existing task/release record; this creates no new release schema or automatic monitoring.
+Use this reference when an authorized change can reach users, alter persisted data, or affect an operated product. Start with the affected flow, release environment and authority, acceptance evidence, compatibility obligations and known operational constraints. Decide the authorized release/stop condition and a viable observation/recovery path. Enough output is a named owner, applicable evidence and an explicit next event or unresolved gate in the existing release record; this creates no schema or automatic monitoring.
 
 For a local tool or prototype, use its actual distribution, data and recovery boundary. A local file-changing tool may still need recovery checks; it does not automatically need cloud deployment, telemetry, service-level objectives or an on-call system. [Maintenance](maintenance.md) separately owns the skill's versions, distribution and installation.
 

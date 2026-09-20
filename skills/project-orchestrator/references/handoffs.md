@@ -1,10 +1,10 @@
 # Coordination and handoff
 
-Apply the operating modes and outcome constraints in [SKILL.md](../SKILL.md). This reference owns dispatch, ownership and recovery mechanics, not another mandatory workflow.
+Use for an assignment, integration, ownership change or continuity problem. Inputs are the current requirement, authority, source, owner and decisive evidence. Decide the next owner/action and the context it needs; continue once those dependencies are resolved. A small direct task needs neither a dispatch packet nor a new handoff.
 
 ## One current handoff
 
-For coordinated work or takeover, use existing task/status records. Keep one current handoff with the outcome, source revision, owner/write scope, checks and evidence links, remaining gaps and next action. A dispatch packet or checkpoint may link those fields instead of duplicating them. Keep closed evidence immutable and linked; do not rewrite historical results.
+For coordinated work or takeover, use existing task/status records. Keep one current handoff with the outcome, source revision, owner/write scope, checks and evidence links, remaining gaps and next action. It is the working checkpoint, not a measurement stream; create or update it only when continuity or coordination needs durable state. A dispatch packet or checkpoint may link those fields instead of duplicating them. Keep closed evidence immutable and linked; do not rewrite historical results.
 
 A compact handoff can be:
 
@@ -21,7 +21,7 @@ remaining: independent review of the frozen source
 next: reviewer inspects affected behavior
 ```
 
-Add dependencies, exclusions, delegated decisions, escalation conditions, capability choices and requested/observed settings when relevant. They may reference an existing contract. A small direct task does not need dispatch fields or a new metrics experiment.
+Add dependencies, exclusions, delegated decisions, escalation conditions, material capability choices and requested/observed settings when relevant. They may reference an existing contract. A small direct task does not need dispatch fields or a new metrics experiment.
 
 Update the handoff when ownership, source/evidence status, a material blocker or next action changes; the same artifact serves takeover and integration. Do not generate a new report for an unchanged checkpoint.
 
@@ -34,6 +34,8 @@ Preserve obligation strength when translating or summarizing: required, recommen
 ## Context that survives a handoff
 
 Select context by the receiving task: current outcome and acceptance, authority and exclusions, checkout/revision, decisions still in force with reasons, rejected hypotheses, unresolved defects/gates and next action. Link source artifacts and relevant raw evidence instead of repeatedly rewriting the transcript. Verify that the receiver can access the required source at the named revision; an unavailable file or mismatched baseline is a named dependency, not permission to guess.
+
+Retrieve the decisive source section or tool result first, using paths, revision identifiers and search terms as pointers. Expand only for a missing input, unresolved risk or contradiction. Preserve the decisions that constrain the next action and the evidence rejecting earlier hypotheses; discard repeated narration and obsolete plan steps. If a source is absent or output is truncated, retrieve the missing part or mark the dependency unknown. A summary that omits a constraint must not silently replace its source.
 
 Keep facts, assumptions, inferences and unknowns attached to their sources under [evidence rules](evidence-and-challenge.md#label-and-trace-claims). Preserve these distinctions through compaction and relays. Share only necessary authorized context; private data unrelated to the task does not belong in a packet. The current handoff is the continuity record, not a second backlog.
 
@@ -52,7 +54,9 @@ These examples draw on [Codex subagents](https://learn.chatgpt.com/docs/agent-co
 
 ## Dispatch
 
-Before dispatch, record the attempt, owner, authorized directory/write scope, versioned input, outcome/acceptance and required settings. Complete the existing packet with the product outcome and requirement source, expected artifact/evidence, reason delegation helps, independent scope/exclusions and integration owner. Distinguish decisions already settled from choices delegated to the worker; name the conflict, contract change or missing evidence that requires escalation. Reference existing fields rather than creating another form. Validate capability and policy using [policy](policy.md); record actual settings only after observing execution.
+Before dispatch, check whether the proposed work can make useful progress with stable inputs and bounded coordination. Different files may still share a business rule, contract, state transition, database or integration decision. If frequent reciprocal changes would be needed, keep them with one owner or stabilize the boundary first. A distinct specialty can be guidance used by that owner rather than another session.
+
+For an authorized assignment, record the attempt, owner, authorized directory/write scope, versioned input, outcome/acceptance and required settings. Complete the existing packet with the product outcome and requirement source, expected artifact/evidence, reason delegation helps, independent scope/exclusions and integration owner. Distinguish decisions already settled from choices delegated to the worker; name the conflict, contract change or missing evidence that requires escalation. Reference existing fields rather than creating another form. Check the applicable selection constraints using [policy](policy.md); record actual settings only after observing execution.
 
 Choose the interaction needed: **advice** returns findings without write ownership; **independent output** delivers a bounded artifact; **independent review** returns findings/verdict on a frozen artifact with read-only scope and no preferred verdict; **ownership transfer** uses the takeover checks below. Reading a packet does not appoint a worker as lead. Before opening more work, check that its review/integration can be handled; finish or unblock the limiting dependency instead of adding management roles or a fixed agent quota.
 
@@ -71,7 +75,7 @@ A timeout is not proof of non-execution. Reconcile task identity, attempt and ac
 
 ## Questions, changes and results
 
-For a substantive assignment, the receiver's first response or first substantive action should show the understood outcome, scope and source. Check material inputs before editing. Ask a focused question when missing or contradictory information changes the solution or acceptance; continue independent authorized work. This can happen in the normal first action, without a separate acknowledgment round for a small clear task.
+For a substantive assignment, the receiver's first response or first substantive action should show the understood outcome, scope and source. Check material inputs before editing; do not claim the packet is understood merely by repeating its wording. A useful first action identifies the relevant caller, verifies a prerequisite or asks about a decision that actually blocks the outcome. Ask a focused question when missing or contradictory information changes the solution or acceptance; continue independent authorized work. This can happen in the normal first action, without a separate acknowledgment round for a small clear task.
 
 Make message intent explicit in ordinary prose: assignment, question, finding, change, result or stop. Include the affected task/attempt, source and required next action when ambiguity is possible. These are communication conventions, not new record event types or a transport protocol. Use the supported direct channel when authorized; otherwise the lead relays the relevant information without changing its meaning.
 
@@ -95,7 +99,7 @@ Before takeover, verify the current source and that the old writer and relevant 
 
 A lead may take over within granted authority, including explicit solo work. Record who changed what and why; do not describe main reimplementation as worker delivery. If a process trial exists, use [improvement](improvement.md#measure-useful-progress) for its separate criteria.
 
-Before integrating, compare the current baseline, preserve unrelated changes and run checks affected by the combination. The lead applies [result synthesis](evidence-and-challenge.md#synthesize-results-against-acceptance), including original requirements and affected caller flows; passing individual artifacts does not establish integrated acceptance.
+Before integrating, compare the current requirement and source baseline, preserve unrelated changes and run checks affected by the combination. Reconcile producer/consumer assumptions and shared-state effects even when patches do not conflict textually. The lead applies [result synthesis](evidence-and-challenge.md#synthesize-results-against-acceptance), including original requirements and affected caller flows; passing individual artifacts does not establish integrated acceptance.
 
 ## Review and repair
 
@@ -132,6 +136,6 @@ The language convention is a portability choice, not an English-versus-native pe
 
 A replacement reads the current handoff and necessary contracts/evidence, verifies owner/source and resumes the named next action. It need not reconstruct the whole chat or load complete logs; retrieve decisive artifacts as needed.
 
-After resume or an environment move, verify the consequential state that may have changed: working directory/revision, uncommitted work, needed tools/configuration, effective settings and relevant processes. Restored conversation is not restored execution. For example, [Claude session restoration](https://code.claude.com/docs/en/sessions#what-a-resumed-session-restores) does not restore every launch option or finish an interrupted tool. Reconcile whether a side effect already happened before replaying it. Recover within existing authority; unavailable explicit settings or unsafe uncertainty keep dependent work blocked, without restarting unrelated decisions.
+After resume or an environment move, verify the consequential state that may have changed: working directory/revision, uncommitted work, needed tools/configuration, effective settings and relevant processes. Restored conversation is not restored execution. For example, [Claude session restoration](https://code.claude.com/docs/en/sessions#what-a-resumed-session-restores) does not restore every launch option or finish an interrupted tool. Reconcile whether a side effect already happened before replaying it: inspect the resulting artifact, process or native operation status, using its actual identity. A missing result message is not proof that the action failed. If the outcome cannot be established and duplicate execution could be harmful, stop that action with the uncertainty recorded. Recover within existing authority; unavailable explicit settings or unsafe uncertainty keep dependent work blocked, without restarting unrelated decisions.
 
 Use supported event waits or completion notifications instead of repeated status queries. Receiving a message may start a turn and consume resources, so avoid ping-pong updates without a new outcome, decision or actionable gap. Send only a meaningful outcome, changed risk, decision, blocker or correction, plus minimum platform-required updates. A stopped task needs a truthful handoff, not a promise of unattended continuation.

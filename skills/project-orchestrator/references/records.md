@@ -1,6 +1,10 @@
-# Workflow records v2 and read-only reporting
+# Optional workflow measurements and reporter v3
 
-`report_workflow.py --metrics PATH --improvements PATH` is the Python standard-library-only read-only reporter installed beside `check_policy.py`. It emits one JSON object to stdout: exit 0 for valid input, 2 for malformed/unsupported/duplicate records or semantic acceptance errors. It creates no files, caches or network calls. Tests use `python -B`. Read this reference when recording or querying workflow data; ordinary task startup does not require the full reporting contract.
+Use this reference only to record or query measurements for a concrete question. Inputs are recorded v2 events and their evidence sources. Decide what the observations establish and what remains unknown; stop once the needed summary or page answers that question. A task does not need metrics, an experiment or JSONL files merely to start, continue or finish.
+
+Keep the current requirement and recovery checkpoint in existing project records under [handoffs](handoffs.md#one-current-handoff). Measurements are optional evidence, not authority, process control or a substitute for actual runtime state. Record a process trial only when one is actually authorized.
+
+`report_workflow.py --metrics PATH --improvements PATH` is a standard-library-only read-only reporter. Inputs remain v2 JSONL; **output is v3 and defaults to summary**. Exit 0 means valid input; 2 means malformed/unsupported/duplicate records, invalid query or semantic acceptance error. Errors are JSON with no partial accepted results. `--help` displays usage. No files, caches or network calls are created.
 
 ## Metrics JSONL
 
@@ -8,7 +12,7 @@ Elapsed wall time is not measured active effort. Session age or cached-token cou
 
 Each v2 event requires: schemaVersion=2, eventId, taskId, attemptId, eventType, occurredAt (ISO 8601 with timezone), artifactVersion (nonempty string or null), source (nonempty evidence reference), role (lead/worker/reviewer), details (object), missingReasons (object).
 All IDs are nonempty strings. Unknown event types/versions are rejected. Reject duplicate JSON keys, non-finite numeric values and duplicate eventIds across BOTH inputs. Blank lines are ignored. If artifactVersion is null, missingReasons.artifactVersion must be a nonempty reason. Unknown optional fields may be preserved/ignored; required meaning must be validated.
-Known v1 records: keep count and warn legacy_records_not_aggregated; no migration or guessed data.
+Version 1 and other unsupported records reject the entire input; no migration, exclusion count or guessed data.
 
 Event types:
 - task_started, handoff, accepted: details may be empty.
@@ -25,24 +29,26 @@ Missing start with no acceptance is allowed as incomplete historical/checkpoint 
 
 Each v2 event requires: schemaVersion=2, eventId, experimentId, occurredAt (timezone), taskId (the bound task), owner, state (proposed/trial/closed), change (one bounded intervention), reviewTrigger, qualityToPreserve (nonempty string list), measurement (nonempty string list), revertWhen (nonempty string list), previousGuidance, evidence (string list), decision, missingEvidence (string list), nextReview.
 Strings other than nullable fields must be nonempty. decision must be null for proposed/trial; closed decision is adopted/revised/reverted/deferred. A deferred decision requires nonempty missingEvidence and nextReview. Other closed decisions require nonempty evidence. A trial requires nextReview (the close/review event trigger). Keep the latest event per experiment by time; reject ambiguous equal-time different states. Return active trials and closed/deferred decisions, with a warning when an active trial's bound task has an accepted attempt and no closure event. Do not invent adoption.
-Known v1 records are counted separately and not rewritten.
+Unsupported versions in either stream reject the report, even outside a requested filter.
 
 ## Output
 
-schemaVersion=2; valid boolean; errors array with input/line and reason when available; limitations array; legacyCounts {metrics,improvements}; attempts array; effortByRole; usageSnapshots; experiments array; overdueExperimentIds array. Invalid input returns valid=false and errors; never a success-shaped accepted summary from invalid evidence.
-Missing data, legacy exclusions and partial observations must be explicit. Deterministic output ordering by IDs. Empty valid files produce empty arrays and no invented task metrics.
+The explicit full audit has schemaVersion=3, view=full, inputHashes, valid boolean, errors array with input/line and reason when available, limitations array, attempts array, effortByRole, usageSnapshots, experiments array and overdueExperimentIds array. Invalid input returns valid=false and errors; never a success-shaped accepted summary from invalid evidence.
+Missing data and partial observations must be explicit. Deterministic output ordering by IDs. Empty valid files produce empty arrays and no invented task metrics.
 
 ## Acceptance
 
-Regression coverage includes valid end-to-end metrics/improvement closure; legacy+v2 and null reasons; malformed records/duplicate JSON keys/duplicate IDs across streams; unsupported version/types; invalid/naive time; stale or missing handoff on acceptance; out-of-order records; repeated cumulative usage without double-counting; counters/currency/null/role measurements; trial still open after task acceptance; deferred decision without missing evidence/review trigger; empty inputs; CLI exit codes and read-only input/output-directory hashes. No wording-matching tests.
+Regression coverage includes valid end-to-end metrics/improvement closure; old-version rejection in both streams and null reasons; malformed records/duplicate JSON keys/duplicate IDs across streams; unsupported version/types; invalid/naive time; stale or missing handoff on acceptance; out-of-order records; repeated cumulative usage without double-counting; counters/currency/null/role measurements; trial still open after task acceptance; deferred decision without missing evidence/review trigger; empty inputs; CLI exit codes and read-only input/output-directory hashes. No wording-matching tests.
 
 
-## v03 query views (additive CLI interface)
+## Summary, detail and full audit
 
-Normal reads use --view summary with --task-id or --experiment-id. Use --view detail for records, with --limit (1..200, default 20) and the returned --cursor to continue. Without --view the v2 CLI and report stay unchanged; query switches require an explicit view. Input policy v1 and JSONL v2 do not change.
+Normal reads default to summary; optional `--task-id` or `--experiment-id` narrows the question. `--view summary` is equivalent. Use `--view detail` for typed attempt/experiment/usage items, with `--limit` (1..200, default 20) and the returned `--cursor` for the next page. Task/experiment filters intersect; experiment queries return experiments only, never imply unrelated task metrics belong to a trial. Missing matches produce empty results.
 
-Views have schemaVersion=2 and viewVersion=1. They include inputHashes, filters, counts, validationScope and legacy limitations. Summary returns state counts, observed repair counts, counts of attempts with unknown observations and overdue trials; it does not invent a total token bill. Detailed results contain typed attempt/experiment/usage items, totalItems, offset, hasMore and nextCursor. An experiment filter returns experiments only; task and experiment filters intersect. Missing matches return empty results, not a guessed task.
+Use `--view full` deliberately for the entire audit. Full rejects filters and pagination. `--cursor` and `--limit` are detail-only; silently ignoring them could hide missing evidence. Calls without `--view` no longer return the unbounded full report. There is no v1 reader, `legacyCounts`, `viewVersion` or legacy `build` compatibility helper.
 
-Validate all supplied input records and semantic invariants before filtering. Legacy entries remain counted/excluded. Detail order is attempts, experiments, usage, with existing deterministic ordering in each group. Cursors bind to exact input bytes, filters, view and page size. Changed inputs or options require restarting; malformed/stale cursors fail with exit 2, without partial accepted results. A cursor is not an authorization token.
+All CLI outputs have `schemaVersion=3`. Valid views identify `view` and exact `inputHashes`. Summary/detail include filters, counts and `validationScope`. Summary returns attempt/experiment state counts, recorded repair rounds, attempts with unknown observations and overdue trial count; it does not create a combined token bill. Detail adds items, totalItems, offset, hasMore and nextCursor. Its order is attempts, experiments, then usage, with deterministic ID ordering within each group.
 
-File input is read line by line; parsed records and grouping still require O(n) memory and a full validation pass. This reduces raw-text copies and model output, not all processing cost. No database, background index or automatic log rotation is included. Keep full reports for deliberate audits; never include them by default in startup context. Summary returns the first 20 global limitations with limitationsTotal explicitly showing any remainder; inspect detailed/full audit output when that count requires it.
+Validate all supplied records and semantic invariants before filtering. Invalid input never produces a partial success summary. Cursors bind to output version, exact input bytes, filters, view and page size; changed inputs/options require restarting. Malformed or stale cursors return exit 2. A cursor is not an authorization token.
+
+Inputs are read line by line, but parsed grouping still uses O(n) memory and full validation. Summary/detail expose the first 20 global limitations and their total; use the explicit full audit when further limitations matter. Reduced response size is not a measured end-to-end efficiency gain. No database, index, telemetry or automatic rotation is included.

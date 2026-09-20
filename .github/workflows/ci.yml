@@ -37,7 +37,7 @@ jobs:
 
       - name: Validate JSON metadata
         run: >-
-          python -B -c "import json; from pathlib import Path; [json.loads(path.read_text(encoding='utf-8')) for path in Path('evals').glob('*.json')]; [json.loads(path.read_text(encoding='utf-8')) for path in Path('.').glob('compatibility-*.json')]; print('JSON metadata valid')"
+          python -B -c "import json; from pathlib import Path; [json.loads(path.read_text(encoding='utf-8')) for path in Path('evals').rglob('*.json')]; [json.loads(path.read_text(encoding='utf-8')) for path in Path('skills').rglob('*.json')]; [json.loads(path.read_text(encoding='utf-8')) for path in Path('.').glob('compatibility-*.json')]; print('JSON metadata valid')"
 
-      - name: Run Python suite
+      - name: Run policy v2, reporter v3 and artifact suite
         run: python -B -m unittest discover -s evals -p "test_*.py"

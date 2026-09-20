@@ -1,10 +1,10 @@
 # Local trials and upstream contributions
 
-Try locally within existing authority, verify the result, prepare a reviewable source change and publish only after explicit authorization. This reference grants no external action.
+Use for an authorized reusable skill contribution. Inputs are the actual source/upstream, concrete problem, allowed change and verification. Decide the smallest reviewable patch and permitted publication step; enough output is the source diff, evidence and unresolved limits. A project-specific preference normally stays in project guidance. This reference grants no external action.
 
 ## Find and scope
 
-Record the installed skill version/hash, reproducible behavior and impact. Read policy before changing anything and distinguish a reusable defect from a project preference. Use the active-trial record or a separate development checkout; never silently change an installed/global skill or shared project files. Preserve the baseline and a rollback copy.
+Record the installed skill version/hash, reproducible behavior and impact. Resolve applicable authority and distinguish a reusable defect from a project preference. Use the active-trial record or a separate development checkout; never silently change an installed/global skill or shared project files. Preserve the baseline and a rollback copy.
 
 For a definite defect, add a focused regression that reproduces it and verify the correction. For workflow changes, choose the smallest adequate validation from [improvement](improvement.md); a trial is needed only for claims that require observed execution. Preserve acceptance and distinguish self-review from independent evidence. A smaller token count is not sufficient evidence. Verify the actual upstream from installation metadata or a source checkout remote using authorized read-only access; do not infer it from the skill name. If upstream, credentials or permission is unavailable, keep a local patch and report what remains unverified.
 
