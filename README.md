@@ -2,7 +2,7 @@
 
 A skill for turning a user's idea into a useful, maintainable and verified product outcome. Use it for consequential product decisions in solo or coordinated work, with durable context, ownership changes and independent review when needed.
 
-**Unreleased development candidate, based on v0.1.0.** This source combines adaptive ownership/effort, a product feedback loop, modular product-development guidance, explicit session communication and a read-only artifact verifier. Direct/solo execution, takeover and revision-bound evidence remain supported. It is not a new release or installed-copy update. See the [communication and simplification review](evals/communication-and-simplification-review.md) for this update, the [nine-capability coverage review](evals/capability-coverage-review.md) for the prior capability expansion, the [adaptive orchestration review](evals/adaptive-orchestration-review.md) for the preceding revision, and the [OPS06/OPS07 report](evals/report-ops07.md) for earlier checks. Historical reports retain their original scope.
+**Unreleased development candidate, based on v0.1.0.** This source combines adaptive ownership/effort, a product feedback loop, modular product-development guidance, explicit session communication and a read-only artifact verifier. Direct/solo execution, takeover and revision-bound evidence remain supported. It is not a new release or installed-copy update. See the [evaluation index](evals/README.md) for the current author review, prepared behavioral cases and revision-specific historical evidence.
 
 ## When to use it
 
@@ -59,19 +59,11 @@ The lead verifies outcomes and decisive evidence on the actual artifact version,
 | Records and reports | Policy-gated coordination, v2 metrics/improvements, summaries and paginated detail without invented totals |
 | Local contribution | Sanitized source patch and evidence prepared for a separately authorized publication |
 
-Consult the [v0.1.0 release report](evals/report-v0.1.0.md) for candidate checks, the [v0.1.0 manifest](evals/skill-manifest-v0.1.0.json) for frozen file hashes, the [v04 validation report](evals/report-v04.md) for carried development evidence, and [compatibility-v0.1.0.json](compatibility-v0.1.0.json) for tested environments. Untested combinations remain untested.
+## Evidence and its limits
 
-The [neutral comparison](evals/neutral/results.json) found both runs correct on the small code task. The skill run inspected stale evidence more explicitly, but used more work and tokens and omitted a durable capability-choice record. Clear overall additional value and savings are **not established**.
+Start at the [evaluation index](evals/README.md) to distinguish executable tool tests, author decision inspections, prepared but unrun cases, historical task executions and file manifests. It maps reports to their revisions; historical results do not validate the current candidate. The release [compatibility record](compatibility-v0.1.0.json) describes its tested environments, not every later revision.
 
-## Historical evidence at v0.1.0
-
-| Capability | Historical evidence |
-| --- | --- |
-| Product specification and complete-slice coordination | Implemented guidance plus [one bounded prototype pilot](evals/report-v04.md); no end-to-end production claim |
-| Policy/record tools and installation | [56 regression tests and isolated project/global-copy checks](evals/report-v04.md); release-candidate checks in [report-v0.1.0.md](evals/report-v0.1.0.md) |
-| Challenge, review and honest handoff | [Seven simulated decisions and independent artifact review](evals/report-v04.md), including mistakes and repairs |
-| Neutral skill contribution | [One controlled-input pair](evals/neutral/README.md), with shared platform instruction and isolation limits; no demonstrated overall advantage |
-| Long-term improvement and cost optimization | Measurement method implemented; superiority and sustained savings remain unproven |
+The earlier neutral comparison found both runs functionally correct, with more work and tokens in the skill run. It did not establish an overall advantage. Independent behavioral evaluation and independent review of this candidate have not run; no measured efficiency or reliability improvement is claimed.
 
 ## Responsibilities and storage
 
@@ -96,7 +88,7 @@ Project records are files maintained by sessions following the skill. They are n
 
 For substantive assignments, use the [handoff guidance](skills/project-orchestrator/references/handoffs.md) to preserve task language, domain meaning, accessible versioned context, delegated decisions and escalation boundaries. The receiver checks understanding in its first substantive response/action. Material requirement changes must reach the affected owner before dependent work resumes. The lead checks original acceptance and integrated behavior, with [provenance and synthesis](skills/project-orchestrator/references/evidence-and-challenge.md#synthesize-results-against-acceptance) preserved across summaries. The [four fictional worked examples](skills/project-orchestrator/references/worked-examples.md) illustrate decisions; they are optional reading, not executed evaluations.
 
-The [communication and simplification review](evals/communication-and-simplification-review.md) maps this candidate's 17 improvements and reductions to guidance and author-inspected scenarios. Independent behavioral evaluation and independent review of this candidate have not run; no measured efficiency or reliability improvement is claimed.
+Use the [source distinctions](skills/project-orchestrator/references/evidence-and-challenge.md#distinguish-instructions-records-and-observed-behavior) when chat and project records disagree. A current authorized user decision need not wait for a file update to take effect; an agent claim of completion still needs artifact evidence. The evaluation index records the current inspection and the remaining unrun behavioral checks.
 
 ## Small task path
 

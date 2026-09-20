@@ -41,7 +41,7 @@ For UI changes, inspect the running interface through the affected journey and m
 
 For substantial product work, identify one primary signal of user value, the technical acceptance checks, and the quality conditions that must not regress. The value signal describes an observable user/operator outcome and its evidence source. If its baseline or target is unknown, record that gap and how to observe it; do not fabricate a percentage, time saving or business result. Use an agreed qualitative observation when numerical measurement is not appropriate.
 
-Keep these decisions in the product contract. The coordination checkpoint owns the current owner, attempt, source revision, write scope and recovery; the artifact/proof owns actual behavior and caller checks. Use the existing boundaries, not another schema or registry. Chat history supplies context, not acceptance evidence.
+Keep these decisions in the product contract. The coordination checkpoint owns the current owner, attempt, source revision, write scope and recovery; the artifact/proof owns actual behavior and caller checks. Use the existing boundaries, not another schema or registry. Apply the [source distinctions](evidence-and-challenge.md#distinguish-instructions-records-and-observed-behavior): a current user decision can change this contract; an agent completion claim needs evidence.
 
 ## Sequence complete increments
 

@@ -22,7 +22,7 @@ The lead owns direction, consequential contracts, exceptions and acceptance. The
 
 Start with the [authority and startup paths](references/policy.md#start-with-existing-authority), then the current status and relevant requirement/evidence records. For model/effort selection and actual runtime support, use that same policy reference. The user controls the main session's settings. Honor explicit worker settings; otherwise use the task-based selection rule in that reference, without defaulting to maximum effort.
 
-Keep three responsibilities distinct in existing records: the **project contract** owns goals and acceptance; the **coordination checkpoint** owns current owner, attempt and next action; the **artifact and evidence** establish what works at a specific revision. Conversation supplies context, not proof. Do not create a competing backlog, registry, SDK or background engine.
+Keep three responsibilities distinct in existing records: the **project contract** owns goals and acceptance; the **coordination checkpoint** owns current owner, attempt and next action; the **artifact and evidence** establish what works at a specific revision. Distinguish [user decisions, durable records, actual behavior and agent claims](references/evidence-and-challenge.md#distinguish-instructions-records-and-observed-behavior). Do not create a competing backlog, registry, SDK or background engine.
 
 Identify the consequential decision or risk, its owner and the evidence needed for acceptance; read only the matching guidance below. A small edit needs its outcome and relevant check, not nine processes. Keep decisions and missing evidence in the existing task/product record.
 
