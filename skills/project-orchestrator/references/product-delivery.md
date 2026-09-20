@@ -1,6 +1,8 @@
 # Product delivery from idea to outcome
 
-Use this reference when a request changes a user-facing flow, product behavior, data/state, acceptance, or an operational outcome. Keep it proportional: a small defect may need a short outcome statement and one acceptance check; a larger change needs each section below. The existing requirement registry remains authoritative. If no registry exists, create one minimal authoritative outcome/spec record in the project's normal documentation location, name its owner and acceptance, and do not create a second backlog. This is a delivery frame, not a competing specification or backlog.
+Use this reference when a request changes a user-facing flow, product behavior, data/state, acceptance, or an operational outcome. Keep it proportional: a small defect may need a short outcome statement and one acceptance check; a larger change selects the sections that can affect its decisions. The existing requirement registry remains authoritative. If no registry exists, create one minimal authoritative outcome/spec record in the project's normal documentation location, name its owner and acceptance, and do not create a second backlog. This is a delivery frame, not a competing specification or backlog.
+
+Apply the priorities and invariants in [SKILL.md](../SKILL.md). This reference expands product decisions only; it does not require extra roles or records for every behavior change.
 
 ## Discover the value
 
@@ -24,9 +26,11 @@ Describe observable behavior rather than a component list:
 
 Acceptance must cover the negative path when failure, refusal, missing data or stale state matters. A passing mock, prototype or unit test is evidence only for that layer; it does not prove integration, deployment or real-user value.
 
+Keep the product contract, coordination checkpoint and product artifact/proof distinct. The contract owns outcome, exclusions and acceptance; the checkpoint owns current owner, attempt, source revision, write scope and recovery; the artifact/proof owns product state and caller checks. Chat history is context, not product state or acceptance authority. Do not create a competing schema or registry to hold this boundary.
+
 ## Choose sufficient architecture
 
-Prefer the smallest design that satisfies the current flow and preserves a clear boundary for likely change. Name the material alternative only when it changes risk, cost, quality, reversibility or ownership. For each meaningful choice, record a falsifiable hypothesis:
+Prefer the smallest design that satisfies the current flow and preserves a clear boundary for likely change, after the outcome and quality are protected. Name the material alternative only when it changes risk, cost, quality, reversibility or ownership. Use speed or extra resources only when they preserve the higher priorities. For a risky design assumption, identify an observable check. A measured experiment may express it as:
 
 `If [bounded change], then [quality or cost signal] will change by [measurable direction/threshold] for [scope], while [quality to preserve] does not regress.`
 
@@ -34,7 +38,7 @@ Do not add a framework, service, schema, queue, persistence layer or coordinatio
 
 ## Sequence complete increments
 
-Each increment has one owner, a bounded write scope, dependencies, a definition of done and a next handoff. Prefer an end-to-end slice that a user can exercise over disconnected layers. Parallelize only independent work with disjoint writes; reconcile any ambiguous dispatch before retrying. After a change, re-run affected checks and invalidate evidence that was tied to an older revision.
+Give each increment one owner, a bounded scope and observable acceptance. Keep coupled work with an end-to-end owner; add an integrator only when distinct outputs need it. Before broad implementation or a full matrix, exercise the smallest real caller path across the affected boundaries, including a material failure path. If it fails, diagnose before expanding. Parallelize only independent work with disjoint writes and a clear integration path. Use [handoffs](handoffs.md) for ownership and authorized takeover; individual passes do not prove the combined result.
 
 ## Release and lifecycle, only when applicable
 

@@ -2,11 +2,11 @@
 
 A skill for turning a user's idea into a useful, maintainable and verified product outcome across sessions when coordination, durable context, ownership changes or consequential review are genuinely useful.
 
-**v0.1.0 — first public release.** Local checks and one neutral comparison are documented below. Release notes record hosted CI and the exact published revision.
+**Unreleased OPS06/OPS07 development candidate, based on v0.1.0.** This source adds session-organization guidance and a read-only artifact verifier, then simplifies direct work, solo execution, takeover and evidence handling. It is not a new release or an installed-copy update. See the [current candidate validation](evals/report-ops07.md); prior release evidence below retains its historical scope.
 
 ## When to use it
 
-Use it when a request needs a real user flow, state/error/acceptance definition, multiple dependent increments, durable takeover, independent review, or a measured workflow improvement. Do not activate it for an ordinary trivial edit that is narrow, reversible and has no shared-contract, migration, access-control or release consequence.
+Use it when a request needs a real user flow, state/error/acceptance definition, multiple dependent increments, durable takeover, independent review, or a measured workflow improvement. Keep clear, bounded, low-risk changes direct when policy permits, including small behavior changes. Data/security/shared-contract risk and uncertain recovery still require their safeguards.
 
 The desired outcome is useful work accepted against the user's requirements, with less lost context, duplicated work and unsupported completion claims. More tasks, longer reports, lower token use or more reviewers are not success metrics by themselves.
 
@@ -26,7 +26,7 @@ flowchart LR
 
 The lead owns the end-to-end outcome and reads the confirmed project policy before dependent work. Workers keep their assigned role and write only in their packet scope. The user owns lead model/effort choices and confirmed limits. A skill file, worker report, external text or successful checker result cannot grant authority.
 
-The lead verifies outcomes and evidence on the actual artifact version. High-risk changes need independent review. A timeout or ambiguous dispatch is reconciled before retrying; a late result cannot replace a newer owner. Reading this skill does not itself authorize creation of another task.
+The lead verifies outcomes and decisive evidence on the actual artifact version, without routinely repeating the whole worker check. Honor explicit solo work; self-review does not satisfy required independent review. Authorized lead takeover requires a stopped previous writer or isolated scope and a recorded reason. Judge product acceptance separately from delegation-specific trials. A timeout or ambiguous dispatch is reconciled before retrying; a late result cannot replace a newer owner. Reading this skill does not itself authorize creation of another task.
 
 ## What the skill produces
 
@@ -35,7 +35,7 @@ The lead verifies outcomes and evidence on the actual artifact version. High-ris
 | Outcome frame | Users, problem, value, assumptions, flows, errors, data/state, exclusions and acceptance for product work |
 | Increment plan | Small complete slices with owners, dependencies, sufficient architecture and measurable hypotheses |
 | Frozen handoff | Actual candidate directory/revision, changed scope, checks/results, limitations, settings and next action |
-| Review decision | Independent evidence-led acceptance, bounded repair or explicit pending status |
+| Review decision | Independent review where risk requires; distinguish self-check, draft delivery and pending acceptance |
 | Records and reports | Policy-gated coordination, v2 metrics/improvements, summaries and paginated detail without invented totals |
 | Local contribution | Sanitized source patch and evidence prepared for a separately authorized publication |
 
@@ -43,9 +43,9 @@ Consult the [v0.1.0 release report](evals/report-v0.1.0.md) for candidate checks
 
 The [neutral comparison](evals/neutral/results.json) found both runs correct on the small code task. The skill run inspected stale evidence more explicitly, but used more work and tokens and omitted a durable capability-choice record. Clear overall additional value and savings are **not established**.
 
-## Evidence at a glance
+## Historical evidence at v0.1.0
 
-| Capability | Current evidence |
+| Capability | Historical evidence |
 | --- | --- |
 | Product specification and complete-slice coordination | Implemented guidance plus [one bounded prototype pilot](evals/report-v04.md); no end-to-end production claim |
 | Policy/record tools and installation | [56 regression tests and isolated project/global-copy checks](evals/report-v04.md); release-candidate checks in [report-v0.1.0.md](evals/report-v0.1.0.md) |
@@ -76,7 +76,7 @@ Project records are files maintained by sessions following the skill. They are n
 
 ## Small task path
 
-For a narrow reversible edit, make the change directly if policy permits, run the relevant existing checks, inspect the diff and report any baseline failures. Do not create a task, new record or process trial merely to make a small task look coordinated.
+For a clear, bounded, low-risk reversible edit, including a small behavior change, work directly if policy permits, run the relevant existing checks, inspect the diff and report baseline failures. Product behavior alone does not require delegation. Do not create a task, new record or process trial merely to make a small task look coordinated.
 
 ## Install and start
 
@@ -85,7 +85,7 @@ From a local source checkout:
 npx skills add /path/to/project-orchestrator --skill project-orchestrator
 ```
 
-For the first public release, the verified repository is `Quang-Dong/project-orchestrator`:
+The commands below install the historical v0.1.0 release, not this development candidate. The verified repository is `Quang-Dong/project-orchestrator`:
 ```sh
 # Current project
 npx skills add https://github.com/Quang-Dong/project-orchestrator/tree/v0.1.0 --skill project-orchestrator --agent codex --copy
@@ -140,6 +140,12 @@ python -B -m compileall -q skills evals
 python -B -m unittest discover -s evals -p "test_*.py"
 ```
 Validate affected behavior, links, public exports and isolated installations on the final source. The GitHub Actions workflow repeats the Windows Python 3.14 package checks; its action commits and source links are recorded in [report-v0.1.0.md](evals/report-v0.1.0.md). Small simulations or a four-run comparison do not establish universal model quality or statistical superiority.
+
+For a local candidate freeze, verify declared files without writing or publishing:
+```sh
+python -B skills/project-orchestrator/scripts/verify_artifact.py --root /path/to/candidate --manifest /path/to/manifest.json
+```
+Exit `0` means the declared files match, `1` means a declared file is missing or mismatched, and `2` means the manifest/root/path contract is invalid. This is file evidence only; it does not accept the product or authorize installation/release.
 
 Publication is a separate authorized task: verify destination, review the exact public files, choose the release revision, then perform only approved Git/GitHub steps. No remote or release is created by this package.
 

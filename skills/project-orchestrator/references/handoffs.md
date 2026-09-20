@@ -1,45 +1,69 @@
 # Coordination and handoff
 
-## One current record, one writer
+Apply the operating modes and priorities in [SKILL.md](../SKILL.md). This reference owns dispatch, ownership and recovery mechanics, not another mandatory workflow.
 
-Use the existing registry IDs; do not create another backlog. The lead alone updates the current coordination table in project status.md. A worker writes its own handoff in its assigned scope. Each row records task ID, owner, actual write directory/scope, input revision, attempt ID, state, latest event/evidence and next action. Keep the table small: active work and the last accepted checkpoint; link older evidence.
+## One current handoff
 
-States:
-- planned: authorized work specified, no dispatch started.
-- dispatching: attempt ID recorded before a create/send call.
-- assigned: tool returned a task identity, execution not yet observed.
-- running: actual execution/owner activity observed.
-- blocked: known missing dependency, authority, capacity or execution failure; owner and recovery action recorded.
-- ready_for_review: frozen handoff with self-checks received.
-- accepted: acceptance evidence on that revision reviewed by the responsible lead/reviewer.
-- cancelled: explicitly stopped/superseded attempt; preserve reason and any unfinished work.
+Use existing task/status records. Keep one current handoff with the outcome, source revision, owner/write scope, checks and evidence links, remaining gaps and next action. A dispatch packet or checkpoint may link those fields instead of duplicating them. Keep closed evidence immutable and linked; do not rewrite historical results.
 
-Write attempt ID into the dispatched packet. On an uncertain tool response or timeout, inspect available task state and reconcile identity/attempt before retrying. An ambiguous outcome stays unresolved, never a second blind dispatch. No known ID: inspect recent tasks for the attempt marker; inability to resolve means record the blocker. Do not treat no response as cancellation.
-Before changing owner, establish the old writer has stopped or isolate the new scope. Keep the old attempt as historical. Late output from it is evidence for review, never authority to overwrite current state.
-Reconcile at assignment, result, tool failure and takeover. Use supported event waits while a lead is active; no scheduler or background monitoring is implied.
+A compact handoff can be:
 
-## Packet and handoff
+```yaml
+task: TASK-7
+attempt: attempt-2
+owner: writer-1
+writeScope: feature/
+outcome: complete the approved caller flow
+source: candidate@revision
+checks: {caller: verified, recovery: not-run}
+evidence: [path/to/check-result]
+remaining: independent review of the frozen source
+next: reviewer inspects affected behavior
+```
 
-Packet: existing task ID, attempt ID, owner, observable outcome, risk, authorized directory/changes, versioned inputs, dependencies, unchanged acceptance, escalation conditions and requested model/effort. For product work, link the outcome frame in [product delivery](product-delivery.md); for material evidence disputes, link the raw sources and labels from [evidence and challenge](evidence-and-challenge.md). Ambiguous/high-risk work needs a brief receiver restatement; routine reversible choices inside scope do not need approval.
+Add dependencies, exclusions, delegated decisions, escalation conditions, capability choices and requested/observed settings when relevant. They may reference an existing contract. A small direct task does not need dispatch fields or a new metrics experiment.
 
-Before judging a result, identify the lifecycle stage and artifact/revision under review: discovery, specification, implementation, release, operations or retirement. Planned but unimplemented behavior is not an implementation regression; record a specification or scope gap separately. This is a review guardrail, not evidence that it prevents reviewer mistakes.
+Update the handoff when ownership, source/evidence status, a material blocker or next action changes; the same artifact serves takeover and integration. Do not generate a new report for an unchanged checkpoint.
 
-Handoff: actual directory, frozen revision/manifest, changed scope, commands/results, evidence links, remaining gaps, affected acceptance, carried evidence with source comparison, observed settings and source (or unknown), stopped-writer confirmation and next action. Distinguish checkpoint, ready for review, blocked, failed and not run. Missing revision/proof cannot establish acceptance.
+## Dispatch
 
-The author owns a complete artifact at the frozen revision before requesting `ready_for_review`. For every acceptance criterion, provide the relevant source/revision, check or observation, result and limitation; if it was not checked, mark it unknown or pending rather than implying completion. Use one shared-check entry when a criterion applies identically to the artifact, and per-cell evidence only when the criterion varies across a declared matrix. A matrix used in one task is not a universal requirement for unrelated work.
+Before dispatch, record the attempt, owner, authorized directory/write scope, versioned input, outcome/acceptance and required settings. Validate capability and policy using [policy](policy.md). Record actual settings only after observing the running task; requested settings are not facts.
 
-Default internal messages to plain technical English and user communication to the user's language. Preserve glossary, IDs and authored content. Link only relevant sources; don't paste full logs/history. Language and length may be trialled without losing meaning. Do not omit revision, failure, local-fixture or unknown markers to make a handoff sound complete.
+Use states only as supported by evidence:
 
-## Review and resume
+- planned: specified, no dispatch.
+- dispatching: call issued, identity unresolved.
+- assigned: identity returned, execution not yet observed.
+- running: activity observed.
+- blocked: a named dependency or authority is missing.
+- ready_for_review: frozen self-checked artifact received.
+- accepted: the responsible acceptance decision covers that revision.
+- cancelled: stopped or superseded, with unfinished work preserved.
 
-The lead reads the short handoff first, then expands inspection depth according to risk, affected criteria, gaps and contradictions. Independent reviewers read frozen files and do not race author edits. A later change invalidates affected evidence; either recheck it or keep acceptance pending. Do not change tests to fit results.
+A timeout is not proof of non-execution. Reconcile task identity, attempt and activity before retrying. An uncertain identity remains pending; never create a duplicate to bypass uncertainty.
 
-A new lead/worker verifies role, actual directory, current owner/attempt, policy and source revision before edits. Read current state and linked active trials, not all historical logs. Do not promote local tests, emulators, prototypes or AI roleplay into production or real-user evidence.
+## Ownership and integration
 
-For a repetitive context problem, shorten the linked current record or start a fresh authorized task with a frozen handoff. Do not open extra sessions solely to avoid reading the critical evidence.
+Prefer one end-to-end owner for coupled work. Assign a separate integrator only when distinct results actually need integration; name the baseline, write scope and affected-caller checks. One person/session can implement and integrate its own slice without an extra role.
 
-## Current state and evidence storage
+Before takeover, verify the current source and that the old writer stopped, or isolate scopes so writes cannot collide. Record the new owner and reason before editing. Late output may inform review but cannot overwrite the current owner's work.
 
-Record an ownership/start event before the first edit after transfer, not during final reporting. Keep only active rows and the latest accepted checkpoint in status; link a closed attempt instead of copying its narrative forward. Effective project guidance must name its adopted scope and evidence; proposed/deferred trials are not active instructions. Workers read their packet and necessary policy; do not require every worker to load the entire project log.
+A lead may take over within granted authority, including explicit solo work. Record the intervention and its effect on a trial's criteria. Do not automatically classify a valid product result as failed, or describe main reimplementation as successful specialist delivery.
 
-During a documented path migration, keep exactly one writable policy/status. Preserve original bytes in a verified archive and provide an old-path-to-archive-entry map for historical evidence. Do not rewrite old evidence references to pretend they were originally produced at the new location. Candidate code and one-off build scripts belong in temporary development workspaces, not normal project records.
+Before integrating, compare the current baseline, preserve unrelated changes and run checks affected by the combination. Passing individual artifacts do not establish integrated acceptance.
+
+## Review and repair
+
+The author hands off a frozen revision with exact commands/results and limitations. Each criterion is verified, failed, blocked, not run or unknown. An independent reviewer receives source, relevant raw evidence, criteria and limitations without an expected verdict. Self-check is useful but not independent review.
+
+Lead reads the handoff first, then decisive checks. Expand inspection for risk, missing evidence or contradiction. Carry unaffected proof only with a source comparison; changed dependencies or acceptance configuration may invalidate it too.
+
+Worker and reviewer exchange one consolidated finding list and close ordinary repairs in scope. When tools or authority prevent direct exchange, lead relays a short packet. After two failed repairs of the same issue, reassess cause, scope or verification before another implementation attempt, or stop. Changing attempt IDs does not reset the count. Continue only under an evidenced revised approach and existing authority; otherwise escalate the unresolved decision.
+
+A missed first usable slice, repeated disproven diagnosis or substantial lead rework is an earlier reassessment trigger. Do not wait for a broad matrix to reveal that the basic caller fails.
+
+## Resume and communicate
+
+A replacement reads the current handoff and necessary contracts/evidence, verifies owner/source and resumes the named next action. It need not reconstruct the whole chat.
+
+Use supported event waits. Send only a meaningful outcome, changed risk, decision, blocker or correction, plus minimum platform-required updates. A stopped task needs a truthful handoff, not a promise of unattended continuation.

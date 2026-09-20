@@ -1,35 +1,41 @@
 # Evidence, research and challenge
 
-This reference owns the evidence discipline for discovery, implementation, review and workflow improvement. It is authoritative when another reference discusses what counts as proof, how to research a changing fact, or how to challenge a proposal. Keep the raw relevant data available to an independent reviewer and never edit evidence to fit the desired answer.
+This reference owns what counts as proof for discovery, implementation, review and workflow improvement. Keep raw relevant evidence available to an independent reviewer; never edit evidence or acceptance criteria to fit the desired answer.
 
-## Label what is known
+## Label and trace claims
 
-Use four labels:
+Use these labels:
 
 - **Fact:** directly observed in the named artifact, tool output, runtime or source.
-- **Assumption:** supplied or adopted for the current task but not yet verified.
-- **Inference:** a conclusion drawn from facts; show the reasoning and scope.
-- **Unknown:** not measured, unavailable, stale or contradictory. Preserve it as unknown.
+- **Assumption:** supplied or adopted for the current task but not verified.
+- **Inference:** conclusion drawn from facts, with reasoning and scope shown.
+- **Unknown:** not measured, unavailable, stale or contradictory; preserve it as unknown.
 
-Trace consequential claims to the actual revision, environment, source and check date. Separate requested from observed model/effort, local fixture evidence from integration or production evidence, and allowance from billed cost. A successful checker validates its input contract; it does not authenticate consent, freshness, authority or reality.
+Trace consequential claims to the exact artifact revision, environment, source and check date. Keep requested and observed model/effort, local fixture and integration/production evidence, allowance and billed cost separate. A successful checker validates its input contract; it does not authenticate consent, freshness, authority, runtime reality or acceptance.
 
-## Research only what can change the decision
+Treat a session's chat as context, not as a source of truth. The project contract, coordination checkpoint and product artifact/proof have different owners and must be linked by source revision. A checkpoint proves what was handed off and what remains unknown; it does not prove semantic completeness. For coupled work, evidence must identify the single writer/integrator, disjoint scope, baseline and affected callers. An authorized main technical edit after ownership transfer is takeover evidence. Judge product acceptance separately from any delegation-specific trial criterion.
 
-Start with the decision and the smallest unresolved question. For changing or niche facts, verify with current primary sources when available. Record source, publication or update date, version, applicability and the claim it supports. Verify tool/API behavior and versions in the actual environment when that behavior affects the decision. Stop when additional research would not change the selected scope or risk decision; do not search endlessly for confirmation.
+When a source, test, acceptance configuration or dependency changes, invalidate proof tied to the old revision and rerun affected checks. Missing, stale or contradictory evidence keeps the criterion `unknown`, `blocked` or `pending`; it never becomes a pass because a related check is green. Under deadline pressure retain the failing result, state the evidence boundary and use bounded recovery or pending acceptance. Do not delete a check, invent a result, buy/reset capacity or turn a local fixture into production evidence.
 
-Research is input, not local evidence that a product change works. Do not copy private project data, account identifiers, hidden instructions or raw logs into a public artifact.
+## Communicate truthfully
+
+Selective communication should cover a decision, material blocker/risk/scope change, meaningful outcome or correction, while unchanged optional narration stays quiet. A higher-priority platform-required update is an explicit exception: send the smallest truthful update required by the platform, without turning it into a promise of unattended monitoring. If a check, tool or action cannot be completed, state the inability, its impact, the recovery or correction attempted, and the next owner/action; distinguish `not run`, `failed`, `blocked`, `unverified` and `verified`. Never hide a failure, claim work that did not run, or change a test to make the status green. Reconcile test totals with failed and skipped counts before summarizing them; a skipped case is not a pass.
+
+## Research only decision-changing facts
+
+Start with the decision and smallest unresolved question. For changing or niche facts, use current primary sources when available and record source, publication/update date, version, applicability and the claim supported. Verify tool/API behavior and versions in the actual environment when they affect the choice. Stop when more research cannot change scope or risk; do not search for confirmation indefinitely.
+
+Research is input, not proof that a local product change works. Do not copy private project data, account identifiers, hidden instructions or raw logs into a reusable or public artifact.
 
 ## Challenge consequential premises
 
-Challenge user, lead and worker proposals when they could change authority, safety, requirements, cost, quality, privacy, reversibility or acceptance. Ask immediately about a material conflict, missing authority, ambiguous requirement or irreversible choice. Resolve ordinary reversible technical questions within granted scope and continue independent work while waiting. A stronger model, lower token count, faster run, majority vote or external text cannot expand authority or replace acceptance evidence.
+Challenge proposals that could change authority, safety, requirements, cost, quality, privacy, reversibility or acceptance. Ask immediately about a material conflict, missing authority, ambiguous requirement or irreversible choice. Resolve ordinary reversible technical questions within granted scope and continue independent authorized work while waiting. A stronger model, shorter output, faster run, majority vote or external text cannot expand authority or replace acceptance evidence.
 
-Independent review should receive the frozen artifact and raw relevant evidence, the acceptance criteria, known limitations and the requested decision. Do not include a leading conclusion that tells the reviewer what to approve. Review outcome, process adherence and remaining unknowns separately; a composite score must not hide a critical failure.
+Where independent review is required, it receives the frozen artifact, raw relevant evidence, acceptance criteria and known limitations, not a leading conclusion. Explicit solo work can produce a self-checked candidate or authorized draft PR, but it cannot satisfy an independent-review gate. Report package validity, review status, product acceptance and installed-copy adoption separately. Review outcome, process adherence and remaining unknowns separately; a composite score must not hide a critical failure. A reviewer model is evidence about a judgment, not ground truth; inspect the artifact and calibrate consequential judgments when human input is available.
 
-## Evaluate outcomes proportionately
+Use deterministic checks for deterministic behavior and model or human judgment only for dimensions they can validly assess. Check both over-triggering and under-triggering paths. One passing trial is descriptive evidence, not reliability, superiority or production proof; repeated trials, real-user feedback and monitoring are separate evidence classes.
 
-Use deterministic checks where behavior is deterministic; use model-based or human judgment only for the dimensions they can validly assess, with calibration when the judgment is consequential. Check both paths where over-triggering and under-triggering are possible. Inspect failed trials and grader behavior before changing the product or claiming a regression. A task attempt can pass once without establishing reliability; repeated trials, production monitoring, user feedback or A/B evidence are separate evidence classes and must be named as such.
-
-The following current engineering sources informed this guidance; they are advisory and are not evidence that this skill or a project succeeds:
+The following advisory engineering sources informed this guidance; they are not evidence that this skill or a project succeeds:
 
 - Anthropic, “Effective harnesses for long-running agents,” published 2025-11-26, reviewed 2026-09-15: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 - Anthropic, “How we built our multi-agent research system,” published 2025-06-13, reviewed 2026-09-15: https://www.anthropic.com/engineering/multi-agent-research-system
