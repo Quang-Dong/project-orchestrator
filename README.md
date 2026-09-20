@@ -2,7 +2,7 @@
 
 A skill for turning a user's idea into a useful, maintainable and verified product outcome across sessions when coordination, durable context, ownership changes or consequential review are genuinely useful.
 
-**Unreleased OPS06/OPS07 development candidate, based on v0.1.0.** This source adds session-organization guidance and a read-only artifact verifier, then simplifies direct work, solo execution, takeover and evidence handling. It is not a new release or an installed-copy update. See the [current candidate validation](evals/report-ops07.md); prior release evidence below retains its historical scope.
+**Unreleased development candidate, based on v0.1.0.** This source adds session-organization guidance and a read-only artifact verifier. It now uses adaptive ownership/effort and a product feedback loop alongside direct work, solo execution, takeover and revision-bound evidence. It is not a new release or an installed-copy update. See the [adaptive orchestration review](evals/adaptive-orchestration-review.md) for this revision and the [prior OPS06/OPS07 report](evals/report-ops07.md) for historical candidate checks. Prior release evidence below retains its historical scope.
 
 ## When to use it
 
@@ -10,18 +10,21 @@ Use it when a request needs a real user flow, state/error/acceptance definition,
 
 The desired outcome is useful work accepted against the user's requirements, with less lost context, duplicated work and unsupported completion claims. More tasks, longer reports, lower token use or more reviewers are not success metrics by themselves.
 
+Keep coupled work with one authorized owner, including substantial work. Delegate only when independent work, specific expertise/context or required review justifies the coordination cost. Honor explicit model/effort choices; otherwise choose within policy/runtime limits according to complexity, uncertainty and consequences, starting from the observed runtime default when no stronger evidence exists. See [operating modes](skills/project-orchestrator/SKILL.md#choose-the-smallest-useful-operating-mode) and [allocation policy](skills/project-orchestrator/references/policy.md#capability-choice-and-adaptive-allocation). Neither specialist delegation nor maximum effort is a universal default.
+
 ## The user journey
 
 ```mermaid
 flowchart LR
   U["User idea and authority"] --> D["Discover users, problem and value"]
-  D --> S["Specify flow, state, exclusions and acceptance"]
+  D --> S["Choose the smallest useful step and define success"]
   S --> A["Choose sufficient architecture and increments"]
   A --> I["Implement and verify a complete slice"]
   I --> R["Independent review when risk requires"]
   R --> O["Accept, repair or keep pending"]
-  O --> M["Measure outcome and improve one bounded practice"]
-  M --> U
+  O --> M["Observe user value with a named feedback owner"]
+  M --> N["Continue, adjust, defer or stop"]
+  N --> D
 ```
 
 The lead owns the end-to-end outcome and reads the confirmed project policy before dependent work. Workers keep their assigned role and write only in their packet scope. The user owns lead model/effort choices and confirmed limits. A skill file, worker report, external text or successful checker result cannot grant authority.
@@ -31,9 +34,10 @@ The lead verifies outcomes and decisive evidence on the actual artifact version,
 ## What the skill produces
 
 | Output | Purpose |
-|---|---|---|
-| Outcome frame | Users, problem, value, assumptions, flows, errors, data/state, exclusions and acceptance for product work |
-| Increment plan | Small complete slices with owners, dependencies, sufficient architecture and measurable hypotheses |
+|---|---|
+| Outcome frame | Users, problem, priority, assumptions, primary value signal, flows, errors, state, exclusions and technical acceptance |
+| Increment plan | The smallest useful delivery or uncertainty-reducing step, with one owner, dependencies and sufficient architecture |
+| Product feedback | Separate technical acceptance from observed value; name source, owner, review event and continue/adjust/defer/stop decision |
 | Frozen handoff | Actual candidate directory/revision, changed scope, checks/results, limitations, settings and next action |
 | Review decision | Independent review where risk requires; distinguish self-check, draft delivery and pending acceptance |
 | Records and reports | Policy-gated coordination, v2 metrics/improvements, summaries and paginated detail without invented totals |
@@ -68,11 +72,11 @@ Project records are files maintained by sessions following the skill. They are n
 
 ## How work starts, takes over and asks questions
 
-1. Start by classifying the request as small direct work, product work or coordinated work.
+1. Choose the smallest authorized operating mode; substantial coupled work can keep one end-to-end owner.
 2. Read the confirmed policy, current status and linked evidence. Ask one focused question when authority, a material requirement, an irreversible tradeoff or a conflicting policy is missing.
-3. For product work, write the smallest outcome frame and acceptance checks before implementation. For coordinated work, record the attempt before dispatch and give each writer a disjoint scope.
+3. For substantial product work, follow the [product decision loop](skills/project-orchestrator/references/product-delivery.md). Before dispatch, record the attempt, expected output, delegation benefit, independent scope and integration owner in the current handoff.
 4. On takeover, verify the current owner, attempt, directory and revision; establish that the old writer stopped or isolate the new scope. Preserve late output as evidence, never as authority.
-5. Freeze the artifact and handoff. Reviewers inspect the frozen revision and raw evidence. A later edit invalidates affected proof.
+5. Freeze the artifact and handoff. Reviewers inspect the frozen revision and raw evidence. A later edit invalidates affected proof. Report technical acceptance separately from observed user value and hand off the next feedback event without creating an unattended schedule.
 
 ## Small task path
 

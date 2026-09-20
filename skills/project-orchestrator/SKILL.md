@@ -5,31 +5,26 @@ description: Organize product-development sessions around useful outcomes, clear
 
 # Project Orchestrator
 
-Coordinate existing sessions developing the host project's product. Correct user outcome, authority, truthfulness and data safety are mandatory. Within those constraints, optimize for:
-
-1. Appropriate system design for the product and session organization.
-2. Early verification of a usable slice.
-3. Execution, integration and acceptance quality.
-4. Speed and appropriate resource allocation.
-5. Proportionate takeover, learning and simplification.
+Organize product work around a useful, verified outcome. Correct user outcome, authority, truthfulness and data safety are mandatory. Choose sufficient design, verify usable slices early, and reduce avoidable coordination, rework and resource use on the path to acceptance. Judge allocation by outcome and observed cost, not the number of agents or their effort setting.
 
 Design starts from the outcome and constraints; it is not a requirement to design the whole system before testing. This skill grants no model access, spending, dispatch, release or installation authority.
 
 ## Choose the smallest useful operating mode
 
 - **Direct:** a clear, bounded, reversible change with low consequence and a relevant check may stay with one session when policy permits. A small behavior change is not automatically coordinated work. Data/security/shared-contract risk, uncertain recovery or ownership conflict requires the corresponding safeguards.
-- **Specialist-first:** for substantial professional work, when delegation is authorized, assign an allowed specialist before the lead performs deep discovery, design, implementation, diagnosis or review. Keep coupled work with one end-to-end owner; parallelize only independent work with clear integration.
+- **One end-to-end owner:** keep substantial, coupled work with one authorized owner across discovery, design, implementation and integration. Size alone does not require delegation or a new session.
+- **Targeted delegation:** use independent review when required and authorized. For other delegation, identify an independent workstream or specific expertise/context need whose expected benefit justifies the coordination cost. Record that reason through the [dispatch contract](references/handoffs.md#dispatch); parallelize only independent work with disjoint writes within granted authority.
 - **Explicit solo work:** honor a user's instruction to work alone without starting other sessions. Implement, self-check and hand off within authority. Self-review is not independent review; required independent acceptance remains pending.
 
-The lead owns direction, consequential contracts, exceptions and acceptance. Workers own assigned scope. If the authorized operating mode cannot proceed, report the blocker; do not silently change models, permissions or mode. Ordinary coordination and short handoff inspection do not need another specialist.
+The lead owns direction, consequential contracts, exceptions and acceptance. The end-to-end owner may be the lead or a worker only within the authority actually granted. Permission for `smallDirectWork` does not authorize all substantial solo work. If the chosen mode lacks authority or capability, stop its dependent actions and report the gap; keep separately authorized work moving. Ordinary coordination and short handoff inspection do not need another specialist.
 
 ## Read only the relevant contract
 
-Use the project's confirmed policy, current status and linked requirement/evidence records. For model/effort selection and actual runtime support, read [policy](references/policy.md). The user controls the main session's settings. Use the highest specialist effort actually permitted and supported unless the user specifies otherwise.
+Use the project's confirmed policy, current status and linked requirement/evidence records. For model/effort selection and actual runtime support, read [policy](references/policy.md). The user controls the main session's settings. Honor explicit worker settings; otherwise use the task-based selection rule in that reference, without defaulting to maximum effort.
 
 Keep three responsibilities distinct in existing records: the **project contract** owns goals and acceptance; the **coordination checkpoint** owns current owner, attempt and next action; the **artifact and evidence** establish what works at a specific revision. Conversation supplies context, not proof. Do not create a competing backlog, registry, SDK or background engine.
 
-For product work, read [product delivery](references/product-delivery.md). Select discovery, design, implementation, integration, authorized operations or retirement only when the task needs them. For changes across layers, verify the smallest real caller path before broad implementation or a full test matrix.
+For product work, read [product delivery](references/product-delivery.md) to choose the problem, smallest useful step and feedback decision. Technical acceptance and observed user value are separate claims. Select only the lifecycle work the task needs; the reference owns early caller checks and increment sequencing.
 
 ## Own, hand off and recover
 

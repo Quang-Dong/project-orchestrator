@@ -1,6 +1,6 @@
 # Coordination and handoff
 
-Apply the operating modes and priorities in [SKILL.md](../SKILL.md). This reference owns dispatch, ownership and recovery mechanics, not another mandatory workflow.
+Apply the operating modes and outcome constraints in [SKILL.md](../SKILL.md). This reference owns dispatch, ownership and recovery mechanics, not another mandatory workflow.
 
 ## One current handoff
 
@@ -27,7 +27,7 @@ Update the handoff when ownership, source/evidence status, a material blocker or
 
 ## Dispatch
 
-Before dispatch, record the attempt, owner, authorized directory/write scope, versioned input, outcome/acceptance and required settings. Validate capability and policy using [policy](policy.md). Record actual settings only after observing the running task; requested settings are not facts.
+Before dispatch, record the attempt, owner, authorized directory/write scope, versioned input, outcome/acceptance and required settings. Include the expected output, reason delegation helps, scope independent of other writers and integration owner; reference existing fields instead of duplicating them. For an independent reviewer, the expected output is a verdict/findings, the scope is read-only and the lead owns the acceptance decision. Validate capability and policy using [policy](policy.md). Record actual settings only after observing the running task; requested settings are not facts.
 
 Use states only as supported by evidence:
 

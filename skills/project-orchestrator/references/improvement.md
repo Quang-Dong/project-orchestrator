@@ -1,6 +1,6 @@
 # Bounded improvement
 
-Use `observe -> diagnose alternatives -> smallest change -> verify -> keep/revise/revert/defer`. Apply the priorities and invariants in [SKILL.md](../SKILL.md); more roles, documents or lower token counts are not success by themselves.
+Use `observe -> diagnose alternatives -> smallest change -> verify -> keep/revise/revert/defer`. Apply the outcome constraints in [SKILL.md](../SKILL.md); more roles, documents or lower token counts are not success by themselves.
 
 ## Locate the problem
 
@@ -18,7 +18,7 @@ For a real process trial, use existing v2 records to name one intervention, owne
 
 ## Measure useful progress
 
-Check the accepted outcome, design tradeoffs, defects, rework, takeover, main intervention, elapsed time and usage where observed. Distinguish product success from process adherence and trial criteria. Explicit main takeover may rescue a product while failing a delegation-specific criterion.
+Check the accepted outcome, design tradeoffs, defects, rework, takeover, main intervention, elapsed time and usage where observed. Distinguish technical acceptance, observed user value, process adherence and trial criteria. Use the [product feedback loop](product-delivery.md#observe-value-and-decide-next) for user-value evidence; do not duplicate it in a workflow experiment. Explicit main takeover may rescue a product while failing a delegation-specific criterion.
 
 A missed first usable slice, repeated wrong diagnosis or large lead reimplementation warrants immediate reassessment. Two failed repairs of the same issue require a new evidenced diagnosis/approach or a stopped handoff, not renamed attempts or more effort by default.
 

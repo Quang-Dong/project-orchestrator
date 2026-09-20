@@ -20,11 +20,20 @@ Required policy fields:
 
 The schema intentionally has no hardcoded models, machine paths, glossary or global budget. Unknown fields or versions are rejected rather than silently changing meaning.
 
-## Capability choice and specialist-first dispatch
+## Capability choice and adaptive allocation
 
 For each new objective, record in its existing task record or packet whether the capability choice was explicit or `Auto`, the smallest selected skill/plugin set, observed versions/capabilities, conflicts checked and fit reason. `Auto` means the smallest appropriate set available now; it is not permission to install. Follow-ups and internal dispatch inherit the choice. Ask the user before dependent work when no valid choice exists or the objective materially conflicts with it; re-select only after a material objective, requirement, environment or availability change.
 
-Use the direct, specialist-first or explicitly solo mode defined in [SKILL.md](../SKILL.md). For an authorized specialist selection, use the highest effort supported by the confirmed policy/budget and runtime unless the user specifies otherwise. Validate capability before relying on it; link capture source and exact policy/runtime bytes in the current handoff. Reuse that evidence while relevant conditions are unchanged. Record requested settings before dispatch and actual settings after observation. Missing mechanism, identity or capability blocks dependent dispatch, not separately authorized solo work. Do not silently change mode, downgrade, change lead settings, buy/reset capacity or duplicate a dispatch. A current solo instruction is task-scoped authority, not a rewrite of the project delegation allowlist.
+Use the operating modes in [SKILL.md](../SKILL.md) within existing authority. Model allowlists, effort limits and budget remain constraints on allocation, not targets to exhaust. `smallDirectWork` grants only its named scope; substantial solo work needs its own authority. A current solo instruction is task-scoped authority, not a rewrite of the delegation allowlist.
+
+For an authorized worker selection:
+
+1. Honor the user's explicit model and effort. If unavailable or inconsistent with confirmed limits, reconcile the conflict before dependent dispatch; do not silently substitute settings.
+2. If effort is unspecified, assess complexity, uncertainty and the consequence of a wrong result. Use the observed runtime default as a starting point when it is permitted and no stronger task evidence exists. Straightforward, well-checked work can justify a lower supported effort; consequential uncertainty can justify a higher one. Maximum effort is not the default, and minimum effort is not a goal by itself.
+3. If the runtime default is unknown or outside policy, select another allowed, available setting only when authority and task evidence justify it; otherwise ask a focused question. Do not assume the order of an allowlist ranks capability or cost. No universal model names or effort tiers are prescribed.
+4. Record the selection reason in the current handoff. Before increasing effort or changing allocation, diagnose the evidence that the current approach is insufficient; elapsed time or a failed repair alone does not establish that. Keep [repair boundaries](handoffs.md#review-and-repair) in force.
+
+Validate capability before relying on it; link capture source and exact policy/runtime bytes in the current handoff. If a runtime default informed selection, link its observed source separately; do not add fields to the checker runtime inventory. Reuse unchanged evidence. Record requested settings before dispatch and actual settings after observation. Missing mechanism, identity or capability blocks dependent dispatch, not separately authorized solo work. Do not change lead settings, buy/reset capacity or duplicate a dispatch. Changing an existing assignment requires the ownership checks in [handoffs](handoffs.md#ownership-and-integration).
 
 ## Read-only checker
 
@@ -61,6 +70,6 @@ The checker emits JSON and never writes project files, dispatches or changes set
 
 At first activation, group only unresolved questions about allowed models, effort, mechanism and budget. Save confirmed answers with a decision reference before execution; do not ask again when valid policy already answers. If an explicit current instruction changes policy, reconcile before dispatch.
 
-After a runtime error, stale snapshot or version mismatch, refresh the relevant actual capability evidence and revalidate. An unavailable allowed model may be replaced only by another allowed, available choice. Keep requested and observed model/effort distinct. When identity or authority is uncertain, resolve it read-only and leave dependent work blocked.
+After a runtime error, stale snapshot or version mismatch, refresh the relevant actual capability evidence and revalidate. When the user has authorized alternative selection, an unavailable model may be replaced only by another allowed, available choice under the selection rule above. An explicit model/effort choice is not silently replaced. Keep requested and observed model/effort distinct. When identity or authority is uncertain, resolve it read-only and leave dependent work blocked.
 
 Selection v2 includes hashes of the exact policy/runtime bytes and `notVerified` fields for approval authenticity, runtime freshness, remaining budget and task-creation authority. For capped policy, `budgetCheckRequired` remains true: missing capacity data is a blocker, not zero usage or spend permission. Historical `dispatch_allowed` outputs from the initial checker are not v2 evidence.
