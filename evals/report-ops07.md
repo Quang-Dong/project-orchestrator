@@ -70,6 +70,25 @@ coordinated work. No universal model or project-specific allowlist is added.
 
 ## Limits and adoption
 
+### Session-choice follow-up
+
+A documentation-only follow-up adds continuity-based session selection to the
+entrypoint and handoff reference. The same author inspected these additional
+decisions; no new sessions were created to simulate independent validation:
+
+- Same-slice implementation and review fixes keep their respective writer/reviewer contexts.
+- Long coherent work can continue with compaction; length alone does not force a reset.
+- A distinct objective favors a fresh session with the existing concise handoff.
+- Independent review does not inherit the author's full reasoning through a fork.
+- A genuine alternative can fork when inherited history is useful and creation is authorized.
+- Repeated context confusion triggers diagnosis before a reset; repair limits and authority persist.
+- Explicit solo work does not acquire permission to open a reviewer session.
+
+The follow-up reruns the skill validator, checks local links/anchors and the diff,
+and leaves executable code and schemas unchanged. Earlier Python-suite evidence
+is carried for those unchanged files; hosted CI checks the new PR head separately.
+Source-backed recommendations remain unproven as comparative performance claims.
+
 Package validity and instruction consistency are established only to the extent
 of the checks above. Real multi-session behavior, recovery under live contention,
 customer value, long-term reliability, resource savings and faster delivery remain

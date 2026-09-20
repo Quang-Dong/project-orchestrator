@@ -62,6 +62,25 @@ Worker and reviewer exchange one consolidated finding list and close ordinary re
 
 A missed first usable slice, repeated disproven diagnosis or substantial lead rework is an earlier reassessment trigger. Do not wait for a broad matrix to reveal that the basic caller fails.
 
+## Continue, compact, fork or start fresh
+
+Choose by continuity and evidence needs, not a fixed turn count, duration or token threshold:
+
+| Situation | Default |
+| --- | --- |
+| Implementing, testing or fixing review findings for the same slice | Continue the writer's session; reuse the independent reviewer's session for affected rechecks |
+| Long but coherent work that is still progressing | Continue; use available compaction when needed, with important decisions and state in the existing handoff |
+| A completed outcome followed by a distinct objective | Prefer a new session with the relevant contract, artifact and concise handoff |
+| Independent review of the current author's work | Use a separate reviewer context when authorized; provide requirements, frozen source, raw evidence and limits without the author's preferred verdict |
+| An alternative approach needs the existing reasoning history | Fork if supported and authorized; inherited history is not a clean independent review context |
+| Repeated confusion about current decisions/state or persistence with disproven approaches | Reassess the cause; consider a fresh session if context interference is supported, rather than assuming a reset fixes the method |
+
+A compacted conversation preserves continuity but may omit details; verify consequential state against artifacts. A new session must reconstruct enough context, and a fork inherits history, so neither automatically reduces work or improves judgment. A separate reviewer can still be wrong. Do not infer cost savings or weekly allowance from session age or cached-token counts.
+
+Before a new owner writes, apply the ownership checks above. Transfer the objective and authority, checkout/revision, verified state, failed or unrun checks, decisions still in force and next action through the existing handoff. Link necessary raw evidence instead of copying the entire transcript. Starting a new session or compacting does not reset repair counts, permissions or pending acceptance gates. An explicit solo instruction still prohibits creating extra sessions for review or convenience unless the user changes it.
+
+These defaults synthesize [OpenAI's guidance on coherent chats](https://learn.chatgpt.com/guides/best-practices#organize-long-running-chats), [Anthropic's context-engineering discussion](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and its [model-dependent context-reset findings](https://www.anthropic.com/engineering/harness-design-long-running-apps). They are decision guidance, not proof of a universal reset threshold or measured gains for the current model.
+
 ## Resume and communicate
 
 A replacement reads the current handoff and necessary contracts/evidence, verifies owner/source and resumes the named next action. It need not reconstruct the whole chat.

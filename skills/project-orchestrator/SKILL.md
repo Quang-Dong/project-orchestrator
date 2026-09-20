@@ -35,6 +35,8 @@ For product work, read [product delivery](references/product-delivery.md). Selec
 
 Use one writer per scope and one current handoff with linked evidence. Read [handoffs](references/handoffs.md) for dispatch, timeout, takeover and integration. Record an attempt before dispatch; observe actual settings after execution starts. Reuse unchanged capability evidence; refresh it when relevant conditions change.
 
+Reuse a session while the work remains one coherent outcome. Prefer a new session for a distinct objective, independent review or demonstrated context confusion; use a fork for a genuine branch that needs inherited history. Length, elapsed time or compaction alone is not a restart trigger. Follow the [session-choice guidance](references/handoffs.md#continue-compact-fork-or-start-fresh) within the user's session-creation authority.
+
 Authorized lead takeover is possible after stopping the old writer or isolating its scope, verifying the baseline and recording the reason. Report intervention honestly; it does not by itself fail product acceptance. A trial specifically measuring delegation may still fail its separate criterion.
 
 Reassess when the first usable slice fails, diagnosis repeatedly proves wrong, or the lead must substantially redo specialist work. After two unsuccessful repairs of the same issue, diagnose again or stop with a handoff; a renamed packet or attempt does not reset that boundary. Do not lower acceptance to escape it.
