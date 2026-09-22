@@ -1,8 +1,8 @@
 # Project Orchestrator
 
-A skill for agents turning a user's objective into a useful, maintainable and verified product outcome. It supports substantive solo work and authorized coordination, with context selected for the next decision, observable tool feedback and recovery from interruptions.
+A skill for agents turning a user's objective into a useful, maintainable and verified product outcome. For substantive work it defaults to authorized subagents, with the main session retaining strategy, user communication, integration and acceptance. Explicit solo choices and small direct edits remain supported, with relevant context, observable tool feedback and recovery from interruptions.
 
-**Unreleased candidate with breaking changes.** The current source accepts policy v2 and measurement records v2; reporter output is v3 and defaults to summary. It retains the read-only artifact verifier. It is not an installed-copy update or a new release. See the [evaluation index](evals/README.md) and [current author review](evals/agent-execution-review.md) for what was checked and what remains unrun.
+**Unreleased candidate with breaking changes.** The current source accepts policy v2 and measurement records v2; reporter output is v3 and defaults to summary. It retains the read-only artifact verifier. It is not an installed-copy update or a new release. See the [evaluation index](evals/README.md) and [current author review](evals/subagent-default-review.md) for what was checked and what remains unrun.
 
 ## How an agent uses it
 
@@ -37,9 +37,13 @@ The nine product-development capabilities remain covered through focused referen
 | Release and operations | [Product operations](skills/project-orchestrator/references/product-operations.md): authorized release/stop decision, checked recovery and observation owner |
 | Coordination and learning | [Handoffs](skills/project-orchestrator/references/handoffs.md) and [improvement](skills/project-orchestrator/references/improvement.md): current ownership/context, bounded repairs and a justified reusable correction |
 
-Keep coupled work with one owner. Different files or specialties alone do not establish independent work. Before authorized delegation, identify stable inputs, expected output, shared contracts/state/resources, the benefit and the integration owner. Main-session model/effort remains user-owned; worker allocation honors user settings and actual policy/runtime without defaulting to maximum effort.
+Use the canonical [execution-mode rules](skills/project-orchestrator/references/policy.md#execution-mode-and-lead-responsibility): substantive work uses subagents without another mode question once authority, configuration, budget and runtime are sufficient. Honor an existing solo/session choice or user-granted discretion. Ask before switching to an independent session or having the main session implement everything if the choice is not already covered. Missing prerequisites call for clarification, not silent solo fallback.
 
-The [four fictional examples](skills/project-orchestrator/references/worked-examples.md) clarify startup, unknown demand, diagnosis and a changing assignment. They are optional illustrations, not measured agent outcomes.
+Keep coupled work with one execution owner, which can be a worker; the main session retains overall responsibility. Different files or specialties alone do not establish independent work. Identify stable inputs, expected output, shared resources and the integration owner. One worker is sufficient when appropriate; concurrency and extra management roles are not required.
+
+Without an explicit user model choice, [worker allocation](skills/project-orchestrator/references/policy.md#capability-choice-and-adaptive-allocation) prefers allowed, available Luna/Spark models. Resolve exact IDs and override/context behavior from the actual runtime. Effort remains adaptive, starting from a permitted observed default; Luna/Spark are not effort levels. Main-session settings remain user-owned. Neither the preference nor this workflow grants budget or amends a project policy.
+
+The [fictional examples](skills/project-orchestrator/references/worked-examples.md) clarify direct edits, explicit solo work, default subagents, an independent-session choice, diagnosis and a changing assignment. They are optional illustrations, not measured agent outcomes.
 
 ## Context, communication and recovery
 
@@ -92,7 +96,7 @@ Exit 0 means declared hashes match, 1 means missing/mismatched declared files, a
 
 ## Evidence and limits
 
-The [evaluation index](evals/README.md) separates executable tool tests, author decision reviews, prepared execution packets, historical trials and manifests by revision. The current [worker packets](evals/agent-execution/worker-packets.md) and [assessor rubric](evals/agent-execution/assessor.md) are physically separate and **prepared, not executed**. Future authorized runs stage only required worker material, not the whole repository.
+The [evaluation index](evals/README.md) separates executable tool tests, author decision reviews, prepared execution packets, historical trials and manifests by revision. The current [worker packets](evals/subagent-default/worker-packets.md) and [assessor rubric](evals/subagent-default/assessor.md) are physically separate and **prepared, not executed**. Future authorized runs stage only required worker material, not the whole repository.
 
 Independent review remains required for persisted-data/security/shared-contract changes, difficult recovery, contradictory evidence and project-defined risks. Explicit solo work can deliver a self-checked candidate or authorized PR while required review and acceptance remain open. Technical verification, independent review, release and observed user value are distinct; PR Draft/non-draft status cannot establish any of them.
 

@@ -1,6 +1,6 @@
 interface:
   display_name: "Project Orchestrator"
-  short_description: "Guide agent execution to verified product outcomes"
-  default_prompt: "Use $project-orchestrator to resolve the next consequential product decision, act within authority, and verify the actual outcome."
+  short_description: "Coordinate authorized subagents for product outcomes"
+  default_prompt: "Use $project-orchestrator to coordinate substantive work through authorized subagents, honor existing execution choices, and verify the integrated outcome."
 policy:
   allow_implicit_invocation: true

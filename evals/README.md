@@ -4,8 +4,12 @@ Start here to identify what was checked and which source it applies to. This dir
 
 ## Current candidate and open questions
 
-- [Agent-execution review](agent-execution-review.md): current author inspection and tool verification, based on `318f5a6fbbc6fd23f1f1e26cfb70f2ef570477cb`; final commit/CI are bound on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
-- [Execution packets](agent-execution/worker-packets.md) and separate [assessor setup/rubric](agent-execution/assessor.md): five solo and six coordination cases for the new capability default and contracts. **Prepared, not executed.** Stage only needed execution material; neither the full repository nor assessor files belong in worker context.
+- [Subagent-default review](subagent-default-review.md): current author inspection and package verification, based on merged revision `7bd89b42cb91a2ad671539c5840aaaeb608d86fa`; the new PR binds the final candidate SHA and hosted checks.
+- [Current execution packets](subagent-default/worker-packets.md) and [separate assessor rubric](subagent-default/assessor.md): mode choice, preferred model availability, lead/worker ownership and recovery cases. **Prepared, not executed.** They do not authorize delegation or an evaluation run.
+- The entries below retain their earlier source revisions and are historical evidence/preparation, not verification of this candidate.
+
+- [Agent-execution review](agent-execution-review.md): earlier author inspection and tool verification, based on `318f5a6fbbc6fd23f1f1e26cfb70f2ef570477cb`; final commit/CI are bound on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
+- [Execution packets](agent-execution/worker-packets.md) and separate [assessor setup/rubric](agent-execution/assessor.md): five solo and six coordination cases for the earlier capability default and contracts. **Prepared, not executed.** Stage only needed execution material; neither the full repository nor assessor files belong in worker context.
 - [Earlier behavioral packets](behavioral-readiness.md) and [earlier coordination packets](coordination-readiness.md) remain unchanged historical preparation for their recorded revisions, not current-contract inputs.
 - Independent behavioral evaluation and independent review remain **not run**. No demonstrated efficiency, reliability, token saving or user-value improvement is claimed. Tool tests and self-review do not establish agent behavior.
 
@@ -27,6 +31,8 @@ python -B -m compileall -q skills evals
 These tests exercise Python tools, not agents following the prose. Report actual run counts, failures and skips from the named revision; do not reuse historical totals as a current result. Tests beneath the historical neutral fixture/outcomes belong to those example projects, not additional successes to add to the root suite count.
 
 ## Reports by revision and evidence class
+
+The subagent-default candidate is covered by the current review above; the table preserves earlier evidence at its recorded revisions.
 
 | Recorded revision or snapshot | Evidence | What remains limited |
 | --- | --- | --- |

@@ -54,7 +54,7 @@ These examples draw on [Codex subagents](https://learn.chatgpt.com/docs/agent-co
 
 ## Dispatch
 
-Before dispatch, check whether the proposed work can make useful progress with stable inputs and bounded coordination. Different files may still share a business rule, contract, state transition, database or integration decision. If frequent reciprocal changes would be needed, keep them with one owner or stabilize the boundary first. A distinct specialty can be guidance used by that owner rather than another session.
+Apply the [execution choice](policy.md#execution-mode-and-lead-responsibility), then check whether the proposed work can make useful progress with stable inputs and bounded coordination. Different files may still share a business rule, contract, state transition, database or integration decision. If frequent reciprocal changes would be needed, keep them with one execution owner, which can be a worker, or stabilize the boundary first. The main session retains overall direction and acceptance. A distinct specialty can be guidance used by that worker rather than another agent; the default does not require multiple workers or parallel writes.
 
 For an authorized assignment, record the attempt, owner, authorized directory/write scope, versioned input, outcome/acceptance and required settings. Complete the existing packet with the product outcome and requirement source, expected artifact/evidence, reason delegation helps, independent scope/exclusions and integration owner. Distinguish decisions already settled from choices delegated to the worker; name the conflict, contract change or missing evidence that requires escalation. Reference existing fields rather than creating another form. Check the applicable selection constraints using [policy](policy.md); record actual settings only after observing execution.
 
@@ -89,7 +89,7 @@ Return results with the artifact/revision, criterion-level evidence, unresolved 
 
 ## Ownership and integration
 
-Prefer one end-to-end owner for coupled work. Assign a separate integrator only when distinct results actually need integration; name the baseline, write scope and affected-caller checks. One person/session can implement and integrate its own slice without an extra role.
+Separate overall responsibility from execution ownership. The main session owns the outcome, user communication, shared decisions, cross-output integration and acceptance. A worker can own discovery, implementation, self-checks and within-slice integration end to end. Prefer one execution owner for coupled work; name its baseline, write scope and affected-caller checks. A worker's self-check is input to the main session's acceptance, not a transfer of overall authority. The main session can inspect and perform scoped integration without silently reimplementing the worker's assignment.
 
 Check the resources the actual commands can affect, not only file paths: shared Git refs, test databases, server ports, output directories and background processes. Name an owner or isolate/serialize conflicting use in the existing handoff when needed. Do not require this inventory for a direct edit with no shared-resource interaction. A worktree is a separate checkout, not a security sandbox or an independent database/service environment; repository metadata can still be shared.
 
@@ -97,7 +97,7 @@ When creating or selecting a worktree, compare its actual revision and uncommitt
 
 Before takeover, verify the current source and that the old writer and relevant processes stopped, or isolate affected resources so writes cannot collide. A stopped model turn alone is insufficient. Record the new owner and reason before editing. Match late output to its original identity, attempt and revision; it may inform review but cannot overwrite the current owner's work. Integrate only still-applicable changes after checking the current baseline.
 
-A lead may take over within granted authority, including explicit solo work. Record who changed what and why; do not describe main reimplementation as worker delivery. If a process trial exists, use [improvement](improvement.md#measure-useful-progress) for its separate criteria.
+A lead may take over within granted authority, including explicit solo work. Before taking over all implementation, apply the [execution-mode change rule](policy.md#execution-mode-and-lead-responsibility); explain and ask if no applicable choice authorizes it. Record the reason and ownership transfer, verify prior writers stopped or are safely isolated, and preserve the actual source/repair history. Do not edit a conflicting scope merely because the worker is slow or redo its output while reporting worker delivery. If a process trial exists, use [improvement](improvement.md#measure-useful-progress) for its separate criteria.
 
 Before integrating, compare the current requirement and source baseline, preserve unrelated changes and run checks affected by the combination. Reconcile producer/consumer assumptions and shared-state effects even when patches do not conflict textually. The lead applies [result synthesis](evidence-and-challenge.md#synthesize-results-against-acceptance), including original requirements and affected caller flows; passing individual artifacts does not establish integrated acceptance.
 
