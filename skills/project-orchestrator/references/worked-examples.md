@@ -18,9 +18,27 @@ Use only when a startup, diagnosis or communication decision is unclear. Compare
 
 **Sufficient output:** In the existing product record, identify the unresolved need, smallest next check, relevant technical acceptance, and the owner/event for obtaining feedback. No percentage target is invented. No contact with real users, telemetry or follow-up schedule is authorized by this example. See [product delivery](product-delivery.md#choose-the-problem).
 
+## Substantive work defaults to an authorized subagent
+
+**Request and inputs:** Complete an approved local export flow. Current confirmed policy permits subagents, an applicable budget stance is confirmed, and runtime exposes the exact allowed `gpt-6-luna` model with a supported effort. No solo or independent-session choice applies. The observed inventory confirms the ID; a similarly named model would not satisfy this selection.
+
+**Decision:** The main session identifies the export outcome, shared decisions and acceptance, then gives one worker the coupled caller/formatting/failure-path implementation. It selects `gpt-6-luna` and a supported permitted effort under [allocation rules](policy.md#capability-choice-and-adaptive-allocation), without another mode question or a mandatory High setting. The main session continues requirement clarification and prepares integration checks, rather than duplicating the implementation. The worker returns a frozen artifact and actual proof for main-session acceptance. Parallelism is unnecessary.
+
+**New finding:** The worker discovers that a caller treats an export status differently from the approved requirement. It checks the actual caller and records the discrepancy without changing the shared contract. It asks the main session to resolve that specific rule, including the revision, evidence and affected acceptance. The main session checks the requirement/context and settles the shared decision, or asks the user if needed, then returns the decision to the same worker. Routine formatting choices stay with the worker; the finding does not trigger Sol, another worker or main-session takeover.
+
+**Boundary:** If `gpt-6-luna` is absent or disallowed, the presence of GPT-5.6 Luna, Spark or Sol does not permit substitution. Missing authority, budget or required effort also keeps dependent dispatch pending; it does not authorize the main session to implement the entire flow. Group the actual missing decisions and continue only bounded discovery or independently authorized work. A later explicit user change to the model choice is handled as a new scoped instruction, not an automatic fallback.
+
+## Choose an independent session for a separate workstream
+
+**Request and inputs:** A substantial documentation audit needs a separate conversation the user can continue managing after the current delivery. No existing choice authorizes an independent session. A discovered candidate task already has an active owner and unrelated writing in progress.
+
+**Decision:** Explain why a separately managed task fits and ask whether to create one or use a named suitable existing task. Do not assign to the conflicting task while waiting. If the user chooses a new session, verify the applicable configuration and creation permission and send the bounded audit packet; if the user names an existing task, reconcile its owner/scope before reuse. If they instead choose subagents or direct work, apply that choice. Carry the decision through follow-ups and compaction; ask again only for a material uncovered change.
+
+**Sufficient output:** Identified task/owner, permitted scope, current source and expected evidence. A chosen session is not a new budget, permission escalation or automatic review verdict. See [execution mode](policy.md#execution-mode-and-lead-responsibility).
+
 ## Diagnose a failed save before another repair
 
-**Request and inputs:** On a fictional note editor, an explicitly rejected save clears entered text. The required rule is “a rejected save preserves the local draft.” There is a reproducible rejected-save fixture; neither a network cause nor a UI-state cause has been proven.
+**Request and inputs:** The assigned execution owner is diagnosing a fictional note editor where an explicitly rejected save clears entered text. The required rule is “a rejected save preserves the local draft.” There is a reproducible rejected-save fixture; neither a network cause nor a UI-state cause has been proven.
 
 **Decision:** Compare the input state immediately before the request, after the rejection and after rendering. If the fixture rejects while the draft is still present until a UI reset, that observation distinguishes reset handling from transport loss. Keep transport loss as rejected for this reproduction, with the evidence that rejected it; do not erase it from the handoff. Implement only the supported correction, then check rejected save, retained input, a subsequent successful retry and the relevant regressions through the real caller.
 

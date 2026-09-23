@@ -4,8 +4,13 @@ Start here to identify what was checked and which source it applies to. This dir
 
 ## Current candidate and open questions
 
-- [Agent-execution review](agent-execution-review.md): current author inspection and tool verification, based on `318f5a6fbbc6fd23f1f1e26cfb70f2ef570477cb`; final commit/CI are bound on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
-- [Execution packets](agent-execution/worker-packets.md) and separate [assessor setup/rubric](agent-execution/assessor.md): five solo and six coordination cases for the new capability default and contracts. **Prepared, not executed.** Stage only needed execution material; neither the full repository nor assessor files belong in worker context.
+- [GPT-6 Luna worker review](luna-worker-review.md): current author inspection and package checks, based on `4bd98b3b5c386cb196429458e3549459ebaee06a`; [PR #2](https://github.com/Quang-Dong/project-orchestrator/pull/2) binds the final candidate SHA and hosted checks. No behavioral evaluation was run.
+- The entries below retain their earlier source revisions and are historical evidence/preparation, not verification of this candidate.
+- [Subagent-default review](subagent-default-review.md): author inspection and package verification for `4bd98b3`, based on merged revision `7bd89b42cb91a2ad671539c5840aaaeb608d86fa`.
+- [Earlier execution packets](subagent-default/worker-packets.md) and [separate assessor rubric](subagent-default/assessor.md): prepared at `4bd98b3`, **not executed**. Their Luna/Spark selection variants are not current-model evaluation inputs. Preserve these files; a future authorized run requires updated, separately staged inputs and cannot inherit a success claim.
+
+- [Agent-execution review](agent-execution-review.md): earlier author inspection and tool verification, based on `318f5a6fbbc6fd23f1f1e26cfb70f2ef570477cb`; final commit/CI are bound on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
+- [Execution packets](agent-execution/worker-packets.md) and separate [assessor setup/rubric](agent-execution/assessor.md): five solo and six coordination cases for the earlier capability default and contracts. **Prepared, not executed.** Stage only needed execution material; neither the full repository nor assessor files belong in worker context.
 - [Earlier behavioral packets](behavioral-readiness.md) and [earlier coordination packets](coordination-readiness.md) remain unchanged historical preparation for their recorded revisions, not current-contract inputs.
 - Independent behavioral evaluation and independent review remain **not run**. No demonstrated efficiency, reliability, token saving or user-value improvement is claimed. Tool tests and self-review do not establish agent behavior.
 
@@ -28,6 +33,8 @@ These tests exercise Python tools, not agents following the prose. Report actual
 
 ## Reports by revision and evidence class
 
+The GPT-6 Luna worker candidate is covered by the current review above; the table preserves earlier evidence at its recorded revisions.
+
 | Recorded revision or snapshot | Evidence | What remains limited |
 | --- | --- | --- |
 | Initial content-hashed skill snapshot, 2026-09-15 | [Initial report](report.md), [decision outputs/rubric grading](results.json), [initial manifest](skill-manifest.json) | Package/isolated installation checks and two fresh contexts answering fictional decisions. Scenario actions were not executed; no current-candidate claim. No evaluated Git SHA is supplied by the initial manifest. |
@@ -42,6 +49,7 @@ These tests exercise Python tools, not agents following the prose. Report actual
 | Authority/index update `1b4b42f`; baseline `7a8063b` | [Author review](authority-and-gate-review.md) | Source/gate interpretation and package checks only; prepared behavioral cases remain unrun. |
 | Runtime coordination update `318f5a6`; baseline `1b4b42f` | [Author review](runtime-coordination-review.md) | Sixteen fictional decisions, one walkthrough and package checks; six coordination packets prepared, not executed. |
 | Agent-execution candidate; baseline `318f5a6` | [Author review](agent-execution-review.md) | Breaking policy/reporting changes, deterministic tool checks and fictional decision review; new separated packets are unrun. |
+| Subagent-default candidate `4bd98b3`; baseline `7bd89b4` | [Author review](subagent-default-review.md) | Twenty-three author decision inspections and package checks; eight separated cases are unrun and retain the earlier model-family choice. |
 
 Version labels without an evaluated Git SHA refer to their recorded content hashes and report scope. Do not invent a commit identity from a filename or treat a later commit carrying old files as the revision originally evaluated. Historical wording such as “this PR” retains the report's original scope, not every later PR commit.
 

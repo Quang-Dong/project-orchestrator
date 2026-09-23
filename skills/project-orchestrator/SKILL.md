@@ -1,6 +1,6 @@
 ---
 name: project-orchestrator
-description: Use when product work has consequential requirements, design, integration, diagnosis or acceptance decisions, or needs coordination, takeover or recovery across sessions. Supports solo work; keep clear low-risk edits direct.
+description: Use when product work has consequential requirements, design, integration, diagnosis or acceptance decisions, or needs coordination, takeover or recovery across sessions. Defaults to authorized subagent coordination; honor solo choices and keep clear low-risk edits direct.
 ---
 
 # Project Orchestrator
@@ -9,11 +9,11 @@ Turn the user's objective into a useful, well-designed, verified outcome. Qualit
 
 ## Execute the next useful step
 
-A clear, bounded, authorized change needs an edit, a relevant check and a truthful result. Do not manufacture delegation, policy files, handoffs or measurements for ceremony.
+A small, clear, bounded, authorized change needs an edit, a relevant check and a truthful result. Do not manufacture delegation, policy files, handoffs or measurements for ceremony.
 
 For substantive work, use this decision loop; it is not a requirement to write a report at every step:
 
-1. **Establish the outcome:** current user requirement, scope, authority, consequential quality conditions and evidence needed to finish. Use [startup](references/policy.md#start-with-existing-authority) only to resolve action-relevant gaps.
+1. **Establish the outcome:** current user requirement, scope, authority, applicable execution choice, consequential quality conditions and evidence needed to finish. Use [startup](references/policy.md#start-with-existing-authority) to resolve action-relevant gaps and [execution mode](references/policy.md#execution-mode-and-lead-responsibility) before substantive implementation.
 2. **Get the needed context:** current source/caller, applicable constraints and the unresolved decision. Load only the matching reference below. Add context when a new decision, missing input or contradiction requires it; do not read the entire skill or project history by default.
 3. **Act and observe:** choose the smallest useful implementation or uncertainty-reducing step. For a consequential unknown, identify what observation would change the next action; inspect the actual result before expanding. Use [implementation and diagnosis](references/implementation-and-diagnosis.md).
 4. **Decide from evidence:** continue, repair using a supported explanation, revise the approach, or stop dependent work with its missing input and next action. Check the integrated outcome against the current requirement before declaring completion.
@@ -35,9 +35,9 @@ Select relevant available skills/plugins within current authority without asking
 
 ## Choose the smallest useful operating mode
 
-Keep coupled discovery, design, implementation and integration with one authorized owner. Size or the number of specialties alone does not require another session. Delegate only when an independent output, useful separate context or required review justifies it and dispatch is authorized. Name the expected result, dependencies, reason and integration owner in the existing [packet](references/handoffs.md#dispatch).
+For substantive work, [default to subagents when prerequisites are satisfied](references/policy.md#execution-mode-and-lead-responsibility), without a repeated mode-confirmation question. The main session owns strategy, user communication, allocation, shared decisions, integration and acceptance. One worker can own coupled discovery and implementation end to end; one owner does not mean the main session does everything. Name the expected result, dependencies, reason and integration owner in the existing [packet](references/handoffs.md#dispatch); do not manufacture parallelism.
 
-Honor explicit solo work. A worker owns its assigned scope and decisions; reading this skill does not make it a director. The user controls main-session model/effort. Worker choices obey user instructions, policy and observed runtime; maximum effort is not the default.
+Honor explicit solo work, chosen mechanisms and user-granted discretion. Ask before changing to independent sessions or taking on all implementation unless an applicable choice already covers it; missing prerequisites do not silently select solo. A worker owns its assigned scope and decisions, not overall direction. The user controls main-session model/effort. Workers use [`gpt-6-luna` with adaptive effort](references/policy.md#capability-choice-and-adaptive-allocation), subject to confirmed policy/runtime and a later explicit user change. They resolve implementation details in scope and return decisions beyond the packet to the main session with evidence; uncertainty does not automatically select a stronger model or maximum effort.
 
 Use [handoffs](references/handoffs.md) for one writer per conflicting scope/resource, uncertain dispatch, requirement changes and recovery. Reconcile identity and side effects before retrying. A stopped turn need not stop a writer process; late results retain their original attempt and revision. Compaction or new IDs do not reset constraints, open acceptance or repair history. After two unsuccessful repairs of the same issue, diagnose again before another repair or stop with a useful handoff.
 

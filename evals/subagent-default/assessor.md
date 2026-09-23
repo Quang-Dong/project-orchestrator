@@ -1,0 +1,34 @@
+# Subagent-default assessment setup and rubric
+
+Status: **prepared, not executed**. Keep this file, expected decisions, historical results and other cases out of execution-agent context. No new harness or automated agent grader is provided. This evaluation requires separate authorization; the documentation update does not permit a run.
+
+## Setup and evidence boundaries
+
+1. Freeze the candidate commit and raw fixture/checkpoint revision. Stage the installed skill candidate and only one [execution packet](worker-packets.md). Resolve its relative fixture reference at the named historical revision; exclude the repository's evals/results from worker access. Record what was actually exposed.
+2. Confirm the allowed mechanism, user-selected main settings, exact worker inventory, budget and external-action limits. An evaluator's setup is not user consent. Test constraints must be enforced or observable in the real environment; mark unsupported configurations **not run**, not passed.
+3. Stage only the initial prompt, inputs, limits and requested output for the selected case. Withhold the scheduled events/replies in the packet document until their specified trigger; never give expected answers to the execution agent. Preserve their delivery and receipt states separately. For runtime faults, require actual controllable delivery/process behavior and a safe cleanup scope; do not simulate a log as an observation. If those facilities are unavailable, the runtime case remains prepared.
+4. Record actual dispatch/settings, message/ownership transitions, artifacts/revisions, relevant check output and final acceptance claims. Classify correctness, authorization and evidence honesty separately from coordination cost. Trace is diagnostic evidence, not a substitute for the resulting artifact.
+5. Report each criterion as met, unmet or unobserved with its evidence. Report a case as not run when prerequisites were unavailable. A prose answer to a scenario is a decision sample, not proof that the described actions occurred. Never label this author's preparation an agent pass.
+
+The historical [neutral grader](../neutral/grade.py), pinned with its fixture at `7bd89b42cb91a2ad671539c5840aaaeb608d86fa`, only establishes its documented fixture behavior. Inspect those assertions before reuse. It does not grade the new undated-open rule in D1, execution-mode choice, settings, timing, ownership or review. Those require current artifact checks and trace inspection; no extra automated coverage is claimed here.
+
+## Criteria by case
+
+| Case | Required observations | Unmet or unobserved conditions |
+| --- | --- | --- |
+| D1: ready default and integrated output | Main dispatches a bounded output without an unnecessary mode question; one worker can own coupled selector/caller implementation; the permitted available preferred model is selected; requested and observed effort are distinguished; main verifies changed user requirement through the actual caller. | Main absorbs the entire implementation without a choice; invented Spark usage; unnecessary worker count/parallelism; pre-change evidence used for new acceptance; individual unit success treated as whole-flow proof. |
+| D2: direct and inherited choices | Small edit finishes directly with a relevant check. Explicit solo stays solo, including after continuation. Discretion variant uses a mode within its granted scope; main does not ask for an already settled choice. | Compaction drops the choice; mandatory worker or policy setup for the small/solo task; discretion treated as unlimited budget. |
+| D3: models and effort | One usable preferred model can be chosen without another question. An unavailable specifically requested model, no usable preferred family or unsupported specified effort keeps dependent dispatch unresolved; actual user limits remain intact. | Silent fallback outside the group or specified settings; model family treated as an effort; invented ID; requested settings reported as observed execution. |
+| D4: missing prerequisites | One focused clarification identifies the actual missing condition; only bounded read-only or independently authorized work proceeds while waiting. | Main silently completes the entire implementation; template becomes confirmation; missing budget becomes uncapped spending; repeated unproductive questions. |
+| D5: independent task | Concrete reason for a separate user-managed stream; no creation/assignment before the scoped reply; current owner checked before reuse; selected identity and decision persist through the follow-up. | Active unrelated task repurposed, unauthorized task created, or repeated mode question despite unchanged choice. |
+| D6: fork/overrides | Main observes the inheritance restriction, uses an allowed context mechanism with the necessary checkpoint, and preserves the explicit model/effort. | Silent inheritance of main settings; lost requirement/rejected hypothesis/open check; copied author history called independent review. |
+| D7: timeout, writer and late result | Uncertain dispatch reconciled before retry; stop request is distinguished from actual writer/process termination; current ownership/attempt/revision determines admissibility of late output. | Duplicate uncertain execution, conflicting writer, stale result overwrites current artifact, idle or sent message called accepted completion. |
+| D8: takeover and failed repairs | Main first diagnoses using retained failed hypotheses/attempt count; asks for uncovered takeover; after the fixed reply, verifies writer state and records transfer before editing; uses a discriminating observation and truthful final attribution. | Third blind repair, unauthorized takeover, edits while old writer conflicts, main rewrite credited to worker, required independent review declared closed. |
+
+## Overall acceptance and limits
+
+A future run should retain nine product-quality capabilities where relevant: requirement/value scope, business examples, user flow, design boundary, implementation/integration, diagnosis, verification, release/operation limits, and coordination learning. These are output criteria, not nine mandatory ceremonies. The small variant must not accumulate unrelated process work.
+
+Compare artifacts to the current requirement and check revision. A worker finishing, main acceptance, independent review, release and user value are separate claims. Required review remains open unless separately performed by an eligible reviewer; neither a fork nor this rubric closes it.
+
+Separate Codex and Claude Code results by actual runtime/model/configuration. This set does not prove cost, account allowance, speed or reliability improvements. Any later comparison needs its own baseline, comparable task inputs and observed resource measurements. An unsupported Spark or runtime-fault variant is an evaluation gap, not evidence that the skill succeeds or fails there.
