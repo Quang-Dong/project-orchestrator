@@ -2,7 +2,7 @@
 
 A skill for agents turning a user's objective into a useful, maintainable and verified product outcome. For substantive work it defaults to authorized subagents, with the main session retaining strategy, user communication, integration and acceptance. Explicit solo choices and small direct edits remain supported, with relevant context, observable tool feedback and recovery from interruptions.
 
-**Unreleased candidate with breaking changes.** The current source accepts policy v2 and measurement records v2; reporter output is v3 and defaults to summary. It retains the read-only artifact verifier. It is not an installed-copy update or a new release. See the [evaluation index](evals/README.md) and [current author review](evals/subagent-default-review.md) for what was checked and what remains unrun.
+**Unreleased candidate with breaking changes.** The current source accepts policy v2 and measurement records v2; reporter output is v3 and defaults to summary. It retains the read-only artifact verifier. It is not an installed-copy update or a new release. See the [evaluation index](evals/README.md) and [current author review](evals/luna-worker-review.md) for what was checked and what remains unrun.
 
 ## How an agent uses it
 
@@ -41,7 +41,7 @@ Use the canonical [execution-mode rules](skills/project-orchestrator/references/
 
 Keep coupled work with one execution owner, which can be a worker; the main session retains overall responsibility. Different files or specialties alone do not establish independent work. Identify stable inputs, expected output, shared resources and the integration owner. One worker is sufficient when appropriate; concurrency and extra management roles are not required.
 
-Without an explicit user model choice, [worker allocation](skills/project-orchestrator/references/policy.md#capability-choice-and-adaptive-allocation) prefers allowed, available Luna/Spark models. Resolve exact IDs and override/context behavior from the actual runtime. Effort remains adaptive, starting from a permitted observed default; Luna/Spark are not effort levels. Main-session settings remain user-owned. Neither the preference nor this workflow grants budget or amends a project policy.
+[Worker allocation](skills/project-orchestrator/references/policy.md#capability-choice-and-adaptive-allocation) uses `gpt-6-luna` only, when the confirmed policy and actual runtime allow it. No automatic GPT-5.6 Luna, Spark or Sol fallback applies. Effort stays adaptive from a permitted observed default; no mandatory High setting. The user retains main-session settings and can explicitly change the worker choice later. Missing prerequisites need clarification, not a policy rewrite. Workers handle implementation details within their packet and return out-of-scope decisions with evidence to the main session, which resolves the shared decision before dependent work continues.
 
 The [fictional examples](skills/project-orchestrator/references/worked-examples.md) clarify direct edits, explicit solo work, default subagents, an independent-session choice, diagnosis and a changing assignment. They are optional illustrations, not measured agent outcomes.
 
@@ -96,7 +96,7 @@ Exit 0 means declared hashes match, 1 means missing/mismatched declared files, a
 
 ## Evidence and limits
 
-The [evaluation index](evals/README.md) separates executable tool tests, author decision reviews, prepared execution packets, historical trials and manifests by revision. The current [worker packets](evals/subagent-default/worker-packets.md) and [assessor rubric](evals/subagent-default/assessor.md) are physically separate and **prepared, not executed**. Future authorized runs stage only required worker material, not the whole repository.
+The [evaluation index](evals/README.md) separates executable tool tests, author decision reviews, prepared execution packets, historical trials and manifests by revision. The earlier [worker packets](evals/subagent-default/worker-packets.md) and [assessor rubric](evals/subagent-default/assessor.md) remain **prepared, not executed**, bound to the earlier PR #2 revision. Their Luna/Spark selection variants are historical inputs, not validation of the current model choice. The current review records author decision inspection only; any future behavioral run needs separately authorized, updated inputs staged without the rubric or historical results.
 
 Independent review remains required for persisted-data/security/shared-contract changes, difficult recovery, contradictory evidence and project-defined risks. Explicit solo work can deliver a self-checked candidate or authorized PR while required review and acceptance remain open. Technical verification, independent review, release and observed user value are distinct; PR Draft/non-draft status cannot establish any of them.
 
