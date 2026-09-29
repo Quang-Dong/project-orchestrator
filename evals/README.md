@@ -4,7 +4,9 @@ Start here to identify what was checked and which source it applies to. This dir
 
 ## Current candidate and open questions
 
-- [GPT-6 Luna worker review](luna-worker-review.md): current author inspection and package checks, based on `4bd98b3b5c386cb196429458e3549459ebaee06a`; [PR #2](https://github.com/Quang-Dong/project-orchestrator/pull/2) binds the final candidate SHA and hosted checks. No behavioral evaluation was run.
+- [Verification-workflow upgrade, 2026-09-29](behavioral-20260929/initial-results.md): frozen old/new skill identities, independent package review and six actual fresh-context executions on Codex/Windows. Read the report for findings, retained failures and acceptance events; package success and a small trial do not establish general effectiveness.
+- [Authorized local adoption](behavioral-20260929/local-adoption.md): exact installed artifact, rollback backup, native discovery, project-local verifier evidence and remaining runtime limits. No public release or cross-runtime certification.
+- [GPT-6 Luna worker review](luna-worker-review.md): earlier author inspection and package checks, based on `4bd98b3b5c386cb196429458e3549459ebaee06a`; [PR #2](https://github.com/Quang-Dong/project-orchestrator/pull/2) binds that candidate SHA and hosted checks. No behavioral evaluation was run for that review.
 - The entries below retain their earlier source revisions and are historical evidence/preparation, not verification of this candidate.
 - [Subagent-default review](subagent-default-review.md): author inspection and package verification for `4bd98b3`, based on merged revision `7bd89b42cb91a2ad671539c5840aaaeb608d86fa`.
 - [Earlier execution packets](subagent-default/worker-packets.md) and [separate assessor rubric](subagent-default/assessor.md): prepared at `4bd98b3`, **not executed**. Their Luna/Spark selection variants are not current-model evaluation inputs. Preserve these files; a future authorized run requires updated, separately staged inputs and cannot inherit a success claim.
@@ -12,7 +14,7 @@ Start here to identify what was checked and which source it applies to. This dir
 - [Agent-execution review](agent-execution-review.md): earlier author inspection and tool verification, based on `318f5a6fbbc6fd23f1f1e26cfb70f2ef570477cb`; final commit/CI are bound on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
 - [Execution packets](agent-execution/worker-packets.md) and separate [assessor setup/rubric](agent-execution/assessor.md): five solo and six coordination cases for the earlier capability default and contracts. **Prepared, not executed.** Stage only needed execution material; neither the full repository nor assessor files belong in worker context.
 - [Earlier behavioral packets](behavioral-readiness.md) and [earlier coordination packets](coordination-readiness.md) remain unchanged historical preparation for their recorded revisions, not current-contract inputs.
-- Independent behavioral evaluation and independent review remain **not run**. No demonstrated efficiency, reliability, token saving or user-value improvement is claimed. Tool tests and self-review do not establish agent behavior.
+- The earlier prepared packets above remain **not run**. Current scoped execution evidence is recorded separately in the 2026-09-29 report; do not retroactively mark those historical packets as executed. No general efficiency, reliability, token saving or user-value improvement is claimed.
 
 ## Executable package tests
 
@@ -33,7 +35,7 @@ These tests exercise Python tools, not agents following the prose. Report actual
 
 ## Reports by revision and evidence class
 
-The GPT-6 Luna worker candidate is covered by the current review above; the table preserves earlier evidence at its recorded revisions.
+The verification-workflow candidate is covered by the current report above; the table preserves earlier evidence at its recorded revisions.
 
 | Recorded revision or snapshot | Evidence | What remains limited |
 | --- | --- | --- |

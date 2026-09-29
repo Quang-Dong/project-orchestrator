@@ -2,7 +2,9 @@
 
 A skill for agents turning a user's objective into a useful, maintainable and verified product outcome. For substantive work it defaults to authorized subagents, with the main session retaining strategy, user communication, integration and acceptance. Explicit solo choices and small direct edits remain supported, with relevant context, observable tool feedback and recovery from interruptions.
 
-**Unreleased candidate with breaking changes.** The current source accepts policy v2 and measurement records v2; reporter output is v3 and defaults to summary. It retains the read-only artifact verifier. It is not an installed-copy update or a new release. See the [evaluation index](evals/README.md) and [current author review](evals/luna-worker-review.md) for what was checked and what remains unrun.
+**Unreleased source candidate.** The current source accepts policy v2 and measurement records v2; reporter output is v3 and defaults to summary. This verification-workflow update preserves those contracts and the read-only artifact verifier. See the [evaluation index](evals/README.md) and [bounded old/new evaluation](evals/behavioral-20260929/initial-results.md) for source identities, actual results and remaining limits. Local installation is a separate acceptance step, not a public release.
+
+The accepted 20-file artifact was [installed and discovered on the authorized Codex/Windows host](evals/behavioral-20260929/local-adoption.md) on 2026-09-29, with the previous distribution retained for rollback. This does not establish support on untested runtimes or installation on another machine.
 
 ## How an agent uses it
 
@@ -34,12 +36,15 @@ The nine product-development capabilities remain covered through focused referen
 | System design | [System design](skills/project-orchestrator/references/system-design.md): clear responsibilities, data/trust boundaries, justified tradeoff and a change/failure check |
 | Implementation and diagnosis | [Implementation and diagnosis](skills/project-orchestrator/references/implementation-and-diagnosis.md): usable integrated slice or a discriminating observation, with tool errors and incomplete output identified |
 | Verification and quality | [Evidence](skills/project-orchestrator/references/evidence-and-challenge.md): criteria matched to actual artifacts/revisions, with unresolved limits |
+| Missing project verification path | [Project verification](skills/project-orchestrator/references/project-verification.md): discover and reuse existing checks; create and self-run only the missing project-local verification needed for substantial work |
 | Release and operations | [Product operations](skills/project-orchestrator/references/product-operations.md): authorized release/stop decision, checked recovery and observation owner |
 | Coordination and learning | [Handoffs](skills/project-orchestrator/references/handoffs.md) and [improvement](skills/project-orchestrator/references/improvement.md): current ownership/context, bounded repairs and a justified reusable correction |
 
 Use the canonical [execution-mode rules](skills/project-orchestrator/references/policy.md#execution-mode-and-lead-responsibility): substantive work uses subagents without another mode question once authority, configuration, budget and runtime are sufficient. Honor an existing solo/session choice or user-granted discretion. Ask before switching to an independent session or having the main session implement everything if the choice is not already covered. Missing prerequisites call for clarification, not silent solo fallback.
 
 Keep coupled work with one execution owner, which can be a worker; the main session retains overall responsibility. Different files or specialties alone do not establish independent work. Identify stable inputs, expected output, shared resources and the integration owner. One worker is sufficient when appropriate; concurrency and extra management roles are not required.
+
+The owner follows the result through discovery, implementation, verification and ordinary repairs. A project verification skill contains the actual commands, fixtures, entrypoints, isolation and retained evidence for that repository; the global skill contains the method. Reuse a project's current verification location, or use `.agents/skills/verify-<project>/` when appropriate. Read-only work and small changes with adequate checks do not need new verification infrastructure.
 
 [Worker allocation](skills/project-orchestrator/references/policy.md#capability-choice-and-adaptive-allocation) uses `gpt-6-luna` only, when the confirmed policy and actual runtime allow it. No automatic GPT-5.6 Luna, Spark or Sol fallback applies. Effort stays adaptive from a permitted observed default; no mandatory High setting. The user retains main-session settings and can explicitly change the worker choice later. Missing prerequisites need clarification, not a policy rewrite. Workers handle implementation details within their packet and return out-of-scope decisions with evidence to the main session, which resolves the shared decision before dependent work continues.
 
@@ -96,11 +101,11 @@ Exit 0 means declared hashes match, 1 means missing/mismatched declared files, a
 
 ## Evidence and limits
 
-The [evaluation index](evals/README.md) separates executable tool tests, author decision reviews, prepared execution packets, historical trials and manifests by revision. The earlier [worker packets](evals/subagent-default/worker-packets.md) and [assessor rubric](evals/subagent-default/assessor.md) remain **prepared, not executed**, bound to the earlier PR #2 revision. Their Luna/Spark selection variants are historical inputs, not validation of the current model choice. The current review records author decision inspection only; any future behavioral run needs separately authorized, updated inputs staged without the rubric or historical results.
+The [evaluation index](evals/README.md) separates executable tool tests, author decision reviews, prepared execution packets, historical trials and manifests by revision. The earlier [worker packets](evals/subagent-default/worker-packets.md) and [assessor rubric](evals/subagent-default/assessor.md) remain **prepared, not executed**, bound to the earlier PR #2 revision. Their Luna/Spark selection variants are historical inputs. The [2026-09-29 evaluation](evals/behavioral-20260929/initial-results.md) uses separate frozen packets, fresh Luna contexts and withheld criteria; its report records all six initial executions, their findings, retained failures and acceptance events.
 
 Independent review remains required for persisted-data/security/shared-contract changes, difficult recovery, contradictory evidence and project-defined risks. Explicit solo work can deliver a self-checked candidate or authorized PR while required review and acceptance remain open. Technical verification, independent review, release and observed user value are distinct; PR Draft/non-draft status cannot establish any of them.
 
-The historical neutral comparison found functional correctness in both runs and more work/tokens in the skill run; it did not establish an overall advantage. Current behavioral effectiveness on Codex and Claude Code has not been independently measured. Research, package tests and author walkthroughs are not that evidence.
+The historical neutral comparison found functional correctness in both runs and more work/tokens in the skill run; it did not establish an overall advantage. The current small evaluation is scoped to Codex on Windows. It does not establish broad efficiency, reliability, user-value improvement or Claude Code compatibility. Missing usage data stays unknown.
 
 ## Install and maintain deliberately
 

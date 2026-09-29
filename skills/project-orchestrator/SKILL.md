@@ -35,11 +35,18 @@ Select relevant available skills/plugins within current authority without asking
 
 ## Choose the smallest useful operating mode
 
-For substantive work, [default to subagents when prerequisites are satisfied](references/policy.md#execution-mode-and-lead-responsibility), without a repeated mode-confirmation question. The main session owns strategy, user communication, allocation, shared decisions, integration and acceptance. One worker can own coupled discovery and implementation end to end; one owner does not mean the main session does everything. Name the expected result, dependencies, reason and integration owner in the existing [packet](references/handoffs.md#dispatch); do not manufacture parallelism.
+Choose the route by the outcome and dependencies:
 
-Honor explicit solo work, chosen mechanisms and user-granted discretion. Ask before changing to independent sessions or taking on all implementation unless an applicable choice already covers it; missing prerequisites do not silently select solo. A worker owns its assigned scope and decisions, not overall direction. The user controls main-session model/effort. Workers use [`gpt-6-luna` with adaptive effort](references/policy.md#capability-choice-and-adaptive-allocation), subject to confirmed policy/runtime and a later explicit user change. They resolve implementation details in scope and return decisions beyond the packet to the main session with evidence; uncertainty does not automatically select a stronger model or maximum effort.
+- Read-only investigation or a clear, bounded small edit: act directly and run only the relevant check.
+- UI bug: one owner reproduces the visible failure, fixes its cause and checks the affected journey.
+- Feature, state or contract change: give one owner the coupled caller, state and contract work end to end; split only work with independent inputs and useful outputs.
+- Refactor: preserve the current behavior first, then check each affected caller against the refactored boundary.
 
-Use [handoffs](references/handoffs.md) for one writer per conflicting scope/resource, uncertain dispatch, requirement changes and recovery. Reconcile identity and side effects before retrying. A stopped turn need not stop a writer process; late results retain their original attempt and revision. Compaction or new IDs do not reset constraints, open acceptance or repair history. After two unsuccessful repairs of the same issue, diagnose again before another repair or stop with a useful handoff.
+For substantive work, [default to subagents when prerequisites are satisfied](references/policy.md#execution-mode-and-lead-responsibility), without a repeated mode question. The main session owns strategy, user communication, shared decisions, integration and acceptance. It reads the current summaries and decisive evidence, compares the source, reuses unaffected proof only when that comparison supports it, and integrates relevant owner outputs after they freeze. Do not load full histories or commission parallelism for its own sake. Capture screenshots or other documentation evidence after behavior is stable.
+
+Honor explicit solo work, chosen mechanisms and user-granted discretion. A worker owns its assigned scope and decisions, not overall direction. Ask before changing to independent sessions or taking on all implementation unless an applicable choice already covers it; missing prerequisites do not silently select solo. The user controls main-session model/effort. Workers use [`gpt-6-luna` with adaptive effort](references/policy.md#capability-choice-and-adaptive-allocation), subject to confirmed policy/runtime and a later explicit user change. They resolve implementation details in scope and return decisions beyond the packet with evidence; uncertainty does not automatically select a stronger model or maximum effort. Keep dispatch scope, source, delegated decisions, shared resources and evidence compact in the existing [packet](references/handoffs.md#dispatch).
+
+Use [handoffs](references/handoffs.md) for one writer per conflicting scope/resource, uncertain dispatch, requirement changes and recovery. Reconcile identity and side effects before retrying. A stopped turn need not stop a writer process; late results retain their original attempt and revision. Compaction or new IDs do not reset constraints, open acceptance or repair history. Follow the [worker/reviewer repair loop](references/handoffs.md#review-and-repair) for ordinary repairs and reassessment after repeated failure.
 
 ## Verify and report
 
@@ -52,3 +59,5 @@ Report meaningful results, material decisions/blockers and evidence limits; keep
 ## Supporting decisions, only when needed
 
 Use [worked examples](references/worked-examples.md) for an unclear decision, [records](references/records.md) for optional measurement/reporting, [improvement](references/improvement.md) for a reusable workflow defect, [maintenance](references/maintenance.md) for skill lifecycle and [contributing](references/contributing.md) for an authorized source change. Research reports and evaluation rubrics are maintainer evidence, not routine execution context. No automatic installed-copy update, personal-memory write or follow-up schedule.
+
+For substantial product work whose existing checks do not prove a real user journey, follow [project verification bootstrap](references/project-verification.md). Small edits and read-only work use adequate existing evidence without creating a verifier or local infrastructure.

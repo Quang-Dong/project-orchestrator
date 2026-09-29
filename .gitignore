@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# Local trial workspaces, raw evidence and installation rollback copies.
+.data/
