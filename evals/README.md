@@ -1,73 +1,22 @@
-# Evaluation evidence index
+# Maintainer evaluations
 
-Start here to identify what was checked and which source it applies to. This directory is maintainer evidence; agents using the installed skill do not need to load it for ordinary product work. A report, manifest or passing package test is not a universal acceptance verdict.
+This index records the current executable checks and open evaluations. It is maintainer material; agents using the installed skill do not need it for ordinary product work. A passing package test or a small trial does not establish general effectiveness.
 
-## Current candidate and open questions
+## Current work
 
-- [GPT-6 Luna worker review](luna-worker-review.md): current author inspection and package checks, based on `4bd98b3b5c386cb196429458e3549459ebaee06a`; [PR #2](https://github.com/Quang-Dong/project-orchestrator/pull/2) binds the final candidate SHA and hosted checks. No behavioral evaluation was run.
-- The entries below retain their earlier source revisions and are historical evidence/preparation, not verification of this candidate.
-- [Subagent-default review](subagent-default-review.md): author inspection and package verification for `4bd98b3`, based on merged revision `7bd89b42cb91a2ad671539c5840aaaeb608d86fa`.
-- [Earlier execution packets](subagent-default/worker-packets.md) and [separate assessor rubric](subagent-default/assessor.md): prepared at `4bd98b3`, **not executed**. Their Luna/Spark selection variants are not current-model evaluation inputs. Preserve these files; a future authorized run requires updated, separately staged inputs and cannot inherit a success claim.
+- [Teacher-workspace quality comparison](behavioral-teacher-workspace-quality/setup.md) and [latest recorded result](behavioral-teacher-workspace-quality/results.md): approved 12-task control/candidate evaluation of the installed skill plus project verification profiles. The latest recorded preflight executed selected golden and seeded profiles: golden cases passed and seeded defects reproduced. Independent readiness and trial dispatch remain pending at 0/12. Earlier dependency and verifier blockers remain recorded as historical preparation. Improvement is unproven and the global skill remains unchanged.
+- [Regression-comparison runner setup](behavioral-regression-comparison/setup.md): the current narrow Python fixture runner and its retained synthetic fixture. Its separate evaluation verdict is historical; detailed private records were removed on 2026-10-01 and have not been reconstructed. This is not evidence of general semantic judgment or current-source adoption.
+- [Local data convention](local-data.md): retained evaluation artifacts and disposable workspaces have separate `.data` roots. Do not recreate historical local evidence from public verdicts.
 
-- [Agent-execution review](agent-execution-review.md): earlier author inspection and tool verification, based on `318f5a6fbbc6fd23f1f1e26cfb70f2ef570477cb`; final commit/CI are bound on [PR #1](https://github.com/Quang-Dong/project-orchestrator/pull/1).
-- [Execution packets](agent-execution/worker-packets.md) and separate [assessor setup/rubric](agent-execution/assessor.md): five solo and six coordination cases for the earlier capability default and contracts. **Prepared, not executed.** Stage only needed execution material; neither the full repository nor assessor files belong in worker context.
-- [Earlier behavioral packets](behavioral-readiness.md) and [earlier coordination packets](coordination-readiness.md) remain unchanged historical preparation for their recorded revisions, not current-contract inputs.
-- Independent behavioral evaluation and independent review remain **not run**. No demonstrated efficiency, reliability, token saving or user-value improvement is claimed. Tool tests and self-review do not establish agent behavior.
-
-## Executable package tests
+## Package checks
 
 Run from the repository root:
 
 ```sh
 python -B -m unittest discover -s evals -p "test_*.py" -v
-python -B -m compileall -q skills evals
+python -B -c "from pathlib import Path; [compile(path.read_bytes(), str(path), 'exec') for root in (Path('skills'), Path('evals')) for path in root.rglob('*.py')]; print('Python syntax valid')"
 ```
 
-| Tests | What they establish |
-| --- | --- |
-| [Policy](test_policy.py) | Policy v2 nullable solo/delegation configuration, selection contracts and read-only behavior; not consent or live capability. |
-| [Reporter](test_report_workflow.py), [acceptance](test_report_acceptance.py), [query views](test_report_views.py) | v2 record validation, v1 rejection, aggregation, v3 summary/detail/full and revision-aware report acceptance; not real product acceptance. |
-| [Artifact verifier](test_verify_artifact.py) | Declared-file/path validation within tested conditions; not semantic completeness or a concurrent snapshot. |
+The suite checks policy v2, v1 measurement-record rejection, reporter v3 views and acceptance, artifact verification, the regression-comparison runner, and repository Markdown links. These checks exercise deterministic tools and repository paths; they do not show that agents followed the skill or that users received value. Report the actual run count, failures and skips from the tested revision.
 
-These tests exercise Python tools, not agents following the prose. Report actual run counts, failures and skips from the named revision; do not reuse historical totals as a current result. Tests beneath the historical neutral fixture/outcomes belong to those example projects, not additional successes to add to the root suite count.
-
-## Reports by revision and evidence class
-
-The GPT-6 Luna worker candidate is covered by the current review above; the table preserves earlier evidence at its recorded revisions.
-
-| Recorded revision or snapshot | Evidence | What remains limited |
-| --- | --- | --- |
-| Initial content-hashed skill snapshot, 2026-09-15 | [Initial report](report.md), [decision outputs/rubric grading](results.json), [initial manifest](skill-manifest.json) | Package/isolated installation checks and two fresh contexts answering fictional decisions. Scenario actions were not executed; no current-candidate claim. No evaluated Git SHA is supplied by the initial manifest. |
-| Unpublished v02 | [Report](report-v02.md), [workflow decisions](workflow-results-v02.json), [manifest](skill-manifest-v02.json) | Reporter/package checks, fictional decisions and a bounded actual takeover described in the report; local evidence, not production or current behavior. |
-| Unpublished v03 | [Report](report-v03.md), [manifest](skill-manifest-v03.json) | Query checks and four sequential outcome trials; the report's task failures and limits remain part of the evidence. No universal efficiency conclusion. |
-| Unpublished v04 | [Report](report-v04.md), [manifest](skill-manifest-v04.json) | Package checks, fictional decisions and a bounded local product pilot. Private pilot source is not public reproducible evidence; no production or current-candidate validation. |
-| Release v0.1.0; published commit `a20be911054ca8084c510cedf6ebb6cfb1d02d5e` | [Release report](report-v0.1.0.md), [manifest](skill-manifest-v0.1.0.json), [release notes](https://github.com/Quang-Dong/project-orchestrator/releases/tag/v0.1.0) | Report/manifest are the content-hashed prepublication snapshot; release notes bind hosted CI and installation to the published commit. Later guidance is outside that acceptance. |
-| OPS06/OPS07 development snapshot, last updated at `766f4d0` | [Report](report-ops07.md) | Author checks and artifact-verifier tests; independent review/adoption pending. Its mention of a prior failed pilot is not acceptance of this source. |
-| Adaptive update `a8e0b8f`; baseline `766f4d0` | [Author review](adaptive-orchestration-review.md) | Ten fictional decision inspections and package checks; not agent trials. |
-| Nine-capability update `3050382`; baseline `a8e0b8f` | [Author review](capability-coverage-review.md) | Eighteen fictional decision inspections and one walkthrough; not demonstrated product-development effectiveness. |
-| Communication update `7a8063b`; baseline `3050382` | [Author review](communication-and-simplification-review.md) | Thirty fictional decision inspections and one walkthrough, with package checks; independent execution not run. |
-| Authority/index update `1b4b42f`; baseline `7a8063b` | [Author review](authority-and-gate-review.md) | Source/gate interpretation and package checks only; prepared behavioral cases remain unrun. |
-| Runtime coordination update `318f5a6`; baseline `1b4b42f` | [Author review](runtime-coordination-review.md) | Sixteen fictional decisions, one walkthrough and package checks; six coordination packets prepared, not executed. |
-| Agent-execution candidate; baseline `318f5a6` | [Author review](agent-execution-review.md) | Breaking policy/reporting changes, deterministic tool checks and fictional decision review; new separated packets are unrun. |
-| Subagent-default candidate `4bd98b3`; baseline `7bd89b4` | [Author review](subagent-default-review.md) | Twenty-three author decision inspections and package checks; eight separated cases are unrun and retain the earlier model-family choice. |
-
-Version labels without an evaluated Git SHA refer to their recorded content hashes and report scope. Do not invent a commit identity from a filename or treat a later commit carrying old files as the revision originally evaluated. Historical wording such as “this PR” retains the report's original scope, not every later PR commit.
-
-## Scenario definitions and historical task execution
-
-| Material | Classification and how to read it |
-| --- | --- |
-| [Initial scenarios](scenarios.json), [scenario notes](scenarios.md), [rubric](rubric.json) | Input definitions and withheld grading criteria. Historical answers are in `results.json`; the scenarios are not proof their actions ran. |
-| [Workflow cases](workflow-cases.json), [v03 scenarios](scenarios-v03.md), [v04 scenarios](scenarios-v04.md) | Definitions for the corresponding historical reports; any claimed observation must come from that report, not the scenario text. |
-| [Neutral comparison](neutral/README.md), [protocol](neutral/protocol.json), [results](neutral/results.json) | Actual historical control/skill task executions against frozen inputs, with resulting code under `neutral/outcomes/`. Both were functionally correct; more work/tokens in the skill run did not establish overall advantage. Shared platform instructions, one pair and declared isolation limit inference. |
-| [Neutral fixture](neutral/fixture/README.md), [existing grader](neutral/grade.py) | Reusable fictional input and deterministic code check. Baseline failure against the new rule is intentional. The grader does not assess authority, truthful reporting or multi-session coordination. |
-| [Behavioral readiness](behavioral-readiness.md) | Five solo packets prepared at `1b4b42f`, with no execution results. Preserve worker/assessor separation. |
-| [Coordination readiness](coordination-readiness.md) | Six historical coordination packets prepared at `318f5a6`, with no execution results. Real timing/control prerequisites and unsupported variants are explicit; no new harness or grader. |
-
-## Manifests and compatibility
-
-The five historical manifests above identify declared files in their own snapshot: initial, v02, v03, v04 and v0.1.0. They are not manifests for the current candidate. Check them against the matching source, not a moving branch; an expected mismatch after later edits is not evidence that the historical snapshot changed.
-
-Use the associated [v03](../compatibility-v03.json), [v04](../compatibility-v04.json) and [v0.1.0](../compatibility-v0.1.0.json) compatibility records only for the environments they describe. A matching file hash establishes identity, not correct product behavior, review completion, installation authority or runtime support.
-
-Keep historical files immutable. New work adds a scoped report or packet and updates this index; it does not rewrite old results as current passes. Public evidence uses fictional or sanitized material, with private logs and identifiers excluded.
+Historical evidence remains grouped by reports, reviews, scenarios, packets, manifests, trials, and environment records in the [evaluation history](history/README.md). Its results, limitations, failures and not-run statuses remain scoped to the original revisions.
