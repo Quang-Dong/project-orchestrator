@@ -36,7 +36,9 @@ Inspect whether communication changed a decision or supplied missing proof. Remo
 
 ## Close once
 
-At the existing task closure, briefly assess diagnosis, adequacy of measurement and whether process work was proportionate. Do not open a separate review of that assessment.
+At the existing task closure, address each confirmed material miss identified by the user, main session or reviewer: its cause, why earlier verification missed it, and a narrow durable prevention with observed proof. For a mechanically checkable code correction, apply the [canonical snapshot-comparison procedure](implementation-and-diagnosis.md#diagnose-before-repairing); state any evidence gap. If a miss cannot reasonably be repeated or mechanically checked, state why and what evidence supports that limit. A new or changed requirement is not itself a miss. Do not create a test or process record for a small wording or low-impact edit that has no meaningful miss to close.
+
+Place the prevention where it belongs: fix a code defect and its regression in the project; for an overlooked rule, correct its retrieval, application or check; amend an incomplete rule in its existing canonical location; put a generalizable orchestration lesson in the relevant skill section. Preserve attempt-level evidence in the existing task/handoff or versioned measurement record. Keep active guidance, executable checks and historical evidence distinct; do not turn confirmed incidents into an expanding skill diary, duplicate rule or new registry. At closure, briefly assess diagnosis, adequacy of measurement and whether process work was proportionate without opening a separate retrospective.
 
 For recorded trials, close with adopted, revised, reverted or deferred as defined in [records](records.md). Adoption must state its demonstrated scope. A deferred result names missing evidence and a future event, not a background schedule. A stopped or accepted task must not leave its trial silently active.
 

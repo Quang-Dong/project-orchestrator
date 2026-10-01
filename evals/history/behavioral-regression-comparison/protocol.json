@@ -1,0 +1,26 @@
+{
+  "title": "Frozen regression comparison runner",
+  "date": "2026-09-30",
+  "scope": "One synthetic Python T1 comparison: saved-note-preview-after-edit",
+  "source": "The bootstrap-bound original T1 snapshot and manifest under the private run artifact",
+  "correctedOutput": "A complete frozen T1 output snapshot and exact SHA256 manifest",
+  "case": {
+    "id": "saved-note-preview-after-edit",
+    "testFile": "tests/test_workspace.py",
+    "testId": "test_workspace.WorkspaceTests.test_editing_note_refreshes_report_preview",
+    "expectedBaselineAssertion": "Initial note A != Saved note A",
+    "requiredCorrectedValue": "Saved note A"
+  },
+  "comparison": [
+    "The baseline disposable copy retains the original business source and receives only the selected regression test from the frozen output.",
+    "The corrected disposable copy receives the corrected business source and the same selected regression test bytes.",
+    "The selected named test runs on both sides. The full original guard suite runs on both sides; the two original guard methods must remain byte-for-byte equivalent at the Python AST level.",
+    "A verified comparison requires subprocess exit 1 plus the baseline failure only at the named assertion with the frozen stale and expected values, and subprocess exit 0 plus corrected named-test and full-suite success with the expected test count. Transcript text without the required exit code is insufficient. Import failures, setup failures, timeouts, zero tests, other assertions, or source changes are insufficient."
+  ],
+  "inputValidation": [
+    "Both manifests must enumerate the complete snapshot file set and match every SHA256.",
+    "The only output changes allowed are src/workspace.py and tests/test_workspace.py.",
+    "Symlinks, special files, path traversal, extra files, changed original guard tests, missing regression, stale result directories, and input mutation are rejected or reported insufficient."
+  ],
+  "limits": "Trusted authorized synthetic Python code only. This runner is not an OS sandbox, generic framework, or product verifier."
+}

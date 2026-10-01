@@ -6,6 +6,8 @@ Keep the current requirement and recovery checkpoint in existing project records
 
 `report_workflow.py --metrics PATH --improvements PATH` is a standard-library-only read-only reporter. Inputs remain v2 JSONL; **output is v3 and defaults to summary**. Exit 0 means valid input; 2 means malformed/unsupported/duplicate records, invalid query or semantic acceptance error. Errors are JSON with no partial accepted results. `--help` displays usage. No files, caches or network calls are created.
 
+Use the existing task-scoped metrics file and trial-scoped improvements file that answer the current question; avoid feeding every task and trial through one growing global input by default. Include the related events needed to preserve each attempt's handoff/acceptance chronology or each trial's state history, and keep event IDs unique across both supplied files. Select input files before querying: `--task-id` and `--experiment-id` filters narrow returned records but the reporter validates every record in both supplied files before filtering. The reporter provides no automatic rotation, migration or file registry; keep any project-specific file retention convention in project guidance.
+
 ## Metrics JSONL
 
 Elapsed wall time is not measured active effort. Session age or cached-token counts do not establish remaining allowance or billed cost.
@@ -43,7 +45,7 @@ Regression coverage includes valid end-to-end metrics/improvement closure; old-v
 
 ## Summary, detail and full audit
 
-Normal reads default to summary; optional `--task-id` or `--experiment-id` narrows the question. `--view summary` is equivalent. Use `--view detail` for typed attempt/experiment/usage items, with `--limit` (1..200, default 20) and the returned `--cursor` for the next page. Task/experiment filters intersect; experiment queries return experiments only, never imply unrelated task metrics belong to a trial. Missing matches produce empty results.
+Normal reads default to summary; optional `--task-id` or `--experiment-id` narrows the question within the selected input files. `--view summary` is equivalent. Use `--view detail` for typed attempt/experiment/usage items, with `--limit` (1..200, default 20) and the returned `--cursor` for the next page. Task/experiment filters intersect; experiment queries return experiments only, never imply unrelated task metrics belong to a trial. Missing matches produce empty results.
 
 Use `--view full` deliberately for the entire audit. Full rejects filters and pagination. `--cursor` and `--limit` are detail-only; silently ignoring them could hide missing evidence. Calls without `--view` no longer return the unbounded full report. There is no v1 reader, `legacyCounts`, `viewVersion` or legacy `build` compatibility helper.
 

@@ -1,0 +1,27 @@
+{
+  "title": "Bounded-context old/new skill comparison",
+  "date": "2026-09-29",
+  "source_baseline": "5cc31487efd6da748a4a0206efccde6b13a2a6b8",
+  "baseline_skill": "frozen 20-file baseline skill snapshot, matched by manifest SHA256 8a86f07682c8bf14ed8ed7cb07a3e9e710a432c8f03c506409745b1f2a557ec1",
+  "candidate_skill": "frozen 20-file candidate skill snapshot, matched by manifest SHA256 4852b6c462f4bf69353ce55c3c5024862388d82d8587351cc855406528b419f0",
+  "requested_model": "gpt-6-luna",
+  "requested_effort": "high",
+  "execution": "Six native collaboration fresh contexts created with fork_turns=none and requested gpt-6-luna/high: one frozen baseline-skill context and one frozen candidate-skill context for each trial. Each staged workspace contains only its assigned task, fixture, and one matching frozen skill copy. Neither is sent protocol, assessor criteria, other task packets, or opposite-side skill.",
+  "telemetry": "Record requested and accepted model/effort separately from any runtime-reported settings. Record usage only when genuine execution metadata exposes it; otherwise retain null.",
+  "paired_design": "Each trial uses the same prompt, fixture bytes, authority, model and effort for baseline and candidate; fresh context and distinct writable workspace/output per execution.",
+  "trials": [
+    {"id": "T1", "fixture": "fixtures/T1", "focus": "saved source state versus cached workspace preview"},
+    {"id": "T2", "fixture": "fixtures/T2", "focus": "current source amid irrelevant history and stale green evidence"},
+    {"id": "T3", "fixture": "fixtures/T3", "focus": "small edit with adequate existing test"}
+  ],
+  "authority": "Edit only files in the assigned trial fixture. Run relevant local checks. No commit, push, merge, publication, external service, or access to another fixture is authorized.",
+  "filesystem_limit": "Staged workspaces contain only assigned inputs and have distinct write/output paths. Native collaboration runs on a shared filesystem with read access beyond the stage; this is not OS-enforced isolation. Packets prohibit unrelated reads and available runtime traces will be inspected. State this limit in results.",
+  "execution_controls": [
+    "Run one fresh baseline context and one fresh candidate context per trial.",
+    "Provide the frozen baseline skill to the baseline context and the frozen candidate skill to the candidate context; stage only the assigned task and fixture with it.",
+    "Use separate cloned workspace and output paths for each context; do not transfer reasoning or artifacts between paired contexts.",
+    "Retain available native execution traces, resulting diffs, check output and completion status privately. If transcript export is unavailable, state that; do not substitute estimates.",
+    "Preserve failures, incomplete runs and interruptions; no rerun to improve a score. Permit at most one candidate adjustment, then rerun only affected pairs and retain both attempts.",
+    "Record observed model/effort and usage only when genuine execution metadata supplies them; unknown values remain null."
+  ]
+}
