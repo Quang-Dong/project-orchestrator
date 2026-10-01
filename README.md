@@ -20,7 +20,7 @@ Run the package tests and syntax checks from the repository root:
 
 ```sh
 python -B -m unittest discover -s evals -p "test_*.py" -v
-python -B -m compileall -q skills evals
+python -B -c "from pathlib import Path; [compile(path.read_bytes(), str(path), 'exec') for root in (Path('skills'), Path('evals')) for path in root.rglob('*.py')]; print('Python syntax valid')"
 ```
 
 CI checks JSON validity and runs the Python package and Markdown link tests. Whitespace and public-content scope require separate review. Repository checks do not measure agent outcomes.

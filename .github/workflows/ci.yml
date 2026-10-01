@@ -32,8 +32,9 @@ jobs:
       - name: Show Python version
         run: python --version
 
-      - name: Compile package and evaluation code
-        run: python -B -m compileall -q skills evals
+      - name: Validate Python syntax without writing bytecode
+        run: >-
+          python -B -c "from pathlib import Path; [compile(path.read_bytes(), str(path), 'exec') for root in (Path('skills'), Path('evals')) for path in root.rglob('*.py')]; print('Python syntax valid')"
 
       - name: Validate JSON metadata, including archive
         run: >-
